@@ -355,8 +355,8 @@ body > main { flex: 1 0 auto; width: 100%; }
 
 <main>
   <div id="setupNotice" class="card" style="display:none;">
-    <h2>First-time setup needed</h2>
-    <p>This clinic account hasn't been set up yet. Open the <strong>Admin</strong> tab above to create the owner password and first staff PIN, see the <a href="#" id="setupGuideLink">Guide</a> for step-by-step help.</p>
+    <h2>First-time setup</h2>
+    <p>Open the <strong>Admin</strong> tab to set the owner password and the first staff PIN. The <a href="#" id="setupGuideLink">Guide</a> has the steps.</p>
   </div>
 
   <div id="lowStockBanner" class="alert-banner" style="display:none;"></div>
@@ -581,19 +581,15 @@ body > main { flex: 1 0 auto; width: 100%; }
 
   <main style="max-width:780px;">
     <div class="card" style="border-color:var(--rose); text-align:center;">
-      <h2 style="margin-bottom:4px;">New here?</h2>
-      <p class="muted" style="margin-bottom:14px;">Take a guided tour, it walks you through the real screens, step by step, with a Back/Next you control.</p>
+      <h2 style="margin-bottom:4px;">Guided tour</h2>
+      <p class="muted" style="margin-bottom:14px;">The tour steps through the real screens. Use Back and Next to move.</p>
       <button class="btn full" id="startTourBtn">▶ Start Full Guided Tour</button>
-      <p class="muted" style="margin:14px 0 8px;">Or just walk through one topic:</p>
+      <p class="muted" style="margin:14px 0 8px;">Or pick one topic:</p>
       <div id="tourTopicMenu" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;"></div>
     </div>
 
-    <div class="card">
-      <p>Prefer to read instead? The full written guide is below, it's always here, tap <strong>Guide</strong> in the top bar any time. It works fine on a phone or tablet too.</p>
-    </div>
-
     <div class="card" style="border-color:var(--rose);">
-      <p><strong>How this version works:</strong> this is the single-device offline edition, everything lives only in this browser, on this device, saved automatically to its local storage as you use it. There's no account, no sign-in, no internet connection needed at all (it works fine in airplane mode), and nothing here is visible from any other device or browser. That also means it's the opposite of the online/multi-device edition: nothing here ever shows up anywhere else on its own, see section 13 for how to move data if you ever need to.</p>
+      <p>This app runs on one device. The data stays in this browser and no other device or browser can see it. It needs no account and no internet. Section 10 covers moving data to another device.</p>
     </div>
 
     <nav class="guide-nav">
@@ -613,12 +609,11 @@ body > main { flex: 1 0 auto; width: 100%; }
     <details id="opening" open>
       <summary>1. Opening the app</summary>
       <div class="content">
-        <h3 style="margin-bottom:6px;">On this device</h3>
         <ol>
-          <li>Open the app file (double-click it, or open it from your browser's File &gt; Open). Chrome, Safari, or Edge all work. No install, no account, and no internet connection needed.</li>
-          <li>Everything you do is saved automatically to this browser's local storage on this device as you go, there's no sign-in step and nothing to configure before you start.</li>
-          <li><strong>Install it on a tablet:</strong> open the clinic's web address for the app in Chrome, then tap the menu and <strong>Install app</strong> (or <strong>Add to Home screen</strong>). On an iPad, use Safari's Share button, then <strong>Add to Home Screen</strong>. The app then opens from its own icon, works with no internet, and picks up every update the next time it opens with a connection.</li>
-          <li>An installed app keeps its own data, separate from any copy of the file opened directly. To carry data over, Export All Data from the old copy and Import it into the installed app (Admin, Data / Backup).</li>
+          <li>Open the app file in Chrome, Safari or Edge. It needs no install, account or internet.</li>
+          <li>Everything saves to this browser as you work.</li>
+          <li><strong>Install it on a tablet:</strong> open the clinic's web address for the app in Chrome, tap the menu, then <strong>Install app</strong> or <strong>Add to Home screen</strong>. On an iPad, use Safari's Share button, then <strong>Add to Home Screen</strong>. The installed app opens from its own icon, works with no internet and updates the next time it opens with a connection.</li>
+          <li>The installed app keeps its data apart from the file opened directly. To carry data over, Export All Data from the old copy and Import it into the installed app (Admin &gt; Data / Backup).</li>
           <li>Each tablet keeps its own data. Move data between tablets with Export and Import (section 10).</li>
         </ol>
       </div>
@@ -628,12 +623,12 @@ body > main { flex: 1 0 auto; width: 100%; }
       <summary>2. First-time setup</summary>
       <div class="content">
         <ol>
-          <li>Open the <strong>Admin</strong> tab. The first time, it asks you to create an <strong>admin password</strong> (protects the Admin tab) and your own <strong>staff PIN</strong> (4 to 8 digits, entered whenever you deduct, restock or log a service).</li>
-          <li>This happens once per device, a browser profile that has already been set up won't ask again unless its storage is cleared (see Troubleshooting).</li>
-          <li>The starting product catalog and a starter set of sample services/packages are already loaded. Edit or delete anything that doesn't match under Admin &gt; Inventory and Admin &gt; Services &amp; Packages.</li>
-          <li>Go to <strong>Admin &gt; Staff</strong> to add your team, each with their own confidential PIN.</li>
-          <li>Go to <strong>Admin &gt; Inventory</strong> to add photos and adjust prices, stock, and thresholds.</li>
-          <li>The Admin tab stays unlocked only until you reload the page or close the browser, reopening the app always asks for the admin password again (staff never need it for everyday work).</li>
+          <li>Open the <strong>Admin</strong> tab. The first time, it asks for an <strong>admin password</strong> for the Admin tab and your own <strong>staff PIN</strong> of 4 to 8 digits, which you enter to deduct, restock or log a service.</li>
+          <li>Setup runs once on each device. It asks again only if the browser's data is cleared (see Troubleshooting).</li>
+          <li>The product catalog and sample services and packages are loaded already. Change or delete them in Admin &gt; Inventory and Admin &gt; Services &amp; Packages.</li>
+          <li>Add your team in <strong>Admin &gt; Staff</strong>, each with their own PIN.</li>
+          <li>Add photos and set prices, stock and restock thresholds in <strong>Admin &gt; Inventory</strong>.</li>
+          <li>Admin locks again when the page reloads or the browser closes. Staff never need the admin password for daily work.</li>
         </ol>
       </div>
     </details>
@@ -644,7 +639,7 @@ body > main { flex: 1 0 auto; width: 100%; }
         <ol>
           <li>On the <strong>Products</strong> tab, tap a product to add one to the list. Tap it again to add more.</li>
           <li>Tap <strong>Review &amp; Deduct</strong> and pick the patient. A patient is required every time, since patient history is built from it. Add a promo code if there is one and choose how they paid.</li>
-          <li>A promo code only discounts the products and services it was set up for in Admin &gt; Promo Codes, once per patient per item.</li>
+          <li>A promo code discounts only the products and services it was set up for in Admin &gt; Promo Codes, once per patient per item.</li>
           <li>An Ambassador or VIP patient gets their discount automatically. When a promo code, the Ambassador discount and a VIP discount could all apply to one item, only the largest one applies.</li>
           <li>Tap <strong>Deduct from Stock</strong> and enter the staff PIN of whoever is handling it. The items are logged as purchased and taken out of stock. No receipt is issued, so write one by hand if the patient needs one.</li>
           <li>Staff must clock in on the Attendance tab before they can deduct anything.</li>
@@ -672,10 +667,10 @@ body > main { flex: 1 0 auto; width: 100%; }
           <li><strong>Log a Service</strong> is for a one-off treatment. Pick the patient, how they paid, and any voucher or promo code.</li>
           <li><strong>Log a Package</strong> is for a prepaid bundle of sessions. Each service in the package gets its own first visit on the calendar, on its own interval. The dates are filled in for you and can be changed, or cleared to skip booking one.</li>
           <li><strong>Redeem a Session</strong> is for a patient using a session they already paid for. Find them, tap Redeem, and pick which service it is for when the package has more than one. Redeeming books that service's next visit on its own interval until its sessions run out.</li>
-          <li><strong>Days between visits:</strong> a regular package sets one in Admin &gt; Services &amp; Packages. A custom package sets one per service, for example diode every 14 days and skin booster every 21 days. Left blank, the service's own Follow-up in N days is used.</li>
-          <li><strong>Custom packages</strong> are built for one patient in Admin &gt; Patients &gt; Custom Package. They only show for that patient, under "Custom package for one patient" in Log a Package.</li>
+          <li><strong>Days between visits:</strong> a regular package sets one in Admin &gt; Services &amp; Packages. A custom package sets one per service, for example diode every 14 days and skin booster every 21 days. Left blank, the service's own Next visit setting is used.</li>
+          <li><strong>Custom packages</strong> are built for one patient in Admin &gt; Patients &gt; Custom Package. They show only for that patient, under "Custom package for one patient" in Log a Package.</li>
           <li><strong>Vouchers:</strong> in Admin &gt; Patients, tap <strong>Vouchers</strong> on a patient. Choose percent off, a peso amount off, or a free service, and tick the services it covers (none ticked covers every service). Print the QR code or download it to send to the patient.</li>
-          <li>To use a voucher, tap <strong>Scan</strong> next to Patient voucher on Log a Service, or type its code. It only works for the patient it was made for and once per service. Voiding that service frees the voucher for that service again.</li>
+          <li>To use a voucher, tap <strong>Scan</strong> next to Patient voucher on Log a Service, or type its code. It works only for the patient it was made for, once per service. Voiding that service frees the voucher for that service again.</li>
         </ol>
       </div>
     </details>
@@ -684,13 +679,15 @@ body > main { flex: 1 0 auto; width: 100%; }
       <summary>6. Patients</summary>
       <div class="content">
         <ol>
-          <li>Add a new patient from the <strong>Patients</strong> tab.</li>
-          <li>Tap any patient to see their history on this device, every product, service and package with dates, plus their own <strong>Upcoming Appointments</strong> (with a shortcut to book one for them). From there, <strong>Edit Patient</strong> lets you fix a name, contact info, email, or notes, and <strong>Delete Patient</strong> removes them from the system entirely.</li>
-          <li>Deleting a patient only works if they have <strong>no</strong> purchase, service, or package history, that history needs a real patient record to stay accurate, so a patient who's ever bought anything can be edited but not deleted. From the everyday Patients tab, deleting also asks for an admin or void-authorized staff PIN first, the same authorization voiding a sale needs; from Admin &gt; Patients, already being logged into Admin covers that.</li>
-          <li><strong>Tags</strong> are free-typed categories you make up as you go (wrinkles, recurrent customer, anti-aging…), add or remove them from a patient's history screen. Type an existing tag's name (any capitalization) to reuse it rather than creating a lookalike duplicate. Tap a tag chip above the patient list to filter down to everyone who has it; tapping a second tag broadens the list to anyone with <strong>either</strong> tag, not just patients who have both.</li>
-          <li>Only the Admin tab can designate someone an <strong>Ambassador</strong> and set their discount percentage, edit/delete a patient from the management table (Admin &gt; Patients), or remove a tag from the system entirely (Admin &gt; Patients &gt; Manage Tags, this takes it off every patient who has it at once, with no separate confirmation since it's just a label, not purchase history).</li>
-          <li><strong>VIP status</strong> is granted automatically once a patient's total <strong>product</strong> purchases (services don't count) reach the qualifying amount set in Admin &gt; Settings (₱50,000 by default), a progress bar toward it shows on the patient's history screen so you can show it to them in person. The sale that actually crosses the threshold does not itself get the VIP discount; it only starts on their next visit. Admin &gt; Patients can also grant or remove VIP manually regardless of spend, removing it resets the progress counter to zero, so re-earning it automatically takes a fresh full amount from that point on. VIP discounts are set per product/service (a default in that item's own Edit screen, in Admin &gt; Inventory or Admin &gt; Services) with optional per-patient overrides from Admin &gt; Patients &gt; <strong>VIP Discounts</strong>.</li>
-          <li>Exporting one patient's full report requires re-entering the admin password even though you're already in the Admin tab, this is intentional, to keep that export deliberate given how much personal purchase history it contains. It downloads as a <code>.csv</code> file (it opens directly in Excel).</li>
+          <li>Add a patient on the <strong>Patients</strong> tab.</li>
+          <li>Tap a patient to see every product, service and package they had, with dates, and their <strong>Upcoming Appointments</strong>. Book a visit from there. <strong>Edit Patient</strong> changes the name, contact details, email or notes.</li>
+          <li><strong>Delete Patient</strong> works only for a patient with no purchase, service or package history, and asks for an admin PIN or a PIN allowed to void. A patient with history can be edited but never deleted.</li>
+          <li><strong>Tags</strong> are labels you make up, such as wrinkles or regular. Add or remove them on the patient's screen. Typing an existing tag reuses it in any capitalization. Tap a tag above the patient list to show everyone with it, and tap a second tag to also show patients with that one.</li>
+          <li>Admin &gt; Patients makes a patient an <strong>Ambassador</strong> and sets their discount. Manage Tags there removes a tag from every patient at once.</li>
+          <li><strong>VIP</strong> comes automatically once a patient's product purchases reach the amount in Admin &gt; Settings (₱50,000 by default). Services do not count. The patient's screen shows their progress. The purchase that reaches the amount is charged in full and the VIP discount starts on the next visit.</li>
+          <li>Admin &gt; Patients can also grant or remove VIP by hand. Removing it resets the count to zero.</li>
+          <li>Each product and service sets its own VIP discount on its Edit screen. Admin &gt; Patients &gt; <strong>VIP Discounts</strong> sets a different discount for one patient.</li>
+          <li>Exporting one patient's report asks for the admin password again. It downloads as a <code>.csv</code> file that opens in Excel.</li>
         </ol>
       </div>
     </details>
@@ -701,9 +698,9 @@ body > main { flex: 1 0 auto; width: 100%; }
         <ol>
           <li><strong>Write a template:</strong> in Admin &gt; Message Templates, write the reminder once. Tap a blank to insert it: {name}, {first_name}, {date}, {time}, {service} and {clinic}. The preview shows how it will read. {clinic} uses the clinic name in Admin &gt; Settings.</li>
           <li><strong>Send reminders:</strong> on the Calendar tab, tap a day, then <strong>Send Reminders</strong>. The Marketing tab opens with everyone booked that day and each message already filled in with their name, service, date and time. You can also pick the date at the top of Marketing.</li>
-          <li>Each patient has buttons for <strong>WhatsApp</strong>, <strong>Text Message</strong>, <strong>Gmail</strong> and <strong>Facebook</strong>, depending on what is on their record. Each one opens with the message ready. You still tap Send yourself. Facebook cannot be pre-filled, so the message is copied and you paste it into the chat.</li>
+          <li>Each patient has buttons for <strong>WhatsApp</strong>, <strong>Text Message</strong>, <strong>Gmail</strong> and <strong>Facebook</strong>, depending on what is on their record. Each one opens with the message ready. Tap Send yourself. For Facebook, the app copies the message and you paste it into the chat.</li>
           <li>You can edit a message before sending it.</li>
-          <li><strong>Email</strong> further down opens Gmail with your patients' addresses in Bcc. The To field looks empty on purpose. If Bcc is empty too, the list was too long, so pick about 50 patients at a time.</li>
+          <li><strong>Email</strong> further down opens Gmail with your patients' addresses in Bcc. The To field stays empty. If Bcc is empty as well, the list was too long, so pick about 50 patients at a time.</li>
           <li><strong>WhatsApp</strong> opens one chat at a time with your message filled in. Add each patient's WhatsApp number on their record first.</li>
           <li><strong>Facebook Messenger</strong> only lists patients with a Facebook link who agreed to be contacted that way (both set on Edit Patient). Chats open empty, so paste the message in yourself.</li>
         </ol>
@@ -717,9 +714,9 @@ body > main { flex: 1 0 auto; width: 100%; }
           <li>Tap <strong>+ Book Appointment</strong> to book a visit by hand: patient, service, date, time and notes.</li>
           <li>The month grid shows a count on each day with bookings. Tap a day to see its list, where each booking can be marked done, edited or deleted.</li>
           <li><strong>Packages</strong> book each service separately. A package with diode every 14 days and skin booster every 21 days shows both on the calendar, each on its own dates.</li>
-          <li><strong>Follow-up in N days</strong> on a service books the patient's next visit for that service as soon as one is logged, counted from the day the visit happened.</li>
+          <li><strong>Next visit after this many days</strong> on a service books the patient's next visit for that service as soon as one is logged, counted from the day the visit happened.</li>
           <li>Logging a visit marks that patient's booking for the same service as done, even when they come in before the booked date.</li>
-          <li>A booking left scheduled after its date shows as <strong>missed</strong> with a banner. Logging the visit when the patient arrives late closes it, or delete it.</li>
+          <li>A booking still open after its date shows as <strong>missed</strong> with a banner. Log the visit if the patient comes in late, or delete the booking.</li>
           <li><strong>Send Reminders</strong> on a day opens that day's reminder list in Marketing (section 7).</li>
         </ol>
       </div>
@@ -729,7 +726,7 @@ body > main { flex: 1 0 auto; width: 100%; }
       <summary>9. Inventory, consumables and branches</summary>
       <div class="content">
         <ol>
-          <li>The <strong>Inventory</strong> tab has <strong>Products</strong> (what patients take home) and <strong>Consumables</strong> (gloves, syringes, ml of product used during treatments). Consumables never show on the Products tab. Tick <strong>Internal consumable or supply</strong> on an item in Admin &gt; Inventory to make it one.</li>
+          <li>The <strong>Inventory</strong> tab has <strong>Products</strong> (what patients take home) and <strong>Consumables</strong> (gloves, syringes, ml of product used during treatments). Consumables never show on the Products tab. Tick <strong>Clinic supply</strong> on an item in Admin &gt; Inventory to make it one.</li>
           <li><strong>Restock</strong> adds stock and <strong>Pull-out</strong> takes it off the shelf (damaged, expired, recalled). Both ask for a staff PIN.</li>
           <li><strong>Log Usage</strong> on a consumable records waste such as a torn glove.</li>
           <li>A service or package can list the consumables it uses per session (Admin &gt; Services &amp; Packages). They come out of stock automatically each time it is logged.</li>
@@ -741,16 +738,16 @@ body > main { flex: 1 0 auto; width: 100%; }
     </details>
 
     <details id="backup">
-      <summary>10. Backup &amp; moving to a new device</summary>
+      <summary>10. Backup and moving to a new device</summary>
       <div class="content">
-        <p>Because everything lives only in this browser's local storage on this device, <strong>Export/Import is the only way</strong> to get data off this device, keep a safety copy, or move everything to a replacement tablet/PC (or a fresh browser profile), there's no automatic sync to fall back on.</p>
+        <p>The data lives only in this browser on this device. Export and Import are the only way to keep a spare copy or move to another tablet.</p>
         <ol>
           <li>Go to <strong>Admin &gt; Data / Backup</strong>.</li>
-          <li><strong>Export All Data</strong> downloads one <code>.json</code> file containing everything on this device, every product, staff PIN, patient, purchase, setting and photo. Keep this somewhere safe (email it to yourself, save it to cloud storage, copy it to a USB drive) as a periodic backup, e.g. weekly, or before making any big catalog changes.</li>
-          <li><strong>Moving to a new device or a new browser:</strong> export from the old one, copy the <code>.json</code> file over (email, USB, cloud storage, however is convenient), open this same app file on the new device, and use Import there.</li>
-          <li><strong>Import</strong> restores a previously exported file, use it to recover from a mistake, or to move data onto this device. It requires re-entering this device's admin password and typing a confirmation phrase, since <strong>it replaces every product, staff record, patient and purchase currently on this device</strong>. This device's own admin password stays the same after an import, only the data changes.</li>
-          <li>Because Import overwrites everything currently on this device, only do it when you're sure, export a fresh backup of the current state first if there's any doubt.</li>
-          <li>This offline edition's export file is <strong>not</strong> interchangeable with the online/Supabase edition's export, they use different encryption for staff PINs, so a file from one can't be imported into the other.</li>
+          <li><strong>Export All Data</strong> downloads one <code>.json</code> file with every product, staff PIN, patient, purchase, setting and photo. Keep it off the tablet, in email, cloud storage or a USB drive. Export once a week and before any big catalog change.</li>
+          <li><strong>Moving to a new device or browser:</strong> export on the old one, copy the <code>.json</code> file over, open the app on the new device and use Import there.</li>
+          <li><strong>Import</strong> replaces every product, staff member, patient and purchase on this device with the file's contents. It asks for this device's admin password and a typed confirmation. The admin password on this device stays the same after an import.</li>
+          <li>Export a backup of the current data before importing.</li>
+          <li>A file from the online (Supabase) edition cannot be imported here, or the other way round, since the two encrypt staff PINs differently.</li>
         </ol>
       </div>
     </details>
@@ -759,13 +756,13 @@ body > main { flex: 1 0 auto; width: 100%; }
       <summary>11. Troubleshooting</summary>
       <div class="content">
         <ul>
-          <li><strong>Nothing loads / a red banner appears:</strong> this usually means the browser couldn't open its local storage, try reloading first. Private/incognito windows block or wipe this kind of storage in some browsers, so switch to a normal window if that's what's happening. The banner includes a technical detail you can pass along for help if it persists.</li>
-          <li><strong>Setup is asking again even though it was already done:</strong> this means the browser's site storage for this app was cleared (e.g. "Clear browsing data," a private window, or a fresh browser profile), if you have a recent Export file, Import restores everything, admin password included, back onto this device.</li>
-          <li><strong>This device shows different data than another device:</strong> each device keeps its own data. Use Export and Import (section 10) to move data between them.</li>
-          <li><strong>Forgot the admin password:</strong> there's no ordinary recovery by design (it protects staff PINs and reports), if you have a recent Export file, importing it restores everything except this device's current admin password, which stays as-is; if that's also the password you've lost, you're locked out of Import too. In that case, contact whoever built/maintains this app for you.</li>
+          <li><strong>Nothing loads or a red banner appears:</strong> the browser could not open its storage. Reload first. A private or incognito window can block storage, so use a normal window. If it keeps happening, send the detail in the banner to whoever looks after the app.</li>
+          <li><strong>Setup asks again after it was done:</strong> the browser's data for this app was cleared, for example by "Clear browsing data" or a private window. Import a recent Export file to bring everything back, admin password included.</li>
+          <li><strong>Two tablets show different data:</strong> each tablet keeps its own data. Move data between them with Export and Import (section 10).</li>
+          <li><strong>Forgot the admin password:</strong> there is no reset button. Contact whoever built or looks after the app.</li>
           <li><strong>A stock count looks wrong:</strong> check Admin &gt; Branches &gt; Stock Transfers and ask the owner to check the records. Every deduction, restock, pull-out and transfer is logged with who did it and when.</li>
           <li><strong>The camera will not open for scanning:</strong> allow camera access for this page in the browser settings, or use Scan from a photo.</li>
-          <li><strong>Opening the renamed file shows an empty system:</strong> the browser may keep the old file's data separately. Open the old file, Export All Data, then Import that file in the new one.</li>
+          <li><strong>The renamed file opens empty:</strong> the browser keeps the old file's data separately. Open the old file, Export All Data, then Import that file in the new one.</li>
         </ul>
       </div>
     </details>
@@ -776,16 +773,16 @@ body > main { flex: 1 0 auto; width: 100%; }
 // Minimal promise-based IndexedDB helper. No dependencies, works fully offline,
 // including when this page is opened directly as a file (no server).
 //
-// This is the single-device offline edition's storage layer — the full feature set from the
+// This is the single-device offline edition's storage layer. The full feature set from the
 // cloud/Supabase edition (promo codes on products+services, packages-as-coupons with staff
 // commission, investor/machine payouts, consumables with bill-of-materials, payroll close,
 // attendance with signatures, developer password override) all lives in js/store.js on top of
 // the object stores declared below. A distinct IDB_NAME is used (rather than reusing the very
-// first local build's 'skinouvelle_pos' database) so this new edition never collides with — or
-// silently inherits — data left over from that earlier local-only build on the same device.
+// first local build's 'skinouvelle_pos' database) so this new edition never collides with, or
+// silently inherits, data left over from that earlier local-only build on the same device.
 const IDB_NAME = 'skinouvelle_pos_offline';
-// Bumped each time a new object store is added below — IndexedDB only re-runs onupgradeneeded
-// (which is what actually creates a new object store) when the version number goes up, so an
+// Bumped each time a new object store is added below, since IndexedDB only re-runs onupgradeneeded
+// (which is what creates a new object store) when the version number goes up, so an
 // existing device stuck on an older version would otherwise never get the new store and whatever
 // feature needs it would fail the first time anything tried to use it.
 //   2 -> added 'patientVipOverrides' (VIP per-patient discount overrides)
@@ -802,13 +799,13 @@ const STORES = [
   'promoCodeRedemptions', 'investors', 'serviceInvestors', 'serviceConsumables',
   'consumableUsageLog', 'attendance', 'payrollClosures', 'payrollClosureLines', 'payoutLedger',
   // Per-patient, per-item VIP discount overrides (see the "PATIENT VIP STATUS" section of
-  // store.js) — version 2.
+  // store.js), version 2.
   'patientVipOverrides',
-  // Booked/auto-followup appointments (see the "APPOINTMENTS / SCHEDULER" section of store.js) —
+  // Booked/auto-followup appointments (see the "APPOINTMENTS / SCHEDULER" section of store.js),
   // version 3.
   'appointments',
   // A package's own consumables-per-session recipe, separate from a plain service's recipe (see
-  // the "PACKAGE CONSUMABLES" section of store.js) — version 4.
+  // the "PACKAGE CONSUMABLES" section of store.js), version 4.
   'packageConsumables',
   // Branches with their own stock counts, stock moved between them, appointment reminder message
   // templates, and patient vouchers (QR) with their per-service use log. Version 5.
@@ -863,7 +860,7 @@ async function idbGet(storeName, id) {
 
 // Writes wait for the *transaction* to complete, not just the request to succeed. A request's
 // onsuccess fires once it's queued in the transaction, but the transaction can still be rolled
-// back or simply not yet flushed to the browser's actual storage backend at that point — so code
+// back or not yet flushed to the browser's actual storage backend at that point, so code
 // that does a write and then immediately does something that ends the page (a manual
 // location.reload(), the user closing the tab/app) can otherwise lose the write. This matters
 // most for things like the admin password change or a checkout: the toast could show, and the
@@ -918,7 +915,7 @@ function metaSet(key, value) {
 //
 // Note on the real security model here: since everything runs as plain JavaScript in your
 // own browser on your own device, none of this defends against someone who has DevTools
-// access to that same browser/profile — it's a mistake-prevention gate (confidential PINs
+// access to that same browser profile. It is a mistake-prevention gate (confidential PINs
 // staff don't casually see, an admin panel you don't open by accident), not a defense against
 // an attacker who already has your tablet. That matches a single physical device you control.
 
@@ -975,7 +972,7 @@ async function verifyPassword(password, stored) {
 
 </script>
 <script>
-// Shared UI helpers — toasts, a generic modal, a PIN pad, confirm/prompt dialogs,
+// Shared UI helpers: toasts, a generic modal, a PIN pad, confirm/prompt dialogs,
 // formatting, and CSV download (the "Export to Excel" mechanism: CSV opens directly in
 // Excel on both Windows and mobile, with zero extra libraries needed).
 
@@ -997,11 +994,11 @@ function fmtDateTime(s) { return s ? new Date(s).toLocaleString('en-PH', { dateS
 function fmtDate(s) { return s ? new Date(s).toLocaleDateString('en-PH', { dateStyle: 'medium' }) : ''; }
 function todayISO() { return new Date().toISOString().slice(0, 10); }
 
-// Minutes worked, to the minute, as "Xh Ym" (attendance's own accuracy — see attendanceMinutes()
+// Minutes worked, to the minute, as "Xh Ym" (attendance's own accuracy, see attendanceMinutes()
 // in store.js). null (still clocked in, or a failed clock-out with no known end time) reads as
 // an em dash rather than "0h 0m", so it's never mistaken for an actual zero-length shift.
 function fmtMinutes(mins) {
-  if (mins == null) return '—';
+  if (mins == null) return '-';
   const h = Math.floor(mins / 60), m = mins % 60;
   return `${h}h ${m}m`;
 }
@@ -1014,7 +1011,7 @@ function attendanceStatusBadge(status, failedClockOut) {
   if (status === 'undertime') parts.push('<span class="badge warn">Undertime</span>');
   else if (status === 'overtime') parts.push('<span class="badge warn">Overtime</span>');
   else if (status === 'on-time') parts.push('<span class="badge ok">On target</span>');
-  return parts.join(' ') || '<span class="muted">—</span>';
+  return parts.join(' ') || '<span class="muted">-</span>';
 }
 
 function openModal(html, onOpen) {
@@ -1039,7 +1036,7 @@ function closeModal() {
 function askForPin(promptText = 'Enter your staff PIN to continue') {
   return new Promise((resolve) => {
     let entered = '';
-    const render = () => { const m = document.getElementById('sharedModal'); if (m) m.querySelector('.pin-display').textContent = entered.replace(/./g, '•') || '— — — —'; };
+    const render = () => { const m = document.getElementById('sharedModal'); if (m) m.querySelector('.pin-display').textContent = entered.replace(/./g, '•') || '- - - -'; };
     openModal(`
       <h3>${promptText}</h3>
       <div class="pin-display"></div>
@@ -1085,9 +1082,9 @@ function confirmDialog(message, confirmLabel = 'Confirm') {
 }
 
 // Shown before completing a void that deducted stock at the time of the original sale/service
-// sale/redemption (its own consumablesUsed or items snapshot — never the item's CURRENT recipe,
+// sale/redemption (its own consumablesUsed or items snapshot, never the item's CURRENT recipe,
 // which may have drifted since). Lets the admin/authorizing staff member choose which of those
-// items actually get credited back to inventory (an opened/used item might not be resellable even
+// items get credited back to inventory (an opened/used item might not be resellable even
 // though it was deducted). Resolves to an array of {productId, qty} to pass as voidSale/
 // voidServiceSale/voidRedemption's own `returnItems` param, or null if the whole void was
 // cancelled from this screen. An empty snapshot (nothing to return, or a legacy record with none)
@@ -1097,7 +1094,7 @@ function chooseReturnItemsDialog(items) {
     if (!items || !items.length) { resolve([]); return; }
     openModal(`
       <h3>Return consumables and stock?</h3>
-      <p class="muted">Choose which of the items this used should be credited back to inventory. Unchecked items stay deducted.</p>
+      <p class="muted">Tick the items to put back in stock. Unticked items stay deducted.</p>
       <div class="row" style="margin-bottom:8px;gap:8px;">
         <button class="btn small outline" id="retAllBtn" type="button">Select All</button>
         <button class="btn small outline" id="retNoneBtn" type="button">Select None</button>
@@ -1320,7 +1317,7 @@ async function needsSetup() {
 
 async function setupApp({ adminPassword, ownerName, ownerPin }) {
   if (!adminPassword || adminPassword.length < 6) throw new Error('Admin password must be at least 6 characters.');
-  if (!ownerName || !ownerPin || !/^\d{4,8}$/.test(String(ownerPin))) throw new Error('Owner name and a 4-8 digit PIN are required.');
+  if (!ownerName || !ownerPin || !/^\d{4,8}$/.test(String(ownerPin))) throw new Error("Enter the owner's name and a PIN of 4 to 8 digits.");
   await initSettingsIfNeeded();
   await metaSet('adminPasswordHash', await hashPassword(adminPassword));
   const id = await idbPut('staff', {
@@ -1364,7 +1361,7 @@ async function verifyStaffPin(pin) {
 
 async function requireActiveStaff(staffId) {
   const s = await idbGet('staff', Number(staffId));
-  if (!s || !s.active) throw new Error('Unrecognized staff ID.');
+  if (!s || !s.active) throw new Error('Staff member not found.');
   return s;
 }
 
@@ -1382,10 +1379,10 @@ async function revealStaffPin(id, adminPassword) {
   return decryptPin(s.pinEncrypted);
 }
 async function createStaff({ name, pin, role, dailyRate, canAuthorizeVoids }) {
-  if (!name || !pin || !/^\d{4,8}$/.test(String(pin))) throw new Error('Name and a 4-8 digit PIN are required.');
+  if (!name || !pin || !/^\d{4,8}$/.test(String(pin))) throw new Error('Enter a name and a PIN of 4 to 8 digits.');
   const all = await idbGetAll('staff');
   for (const s of all.filter(s => s.active)) {
-    if ((await decryptPin(s.pinEncrypted)) === String(pin)) throw new Error('That PIN is already in use by another active staff member.');
+    if ((await decryptPin(s.pinEncrypted)) === String(pin)) throw new Error('Another staff member already uses that PIN.');
   }
   return idbPut('staff', {
     name, pinEncrypted: await encryptPin(pin), role: role === 'admin' ? 'admin' : 'staff',
@@ -1403,7 +1400,7 @@ async function updateStaff(id, patch) {
   if (patch.canAuthorizeVoids != null) updated.canAuthorizeVoids = !!patch.canAuthorizeVoids;
   if (patch.active != null) updated.active = !!patch.active;
   if (patch.pin) {
-    if (!/^\d{4,8}$/.test(String(patch.pin))) throw new Error('PIN must be 4-8 digits.');
+    if (!/^\d{4,8}$/.test(String(patch.pin))) throw new Error('The PIN needs 4 to 8 digits.');
     updated.pinEncrypted = await encryptPin(patch.pin);
   }
   await idbPut('staff', updated);
@@ -1428,7 +1425,7 @@ async function lowStockProducts() {
   return rows.filter(p => p.stockQty <= p.lowStockThreshold);
 }
 async function createProduct(data) {
-  if (!data.name || data.retailPrice == null) throw new Error('Name and retail price are required.');
+  if (!data.name || data.retailPrice == null) throw new Error('Enter a name and a retail price.');
   const now = new Date().toISOString();
   // Once branches exist, the starting stock belongs to one of them (the chosen one, or this
   // device's own branch), and stockQty stays the overall total across every branch.
@@ -1478,7 +1475,7 @@ async function deleteProduct(id) {
   for (const link of links) await idbDelete('serviceConsumables', link.id);
 }
 async function restockProduct(id, { qtyAdded, staffId, notes, branchId }) {
-  if (!qtyAdded || Number(qtyAdded) <= 0) throw new Error('Quantity must be a positive number.');
+  if (!qtyAdded || Number(qtyAdded) <= 0) throw new Error('Enter a quantity above 0.');
   await requireActiveStaff(staffId);
   const p = await getProduct(id);
   const bid = await resolveBranchId(branchId);
@@ -1491,12 +1488,12 @@ async function restockProduct(id, { qtyAdded, staffId, notes, branchId }) {
 // product off the Sell grid, since a handful of bad units doesn't mean the rest of the stock on
 // hand is unsellable.
 async function pullOutProduct(id, { qty, reason, staffId, branchId }) {
-  if (!qty || Number(qty) <= 0) throw new Error('Quantity must be a positive number.');
+  if (!qty || Number(qty) <= 0) throw new Error('Enter a quantity above 0.');
   await requireActiveStaff(staffId);
   const p = await getProduct(id);
   const bid = await resolveBranchId(branchId);
   const have = stockAt(p, bid);
-  if (have < Number(qty)) throw new Error(`Only ${have} in stock${bid != null ? ' at this branch' : ''}. Can't pull out ${qty}.`);
+  if (have < Number(qty)) throw new Error(`Only ${have} in stock${bid != null ? ' at this branch' : ''}. Pull out ${have} or fewer.`);
   applyStockDelta(p, bid, -Number(qty));
   await idbPut('products', p);
   await idbPut('statusLog', { productId: p.id, staffId: Number(staffId), qty: Number(qty), reason: reason || null, branchId: bid, timestamp: new Date().toISOString() });
@@ -1527,13 +1524,13 @@ async function listServiceConsumables(serviceId) {
 async function addServiceConsumable(serviceId, productId, qtyPerUse) {
   const existing = await idbGetAll('serviceConsumables');
   if (existing.some(r => r.serviceId === Number(serviceId) && r.productId === Number(productId))) {
-    throw new Error('That product is already in this service’s recipe. Edit its quantity instead of adding it again.');
+    throw new Error("That product is already in this service's recipe. Edit its quantity instead.");
   }
   return idbPut('serviceConsumables', { serviceId: Number(serviceId), productId: Number(productId), qtyPerUse: Number(qtyPerUse) });
 }
 async function updateServiceConsumable(id, qtyPerUse) {
   const r = await idbGet('serviceConsumables', Number(id));
-  if (!r) throw new Error('Consumable link not found.');
+  if (!r) throw new Error('That consumable is no longer in the recipe.');
   r.qtyPerUse = Number(qtyPerUse);
   await idbPut('serviceConsumables', r);
 }
@@ -1541,12 +1538,12 @@ async function removeServiceConsumable(id) {
   await idbDelete('serviceConsumables', Number(id));
 }
 async function logConsumableUsage(productId, { qty, staffId, reason, serviceSaleId, branchId } = {}) {
-  if (!qty || Number(qty) <= 0) throw new Error('Quantity must be a positive number.');
+  if (!qty || Number(qty) <= 0) throw new Error('Enter a quantity above 0.');
   await requireActiveStaff(staffId);
   const product = await getProduct(productId);
   const bid = await resolveBranchId(branchId);
   const have = stockAt(product, bid);
-  if (have < Number(qty)) throw new Error(`Not enough stock of ${product.name} to log this usage (have ${have}, need ${qty}).`);
+  if (have < Number(qty)) throw new Error(`Not enough stock of ${product.name}: ${have} left and ${qty} needed.`);
   applyStockDelta(product, bid, -Number(qty));
   await idbPut('products', product);
   await idbPut('consumableUsageLog', {
@@ -1574,8 +1571,8 @@ async function listConsumableUsageLog({ from, to } = {}) {
 // same service). A REGULAR package has one recipe (serviceId stored as null on these rows). A
 // CUSTOM package's each service line gets its own recipe (serviceId here is that line's
 // serviceId), since a "2 lasers, 5 diode" package can use different supplies per service. Nothing
-// is deducted from stock when this recipe is set, only when a session is actually redeemed (see
-// redeemSession() below) — this section just defines and totals the recipe.
+// is deducted from stock when this recipe is set, only when a session is redeemed (see
+// redeemSession() below). This section defines and totals the recipe.
 async function listPackageConsumables(packageId, serviceId = null) {
   const key = serviceId != null ? Number(serviceId) : null;
   const rows = (await idbGetAll('packageConsumables')).filter(r => r.packageId === Number(packageId) && (r.serviceId ?? null) === key);
@@ -1589,13 +1586,13 @@ async function addPackageConsumable(packageId, serviceId, productId, qtyPerSessi
   const key = serviceId != null ? Number(serviceId) : null;
   const existing = await idbGetAll('packageConsumables');
   if (existing.some(r => r.packageId === Number(packageId) && (r.serviceId ?? null) === key && r.productId === Number(productId))) {
-    throw new Error('That product is already in this recipe. Edit its quantity instead of adding it again.');
+    throw new Error('That product is already in this recipe. Edit its quantity instead.');
   }
   return idbPut('packageConsumables', { packageId: Number(packageId), serviceId: key, productId: Number(productId), qtyPerSession: Number(qtyPerSession) });
 }
 async function updatePackageConsumable(id, qtyPerSession) {
   const r = await idbGet('packageConsumables', Number(id));
-  if (!r) throw new Error('Consumable link not found.');
+  if (!r) throw new Error('That consumable is no longer in the recipe.');
   r.qtyPerSession = Number(qtyPerSession);
   await idbPut('packageConsumables', r);
 }
@@ -1639,12 +1636,12 @@ async function getPromoCodeByCode(code) {
   return rows.find(p => p.code === code.trim().toUpperCase() && p.active) || null;
 }
 async function createPromoCode(data) {
-  if (!data.code || !data.code.trim()) throw new Error('Code is required.');
-  if (!['percent', 'fixed'].includes(data.discountType)) throw new Error('discountType must be percent or fixed.');
-  if (data.discountValue == null || data.discountValue <= 0) throw new Error('discountValue must be positive.');
+  if (!data.code || !data.code.trim()) throw new Error('Enter a code.');
+  if (!['percent', 'fixed'].includes(data.discountType)) throw new Error('Pick percent or fixed peso.');
+  if (data.discountValue == null || data.discountValue <= 0) throw new Error('Enter a discount above 0.');
   const productIds = Array.isArray(data.productIds) ? data.productIds.map(Number) : [];
   const serviceIds = Array.isArray(data.serviceIds) ? data.serviceIds.map(Number) : [];
-  if (!productIds.length && !serviceIds.length) throw new Error('At least one product or service must be selected for this promo code.');
+  if (!productIds.length && !serviceIds.length) throw new Error('Tick at least one product or service for this code.');
   const code = data.code.trim().toUpperCase();
   const existing = await listPromoCodes();
   if (existing.some(p => p.code === code)) throw new Error('That promo code already exists.');
@@ -1685,7 +1682,7 @@ async function getPatient(id) {
   return p;
 }
 async function createPatient({ name, contactInfo, email, phone, facebookUrl, facebookConsent, notes, isAmbassador, ambassadorDiscountPct }) {
-  if (!name || !name.trim()) throw new Error('Name is required.');
+  if (!name || !name.trim()) throw new Error('Enter a name.');
   return idbPut('patients', {
     name: name.trim(), contactInfo: contactInfo || null, email: email ? email.trim() : null, phone: phone ? phone.trim() : null,
     facebookUrl: facebookUrl ? facebookUrl.trim() : null, facebookConsent: !!facebookConsent,
@@ -1717,7 +1714,7 @@ async function deletePatient(id) {
     idbGetAll('sales'), idbGetAll('serviceSales'), idbGetAll('patientPackages')
   ]);
   const used = sales.some(s => s.patientId === pid) || serviceSales.some(s => s.patientId === pid) || patientPackages.some(p => p.patientId === pid);
-  if (used) throw new Error('This patient has purchase, service, or package history and cannot be deleted. Their record needs to stay intact for accurate logs and reports. Edit their details instead if something needs correcting.');
+  if (used) throw new Error('This patient has purchases, services or packages on record and cannot be deleted. Edit their details instead.');
   await idbDelete('patients', pid);
 }
 // Convenience for the email-marketing flow: patients with a usable email, optionally restricted
@@ -1730,7 +1727,7 @@ async function listPatientEmails(ids) {
 // Same idea for WhatsApp click-to-chat: patients with a phone on file, optionally restricted to
 // a specific id set. `waNumber` strips everything but digits, wa.me wants the number as plain
 // digits (country code + number, no +, spaces, or dashes), so this is what the marketing screen
-// actually builds each wa.me link from, while `phone` keeps whatever format the patient record
+// builds each wa.me link from, while `phone` keeps whatever format the patient record
 // has for display.
 function waNumber(phone) { return (phone || '').replace(/\D/g, ''); }
 async function listPatientPhones(ids) {
@@ -1741,7 +1738,7 @@ async function listPatientPhones(ids) {
 }
 // Facebook is opt-in on both sides: a patient only shows up here if they've given a profile/Page
 // URL AND been marked as having given direct consent to be contacted this way (they've agreed to
-// add the clinic's Facebook as a friend/follow so the message is actually seen, not buried in
+// add the clinic's Facebook as a friend/follow so the message is seen, not buried in
 // Message Requests). Same `ids`-scoping convention as listPatientEmails/listPatientPhones.
 async function listPatientFacebook(ids) {
   let rows = await idbGetAll('patients');
@@ -1795,7 +1792,7 @@ async function setAmbassador(id, { isAmbassador, ambassadorDiscountPct }) {
 // Removing VIP resets the qualifying-spend counter to zero, so re-earning it takes a fresh
 // ₱50,000 counted from that point on, not just crossing the old lifetime total again.
 //
-// The sale that actually crosses the threshold does NOT get the VIP discount itself: checkout()
+// The sale that crosses the threshold does NOT get the VIP discount itself: checkout()
 // computes that sale's discount using the patient's VIP status as it stood at the START of the
 // sale, and only calls advanceVipProgress() (which is what flips isVip to true) afterward. So the
 // benefit starts on the patient's next visit, never retroactively on the qualifying sale.
@@ -1845,8 +1842,8 @@ async function listPatientVipOverrides(patientId) {
 // One override row per (patient, item), upserts if this patient already has an override on this
 // exact product/service.
 async function setPatientVipOverride(patientId, itemType, itemId, discountPct) {
-  if (!['product', 'service'].includes(itemType)) throw new Error('itemType must be product or service.');
-  if (discountPct == null || Number(discountPct) <= 0) throw new Error('Discount % must be positive.');
+  if (!['product', 'service'].includes(itemType)) throw new Error('Pick a product or a service.');
+  if (discountPct == null || Number(discountPct) <= 0) throw new Error('Enter a discount above 0%.');
   const rows = await idbGetAll('patientVipOverrides');
   const existing = rows.find(r => r.patientId === Number(patientId) && r.itemType === itemType && r.itemId === Number(itemId));
   await idbPut('patientVipOverrides', {
@@ -1895,7 +1892,7 @@ async function advanceVipProgress(patientId, productSpendAmount) {
 // person typing it differently doesn't create a lookalike duplicate in the tag list.
 function normalizeTagKey(tag) { return (tag || '').trim().toLowerCase(); }
 
-// The tag library isn't a table of its own, it's derived from whatever's actually on patients
+// The tag library isn't a table of its own, it's derived from whatever's on patients
 // right now, so a tag automatically stops existing once no patient has it anymore; nothing to
 // separately clean up. Returns [{ tag, count }] sorted alphabetically by tag.
 async function listAllTags() {
@@ -1914,7 +1911,7 @@ async function listAllTags() {
 
 async function addPatientTag(id, tag) {
   const key = normalizeTagKey(tag);
-  if (!key) throw new Error('Tag cannot be empty.');
+  if (!key) throw new Error('Type a tag first.');
   const p = await getPatient(id);
   const tags = p.tags || [];
   if (tags.some(t => normalizeTagKey(t) === key)) return; // already tagged, nothing to do
@@ -1983,7 +1980,7 @@ async function listServices({ all = false } = {}) {
   return filtered.sort((a, b) => (a.category || '').localeCompare(b.category || '') || a.name.localeCompare(b.name));
 }
 async function createService(data) {
-  if (!data.name || data.price == null) throw new Error('Name and price are required.');
+  if (!data.name || data.price == null) throw new Error('Enter a name and a price.');
   return idbPut('services', {
     name: data.name, description: data.description || null, price: Number(data.price), category: data.category || null, active: true,
     vipDiscountPct: data.vipDiscountPct != null && data.vipDiscountPct !== '' ? Number(data.vipDiscountPct) : null,
@@ -2031,27 +2028,27 @@ async function deleteService(id) {
 }
 
 async function sellService({ serviceId, staffId, patientId, paymentMethod, priceCharged, notes, promoCode, voucherCode, branchId }) {
-  if (!patientId) throw new Error('A patient must be selected for this sale.');
+  if (!patientId) throw new Error('A patient must be selected first.');
   const staff = await requireActiveStaff(staffId);
   await requireClockedInToday(staffId);
   const service = await idbGet('services', Number(serviceId));
-  if (!service || !service.active) throw new Error('Service not found or inactive.');
-  if (!PAYMENT_METHODS.includes(paymentMethod)) throw new Error('Invalid payment method.');
+  if (!service || !service.active) throw new Error('This service is no longer offered.');
+  if (!PAYMENT_METHODS.includes(paymentMethod)) throw new Error('Pick how they paid.');
   const patient = await idbGet('patients', Number(patientId));
   if (!patient) throw new Error('Patient not found.');
 
   let promo = null;
   if (promoCode) {
     promo = await getPromoCodeByCode(promoCode);
-    if (!promo) throw new Error('Promo code not found or inactive.');
+    if (!promo) throw new Error('That promo code does not exist or has been turned off.');
     const now = new Date();
-    if (promo.activeFrom && now < new Date(promo.activeFrom)) throw new Error('Promo code is not active yet.');
-    if (promo.activeTo && now > new Date(promo.activeTo)) throw new Error('Promo code has expired.');
+    if (promo.activeFrom && now < new Date(promo.activeFrom)) throw new Error('That promo code starts at a later date.');
+    if (promo.activeTo && now > new Date(promo.activeTo)) throw new Error('That promo code has expired.');
   }
 
   // Consumables (bill of materials): check every linked product has enough stock BEFORE
   // deducting any of them, so a short-stocked service never ends up half-deducting other
-  // supplies or charging the patient for a treatment that couldn't actually be performed.
+  // supplies or charging the patient for a treatment that couldn't be performed.
   // Voucher (patient QR): checked up front, before any stock moves, so a wrong-patient or
   // already-used voucher never leaves consumables half-deducted.
   const voucher = voucherCode ? await validateVoucherForService(voucherCode, patientId, service.id) : null;
@@ -2064,7 +2061,7 @@ async function sellService({ serviceId, staffId, patientId, paymentMethod, price
     consumableProducts.set(c.id, product);
     const have = product ? stockAt(product, bid) : 0;
     if (!product || have < c.qtyPerUse) {
-      throw new Error(`Not enough stock of ${product ? product.name : c.productId} to perform this service (need ${c.qtyPerUse}, have ${have}).`);
+      throw new Error(`Not enough stock of ${product ? product.name : c.productId} for this service: ${have} left and ${c.qtyPerUse} needed.`);
     }
   }
   const consumablesUsed = [];
@@ -2084,7 +2081,7 @@ async function sellService({ serviceId, staffId, patientId, paymentMethod, price
     promoEligible = true;
   }
   // VIP discount on services: same "only the single larger discount, never stacked" rule as
-  // products, services don't carry an Ambassador discount today, so here it's simply promo vs.
+  // products, services don't carry an Ambassador discount today, so here it's promo vs.
   // VIP. Uses the patient's VIP status as of the start of this sale (see advanceVipProgress()'s
   // header note in the VIP section above; services never advance that counter, only product
   // sales do, this only reads patient.isVip, never changes it).
@@ -2177,11 +2174,11 @@ async function listServiceSales({ from, to } = {}) {
 // Shared by every void-with-consumables-return flow below (voidSale, voidServiceSale,
 // voidRedemption). `snapshot` is exactly what that one sale/service-sale/redemption actually
 // deducted at the time (saleItems, or a consumablesUsed snapshot), never the item's CURRENT
-// recipe, which may have drifted since. `returnItems` is what the admin actually chose to put
+// recipe, which may have drifted since. `returnItems` is what the admin chose to put
 // back on the "return consumables and stock?" prompt: an array of {productId, qty}. Omitting it
 // (null/undefined) returns everything in the snapshot, the simple default for any caller that
 // doesn't need to ask. Every returned qty is capped at what the snapshot itself deducted, so
-// nothing can ever be credited back to stock beyond what was actually taken out.
+// nothing can ever be credited back to stock beyond what was taken out.
 async function restoreReturnedStock(snapshot, returnItems) {
   const list = Array.isArray(snapshot) ? snapshot : [];
   const chosen = (returnItems == null ? list : list
@@ -2202,10 +2199,10 @@ async function restoreReturnedStock(snapshot, returnItems) {
   return chosen;
 }
 async function voidServiceSale(id, { reason, authorizedByAdmin, authorizingStaffId, returnItems }) {
-  if (!reason || !reason.trim()) throw new Error('A reason is required to void a sale.');
+  if (!reason || !reason.trim()) throw new Error('Enter a reason for the void.');
   const s = await idbGet('serviceSales', Number(id));
-  if (!s) throw new Error('Service sale not found.');
-  if (s.voided) throw new Error('This sale has already been voided.');
+  if (!s) throw new Error('Service record not found.');
+  if (s.voided) throw new Error('This was already voided.');
   await restoreReturnedStock(s.consumablesUsed, returnItems);
   s.voided = true; s.voidReason = reason; s.voidedBy = authorizingStaffId || null; s.voidedByAdmin = !!authorizedByAdmin; s.voidedAt = new Date().toISOString();
   await idbPut('serviceSales', s);
@@ -2224,7 +2221,7 @@ async function listInvestors({ all = false } = {}) {
   return filtered.sort((a, b) => a.name.localeCompare(b.name));
 }
 async function createInvestor({ name }) {
-  if (!name || !name.trim()) throw new Error('Name is required.');
+  if (!name || !name.trim()) throw new Error('Enter a name.');
   return idbPut('investors', { name: name.trim(), active: true, createdAt: new Date().toISOString() });
 }
 async function updateInvestor(id, patch) {
@@ -2259,7 +2256,7 @@ async function addServiceInvestor(serviceId, investorId, rules = {}) {
 }
 async function updateServiceInvestorRules(id, rules) {
   const r = await idbGet('serviceInvestors', Number(id));
-  if (!r) throw new Error('Service/investor link not found.');
+  if (!r) throw new Error('That investor is no longer attached to this service.');
   if ('directPayoutType' in rules) { r.directPayoutType = rules.directPayoutType || null; r.directPayoutValue = rules.directPayoutValue != null ? Number(rules.directPayoutValue) : null; }
   if ('downPaymentPayoutType' in rules) { r.downPaymentPayoutType = rules.downPaymentPayoutType || null; r.downPaymentPayoutValue = rules.downPaymentPayoutValue != null ? Number(rules.downPaymentPayoutValue) : null; }
   if ('redemptionPayoutType' in rules) { r.redemptionPayoutType = rules.redemptionPayoutType || null; r.redemptionPayoutValue = rules.redemptionPayoutValue != null ? Number(rules.redemptionPayoutValue) : null; }
@@ -2326,10 +2323,10 @@ function normalizePackageData(data, existing) {
   };
 }
 async function createPackage(data) {
-  if (!data.name || data.price == null) throw new Error('Name and price are required.');
+  if (!data.name || data.price == null) throw new Error('Enter a name and a price.');
   const normalized = normalizePackageData(data, null);
-  if (!normalized.serviceLines.length && !normalized.sessionsIncluded) throw new Error('Sessions included (or at least one service line) is required.');
-  if (normalized.patientId && !normalized.serviceLines.length) throw new Error('A custom package needs at least one service with a session count.');
+  if (!normalized.serviceLines.length && !normalized.sessionsIncluded) throw new Error('Enter how many sessions the package includes.');
+  if (normalized.patientId && !normalized.serviceLines.length) throw new Error('Add at least one service and its number of sessions.');
   return idbPut('servicePackages', { ...normalized, createdAt: new Date().toISOString() });
 }
 async function updatePackage(id, data) {
@@ -2343,15 +2340,15 @@ async function updatePackage(id, data) {
 async function deletePackage(id) { await idbDelete('servicePackages', Number(id)); }
 
 async function purchasePackage({ patientId, packageId, staffId, paymentMethod, priceOverride, firstVisits }) {
-  if (!patientId || !packageId || !staffId) throw new Error('patientId, packageId, and staffId are required.');
+  if (!patientId || !packageId || !staffId) throw new Error('Pick a patient and a package, and enter a staff PIN.');
   const patient = await idbGet('patients', Number(patientId));
   if (!patient) throw new Error('Patient not found.');
   const pkg = await idbGet('servicePackages', Number(packageId));
-  if (!pkg || !pkg.active) throw new Error('Package not found or inactive.');
+  if (!pkg || !pkg.active) throw new Error('This package is no longer offered.');
   if (pkg.patientId != null && pkg.patientId !== Number(patientId)) throw new Error('This custom package was built for a different patient.');
   await requireActiveStaff(staffId);
   await requireClockedInToday(staffId);
-  if (!PAYMENT_METHODS.includes(paymentMethod)) throw new Error('Invalid payment method.');
+  if (!PAYMENT_METHODS.includes(paymentMethod)) throw new Error('Pick how they paid.');
 
   const price = priceOverride != null ? Number(priceOverride) : pkg.price;
   const applyPayouts = pkg.applyPayouts !== false;
@@ -2455,13 +2452,13 @@ async function listPatientPackages({ from, to } = {}) {
   })).sort((a, b) => new Date(b.purchaseDate) - new Date(a.purchaseDate));
 }
 async function voidPackagePurchase(patientPackageId, { reason, authorizedByAdmin, authorizingStaffId }) {
-  if (!reason || !reason.trim()) throw new Error('A reason is required to void a package purchase.');
+  if (!reason || !reason.trim()) throw new Error('Enter a reason for the void.');
   const pp = await idbGet('patientPackages', Number(patientPackageId));
   if (!pp) throw new Error('Package purchase not found.');
-  if (pp.voided) throw new Error('This package purchase has already been voided.');
+  if (pp.voided) throw new Error('This package purchase was already voided.');
   const pkg = await idbGet('servicePackages', pp.packageId);
   if (pkg && pp.sessionsRemaining !== pkg.sessionsIncluded) {
-    throw new Error('This package already has redeemed sessions. Void the individual redemptions first.');
+    throw new Error('Sessions from this package were already redeemed. Void those redemptions first.');
   }
   pp.voided = true; pp.voidReason = reason; pp.voidedBy = authorizingStaffId || null; pp.voidedByAdmin = !!authorizedByAdmin; pp.voidedAt = new Date().toISOString();
   await idbPut('patientPackages', pp);
@@ -2476,20 +2473,20 @@ async function voidPackagePurchase(patientPackageId, { reason, authorizedByAdmin
 // package (one flat count, at most one serviceId on the package itself) doesn't need it.
 async function redeemSession(patientPackageId, { staffId, sessionsUsed, notes, priceCharged, paymentMethod, serviceId, branchId }) {
   const used = sessionsUsed != null ? Number(sessionsUsed) : 1;
-  if (used <= 0) throw new Error('Sessions used must be positive.');
+  if (used <= 0) throw new Error('Enter at least 1 session.');
   await requireActiveStaff(staffId);
   await requireClockedInToday(staffId);
-  if (paymentMethod != null && !PAYMENT_METHODS.includes(paymentMethod)) throw new Error('Invalid payment method.');
+  if (paymentMethod != null && !PAYMENT_METHODS.includes(paymentMethod)) throw new Error('Pick how they paid.');
   const pp = await idbGet('patientPackages', Number(patientPackageId));
-  if (!pp || pp.voided || pp.sessionsRemaining < used) throw new Error('Not enough sessions remaining, or package not found.');
+  if (!pp || pp.voided || pp.sessionsRemaining < used) throw new Error('This package has no sessions left.');
 
   const pkg = await idbGet('servicePackages', pp.packageId);
   const hasLines = pkg && Array.isArray(pkg.serviceLines) && pkg.serviceLines.length > 0;
   let redeemedServiceId = pkg && pkg.serviceId != null ? pkg.serviceId : null;
   if (hasLines) {
-    if (serviceId == null) throw new Error('This package has more than one service. Say which one this session is for.');
+    if (serviceId == null) throw new Error('Pick which service this session is for.');
     const lineRemaining = (pp.serviceLineRemaining || []).find(l => l.serviceId === Number(serviceId));
-    if (!lineRemaining || lineRemaining.sessionsRemaining < used) throw new Error('Not enough sessions remaining for that service.');
+    if (!lineRemaining || lineRemaining.sessionsRemaining < used) throw new Error('That service has no sessions left in this package.');
     redeemedServiceId = Number(serviceId);
   }
 
@@ -2508,7 +2505,7 @@ async function redeemSession(patientPackageId, { staffId, sessionsUsed, notes, p
     consumableProducts.set(c.id, { product, needed });
     const have = product ? stockAt(product, bid) : 0;
     if (!product || have < needed) {
-      throw new Error(`Not enough stock of ${product ? product.name : c.productId} to redeem this session (need ${needed}, have ${have}).`);
+      throw new Error(`Not enough stock of ${product ? product.name : c.productId} for this session: ${have} left and ${needed} needed.`);
     }
   }
   const consumablesUsed = [];
@@ -2542,7 +2539,7 @@ async function redeemSession(patientPackageId, { staffId, sessionsUsed, notes, p
     notes: notes || null, date: new Date().toISOString(), priceCharged: price, paymentMethod: paymentMethod || null,
     commissionAmount: commission,
     // Snapshots exactly what stock this one redemption deducted, so a later void can offer to
-    // return precisely that (see voidRedemption()'s returnItems param below) — never re-reads
+    // return precisely that (see voidRedemption()'s returnItems param below) and never re-reads
     // the package's CURRENT recipe, which may have changed since.
     consumablesUsed, branchId: bid, voided: false, voidReason: null, voidedBy: null, voidedByAdmin: false, voidedAt: null
   });
@@ -2555,10 +2552,10 @@ async function redeemSession(patientPackageId, { staffId, sessionsUsed, notes, p
   }
 
   // Investor payouts and the Scheduler's follow-up booking both key off whichever service this
-  // particular session was actually for, the package's own serviceId for a regular package, or
+  // particular session was for, the package's own serviceId for a regular package, or
   // the service line just redeemed for a custom one. A deleted service (see deleteService()
   // above) leaves redeemedServiceId pointing at nothing, so idbGet below just returns null and
-  // this whole block quietly does nothing, same as a service that was simply never linked.
+  // this whole block quietly does nothing, same as a service that was never linked.
   if (applyPayouts && redeemedServiceId != null) {
     const investorLinks = (await idbGetAll('serviceInvestors')).filter(r => r.serviceId === redeemedServiceId && r.redemptionPayoutType != null);
     for (const inv of investorLinks) {
@@ -2604,10 +2601,10 @@ async function listRedemptions({ from, to } = {}) {
   }).sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 async function voidRedemption(redemptionId, { reason, authorizedByAdmin, authorizingStaffId, returnItems }) {
-  if (!reason || !reason.trim()) throw new Error('A reason is required to void a redemption.');
+  if (!reason || !reason.trim()) throw new Error('Enter a reason for the void.');
   const red = await idbGet('serviceRedemptions', Number(redemptionId));
   if (!red) throw new Error('Redemption not found.');
-  if (red.voided) throw new Error('This redemption has already been voided.');
+  if (red.voided) throw new Error('This redemption was already voided.');
   await restoreReturnedStock(red.consumablesUsed, returnItems);
   const pp = await idbGet('patientPackages', red.patientPackageId);
   if (pp) {
@@ -2707,7 +2704,7 @@ async function deleteAppointment(id) {
 async function markAppointmentCompleted(id) {
   const a = await idbGet('appointments', Number(id));
   if (!a) throw new Error('Appointment not found.');
-  if (a.status !== 'scheduled') throw new Error('This appointment is not in scheduled status.');
+  if (a.status !== 'scheduled') throw new Error('This appointment was already marked done or cancelled.');
   a.status = 'completed';
   a.completedAt = new Date().toISOString();
   await idbPut('appointments', a);
@@ -2741,7 +2738,7 @@ async function listPatientUpcomingAppointments(patientId) {
   return (await joinAppointmentNames(rows)).sort((a, b) => a.date.localeCompare(b.date));
 }
 
-// Called from sellService() and redeemSession() once a service is actually completed and paid
+// Called from sellService() and redeemSession() once a service is completed and paid
 // for. Two independent things happen, neither blocking the other:
 //   1. If this patient has an earlier scheduled booking for this same service (their upcoming
 //      visit, or an overdue one they finally showed up for), it's marked completed, this is what
@@ -2791,12 +2788,12 @@ async function advanceAppointmentScheduling(patientId, serviceId, saleLinkFields
 
 // ======================= SALES (products) =======================
 async function checkout({ staffId, patientId, paymentMethod, promoCode, items, branchId }) {
-  if (!patientId) throw new Error('A patient must be selected for this sale.');
-  if (!staffId) throw new Error('staffId is required to attribute this sale.');
+  if (!patientId) throw new Error('A patient must be selected first.');
+  if (!staffId) throw new Error('Enter a staff PIN first.');
   const staff = await requireActiveStaff(staffId);
   await requireClockedInToday(staffId);
-  if (!PAYMENT_METHODS.includes(paymentMethod)) throw new Error('Invalid payment method.');
-  if (!Array.isArray(items) || !items.length) throw new Error('At least one item is required.');
+  if (!PAYMENT_METHODS.includes(paymentMethod)) throw new Error('Pick how they paid.');
+  if (!Array.isArray(items) || !items.length) throw new Error('Add at least one item.');
 
   const patient = await idbGet('patients', Number(patientId));
   if (!patient) throw new Error('Patient not found.');
@@ -2804,10 +2801,10 @@ async function checkout({ staffId, patientId, paymentMethod, promoCode, items, b
   let promo = null;
   if (promoCode) {
     promo = await getPromoCodeByCode(promoCode);
-    if (!promo) throw new Error('Promo code not found or inactive.');
+    if (!promo) throw new Error('That promo code does not exist or has been turned off.');
     const now = new Date();
-    if (promo.activeFrom && now < new Date(promo.activeFrom)) throw new Error('Promo code is not active yet.');
-    if (promo.activeTo && now > new Date(promo.activeTo)) throw new Error('Promo code has expired.');
+    if (promo.activeFrom && now < new Date(promo.activeFrom)) throw new Error('That promo code starts at a later date.');
+    if (promo.activeTo && now > new Date(promo.activeTo)) throw new Error('That promo code has expired.');
   }
 
   // Each line can name its own branch (a scanned QR label carries the branch the unit came from);
@@ -2822,14 +2819,14 @@ async function checkout({ staffId, patientId, paymentMethod, promoCode, items, b
     const pid = Number(item.productId);
     if (!productCache.has(pid)) productCache.set(pid, await idbGet('products', pid));
     const p = productCache.get(pid);
-    if (!p || p.status !== 'active') throw new Error(`Product ${item.productId} is not available for sale.`);
-    if (!item.qty || item.qty <= 0) throw new Error('Item quantity must be positive.');
+    if (!p || p.status !== 'active') throw new Error(`Product ${item.productId} is no longer in the catalog.`);
+    if (!item.qty || item.qty <= 0) throw new Error('Each quantity must be at least 1.');
     const lineBranch = item.branchId != null && item.branchId !== '' ? await resolveBranchId(item.branchId) : saleBranch;
     const key = pid + ':' + lineBranch;
     const need = (needByKey.get(key) || 0) + Number(item.qty);
     needByKey.set(key, need);
     const have = stockAt(p, lineBranch);
-    if (have < need) throw new Error(`Not enough stock for ${p.name}${lineBranch != null ? ' at this branch' : ''} (have ${have}, need ${need}).`);
+    if (have < need) throw new Error(`Not enough stock of ${p.name}${lineBranch != null ? ' at this branch' : ''}: ${have} left and ${need} needed.`);
     lines.push({ product: p, qty: Number(item.qty), branchId: lineBranch });
   }
 
@@ -2869,7 +2866,7 @@ async function checkout({ staffId, patientId, paymentMethod, promoCode, items, b
     discountTotal += lineDiscount;
     const lineTotal = round2(lineBase - lineDiscount);
     // Staff commission comes from THIS product's own setting (fixed peso or percent), applied to
-    // what was actually collected for the line, no setting means no commission on it. Computed
+    // what was collected for the line, no setting means no commission on it. Computed
     // per line (not once for the whole sale) since a cart can mix commission and non-commission
     // products, or products with different rates, in one checkout.
     const lineCommission = product.commissionValue != null ? commissionAmount(product.commissionType, product.commissionValue, lineTotal) : 0;
@@ -2904,7 +2901,7 @@ async function checkout({ staffId, patientId, paymentMethod, promoCode, items, b
   // discount was already computed above.
   await advanceVipProgress(Number(patientId), total);
 
-  // One payout row per line that actually carries a commission, computed and stored now, not
+  // One payout row per line that carries a commission, computed and stored now, not
   // recomputed later from a possibly-changed product setting, so Reports and payroll close stay
   // correct even after that setting changes.
   for (const item of saleItems) {
@@ -2936,7 +2933,7 @@ async function listSales({ from, to, staffId, patientId } = {}) {
 }
 async function getSale(id) {
   const s = await idbGet('sales', Number(id));
-  if (!s) throw new Error('Sale not found.');
+  if (!s) throw new Error('Purchase not found.');
   return s;
 }
 async function attachReceiptPhoto(saleId, { staffId, dataUrl }) {
@@ -2947,9 +2944,9 @@ async function attachReceiptPhoto(saleId, { staffId, dataUrl }) {
   await idbPut('sales', s);
 }
 async function voidSale(id, { reason, authorizedByAdmin, authorizingStaffId, returnItems }) {
-  if (!reason || !reason.trim()) throw new Error('A reason is required to void a sale.');
+  if (!reason || !reason.trim()) throw new Error('Enter a reason for the void.');
   const s = await getSale(id);
-  if (s.voided) throw new Error('This sale has already been voided.');
+  if (s.voided) throw new Error('This was already voided.');
   await restoreReturnedStock(s.items, returnItems);
   s.voided = true; s.voidReason = reason; s.voidedBy = authorizingStaffId || null; s.voidedByAdmin = !!authorizedByAdmin; s.voidedAt = new Date().toISOString();
   await idbPut('sales', s);
@@ -2962,9 +2959,9 @@ async function voidSale(id, { reason, authorizedByAdmin, authorizingStaffId, ret
 // Shared void-authorization check used by both product sales and service sales.
 async function authorizeVoid({ isAdminSession, staffId, pin }) {
   if (isAdminSession) return { authorizedByAdmin: true, authorizingStaffId: null };
-  if (!staffId || !pin) throw new Error('Void requires admin login, or a staff PIN with void authority.');
+  if (!staffId || !pin) throw new Error('A void needs the admin login or the PIN of a staff member allowed to approve voids.');
   const staff = await requireActiveStaff(staffId);
-  if (staff.role !== 'admin' && !staff.canAuthorizeVoids) throw new Error('This staff member is not authorized to approve voids.');
+  if (staff.role !== 'admin' && !staff.canAuthorizeVoids) throw new Error('This staff member is not allowed to approve voids.');
   if ((await decryptPin(staff.pinEncrypted)) !== String(pin)) throw new Error('Incorrect PIN.');
   return { authorizedByAdmin: false, authorizingStaffId: Number(staffId) };
 }
@@ -2977,7 +2974,7 @@ async function listAudits() {
     .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 }
 async function submitAudit({ date, staffId, notes, discrepancies }) {
-  if (!date || !staffId) throw new Error('date and staffId are required.');
+  if (!date || !staffId) throw new Error('Pick a date and enter a staff PIN.');
   await requireActiveStaff(staffId);
   return idbPut('dailyAudits', { date, staffId: Number(staffId), notes: notes || null, discrepancies: discrepancies || null, timestamp: new Date().toISOString() });
 }
@@ -3035,7 +3032,7 @@ async function clockOut(staffId, signatureDataUrl) {
   await requireActiveStaff(staffId);
   const today = todayStr();
   const row = (await idbGetAll('attendance')).find(r => r.staffId === Number(staffId) && r.date === today && r.clockOutAt == null);
-  if (!row) throw new Error('Not clocked in today, or already clocked out.');
+  if (!row) throw new Error('This staff member has not clocked in today or has already clocked out.');
   row.clockOutAt = new Date().toISOString();
   row.clockOutSignature = signatureDataUrl;
   await idbPut('attendance', row);
@@ -3049,7 +3046,7 @@ async function clockOut(staffId, signatureDataUrl) {
 async function requireClockedInToday(staffId) {
   const today = todayStr();
   const clockedIn = (await idbGetAll('attendance')).some(r => r.staffId === Number(staffId) && r.date === today);
-  if (!clockedIn) throw new Error('This staff member has not clocked in today. Clock in first, then try again.');
+  if (!clockedIn) throw new Error('This staff member has not clocked in today. Clock in on the Attendance tab first.');
 }
 async function todayAttendanceForStaff(staffId) {
   const today = todayStr();
@@ -3079,7 +3076,7 @@ async function listAttendance({ from, to } = {}) {
 }
 // One row per staff member who has at least one attendance record in the 7-day pay week
 // containing weekOf (today, if omitted). expectedMinutes for the week is expected_hours_per_day
-// scaled by however many days they actually attended, a day they weren't scheduled at all never
+// scaled by however many days they attended, a day they weren't scheduled at all never
 // counts against them. hasFailedClockOut/hasOpen flag entries that couldn't be counted in
 // totalMinutes (a forgotten clock-out, or a day still in progress) so the admin knows the total is
 // incomplete rather than reading it as a real undertime day.
@@ -3246,7 +3243,7 @@ async function reportSummary(opts) {
 // pay) instead of recomputing from a rate that could since have changed, which would otherwise
 // silently rewrite past numbers. This also means the figure here includes services, packages, and
 // redemptions, not just product sales, and since commission is set per item now rather than per
-// staff member, there's no single "rate" left to show per staff, only what they actually earned.
+// staff member, there's no single "rate" left to show per staff, only what they earned.
 async function reportCommissions(opts) {
   const { from, to } = dateRangeFromPeriod(opts);
   const staffAll = (await idbGetAll('staff')).filter(s => s.active);
@@ -3401,9 +3398,9 @@ async function exportAllData() {
 // as-is (never overwritten by an import) so whoever is running the import doesn't lock themselves
 // out of the device they're sitting at.
 async function importAllData(data, { adminPassword, confirm } = {}) {
-  if (!data || typeof data !== 'object' || !data._backup) throw new Error('That file does not look like a SkiNouvelle backup.');
+  if (!data || typeof data !== 'object' || !data._backup) throw new Error('That file is not a backup from this app.');
   if (!(await verifyAdminPassword(adminPassword))) throw new Error('Incorrect admin password.');
-  if (confirm !== 'RESTORE') throw new Error('Confirmation phrase did not match. Nothing was changed.');
+  if (confirm !== 'RESTORE') throw new Error('The confirmation phrase does not match.');
   const keepPasswordHash = await metaGet('adminPasswordHash');
   for (const storeName of STORES) {
     await idbClear(storeName);
@@ -3438,7 +3435,7 @@ const RESTORE_TRANSACTIONAL_STORES = [
 ];
 async function restoreToDefaults({ adminPassword, confirm, resetStock } = {}) {
   if (!(await verifyAdminPassword(adminPassword))) throw new Error('Incorrect admin password.');
-  if (confirm !== 'RESET') throw new Error('Confirmation phrase did not match. Nothing was changed.');
+  if (confirm !== 'RESET') throw new Error('The confirmation phrase does not match.');
 
   // Custom packages (and their own consumables recipe) only ever make sense tied to the patient
   // they were built for, remove them before the blanket store clears below, a regular package
@@ -3502,7 +3499,7 @@ async function updateBranch(id, { name, active } = {}) {
   }
   if (active === false && b.active) {
     const others = (await idbGetAll('branches')).filter(x => x.active && x.id !== b.id);
-    if (!others.length) throw new Error('At least one branch has to stay active.');
+    if (!others.length) throw new Error('At least one branch has to stay open.');
     const holding = (await idbGetAll('products')).filter(p => ((p.branchStock || {})[b.id] || 0) > 0);
     if (holding.length) throw new Error(`${b.name} still holds stock of ${holding.length} product(s). Transfer it to another branch first.`);
   }
@@ -3519,7 +3516,7 @@ async function getDeviceBranchId() {
 }
 async function setDeviceBranch(id) {
   const b = await idbGet('branches', Number(id));
-  if (!b || !b.active) throw new Error('Branch not found or inactive.');
+  if (!b || !b.active) throw new Error('That branch is closed or no longer exists.');
   await metaSet('deviceBranchId', b.id);
 }
 // null while no branches exist (single overall count); otherwise the given branch, else this
@@ -3551,10 +3548,10 @@ function applyStockDelta(p, branchId, delta) {
   p.updatedAt = new Date().toISOString();
 }
 async function transferStock(productId, { fromBranchId, toBranchId, qty, staffId, notes } = {}) {
-  if (!qty || Number(qty) <= 0) throw new Error('Quantity must be a positive number.');
+  if (!qty || Number(qty) <= 0) throw new Error('Enter a quantity above 0.');
   await requireActiveStaff(staffId);
   const from = await resolveBranchId(fromBranchId), to = await resolveBranchId(toBranchId);
-  if (from == null || to == null) throw new Error('Set up branches first (Admin > Branches).');
+  if (from == null || to == null) throw new Error('Add branches first in Admin > Branches.');
   if (from === to) throw new Error('Pick two different branches.');
   const p = await getProduct(productId);
   const have = stockAt(p, from);
@@ -3608,7 +3605,7 @@ async function verifyRecordsPassword(password) {
 const TEMPLATE_PLACEHOLDERS = ['{name}', '{first_name}', '{date}', '{time}', '{service}', '{clinic}'];
 const DEFAULT_REMINDER_TEMPLATE = {
   name: 'Appointment reminder',
-  body: 'Hi {first_name}! This is a reminder of your {service} appointment at {clinic} on {date} {time}. See you!'
+  body: 'Hi {first_name}! A reminder of your {service} appointment at {clinic} on {date} {time}. See you!'
 };
 async function listMessageTemplates() {
   let rows = await idbGetAll('messageTemplates');
@@ -3621,7 +3618,7 @@ async function listMessageTemplates() {
 }
 async function createMessageTemplate({ name, body } = {}) {
   if (!name || !name.trim()) throw new Error('A template name is required.');
-  if (!body || !body.trim()) throw new Error('The message is empty.');
+  if (!body || !body.trim()) throw new Error('Write the message first.');
   await metaSet('defaultTemplateSeeded', true);
   return idbPut('messageTemplates', { name: name.trim(), body, createdAt: new Date().toISOString() });
 }
@@ -3629,7 +3626,7 @@ async function updateMessageTemplate(id, { name, body } = {}) {
   const t = await idbGet('messageTemplates', Number(id));
   if (!t) throw new Error('Template not found.');
   if (name != null) { if (!name.trim()) throw new Error('A template name is required.'); t.name = name.trim(); }
-  if (body != null) { if (!body.trim()) throw new Error('The message is empty.'); t.body = body; }
+  if (body != null) { if (!body.trim()) throw new Error('Write the message first.'); t.body = body; }
   await idbPut('messageTemplates', t);
 }
 async function deleteMessageTemplate(id) { await idbDelete('messageTemplates', Number(id)); }
@@ -3763,7 +3760,7 @@ function parseScanCode(text) {
 </script>
 <script>
 // Seeds the product catalog from SkiNouvelle's pricelist, plus starter services/packages.
-// Runs once automatically (skips if data already exists) — the local-device equivalent of the
+// Runs once automatically (skips if data already exists). It is the local-device equivalent of the
 // cloud edition's server-side supabase/seed.sql, since there's no server here to run it for us.
 
 const SEED_PRODUCTS = [
@@ -3811,8 +3808,8 @@ const SEED_SERVICES = [
   ['Chemical Peel', 'Exfoliating peel for tone/texture concerns', 1500, 'Peeling'],
   ['Microneedling', 'Collagen-induction therapy', 2500, 'Advanced'],
   ['Underarm Whitening Treatment', 'In-clinic underarm brightening session', 1500, 'Body'],
-  ['Laser Hair Removal — Underarm', 'Single session, underarm area', 1000, 'Laser'],
-  ['Laser Hair Removal — Full Legs', 'Single session, full legs', 3000, 'Laser'],
+  ['Laser Hair Removal (Underarm)', 'Single session, underarm area', 1000, 'Laser'],
+  ['Laser Hair Removal (Full Legs)', 'Single session, full legs', 3000, 'Laser'],
   ['Warts / Skin Tag Removal', 'Minor in-clinic removal procedure', 1000, 'Minor Procedure'],
   ['Consultation', 'Initial skin consultation with a practitioner', 300, 'Consultation']
 ];
@@ -3859,7 +3856,7 @@ async function seedIfEmpty() {
 
 </script>
 <script>
-// Small hand-rolled <canvas> signature pad — no external library, consistent with the rest of
+// Small hand-rolled <canvas> signature pad with no external library, consistent with the rest of
 // this app's zero-dependency, zero-build-step approach. Used for tablet-based attendance
 // clock-in/out (see the Attendance tab and admin flows in app.js).
 //
@@ -3871,7 +3868,7 @@ async function seedIfEmpty() {
 //   pad.destroy(); // removes its own event listeners when the modal closes
 //
 // The canvas element must already be in the DOM with its width/height attributes set (not just
-// CSS width/height — those would just stretch a low-res bitmap) before this is called.
+// CSS width/height, which would stretch a low-res bitmap) before this is called.
 function createSignaturePad(canvas) {
   const ctx = canvas.getContext('2d');
   ctx.lineWidth = 2.4;
@@ -4573,7 +4570,7 @@ document.getElementById('scanProductBtn').addEventListener('click', () => openQr
 }));
 async function handleProductScan(text) {
   const code = parseScanCode(text);
-  if (code.type === 'voucher') { toast('That is a patient voucher. Scan it while logging their service.', 'error'); return; }
+  if (code.type === 'voucher') { toast('This code is a patient voucher. Scan it on Log a Service.', 'error'); return; }
   if (code.type !== 'product') { toast('That QR code is not one of this clinic\'s labels.', 'error'); return; }
   let p = PRODUCTS.find(x => x.id === code.productId);
   if (!p) { try { p = await getProduct(code.productId); } catch (e) { p = null; } }
@@ -4637,7 +4634,7 @@ function renderCartModal() {
       const rows = await listPatients(q);
       modal.querySelector('#cartPatientResults').innerHTML = rows.slice(0, 5).map(p =>
         `<div class="cart-line" style="cursor:pointer" data-pid="${p.id}">${p.name}${p.isAmbassador ? ' <span class="badge ok">Ambassador</span>' : ''}${p.isVip ? ' <span class="badge ok">VIP</span>' : ''}</div>`
-      ).join('') || '<p class="muted">No match. Add them from the Patients tab first, or check the spelling.</p>';
+      ).join('') || '<p class="muted">No match. Check the spelling or add them from the Patients tab first.</p>';
       modal.querySelectorAll('[data-pid]').forEach(row => row.addEventListener('click', () => { CHECKOUT_PATIENT = rows.find(r => r.id === Number(row.dataset.pid)); renderCartModal(); }));
     });
     const clearLink = modal.querySelector('#clearPatientLink');
@@ -4749,7 +4746,7 @@ function sellServiceFlow(serviceId, restore) {
       <input type="text" id="svcVoucherCode" placeholder="e.g. V-AB12CD34" style="text-transform:uppercase;flex:1;">
       <button class="btn small outline" id="svcScanVoucher" type="button">Scan</button>
     </div>
-    <label>Promo code (optional). A voucher, promo code or VIP discount, whichever is biggest, always overrides the manual price below.</label>
+    <label>Promo code (optional). The biggest of the voucher, promo code or VIP discount replaces the price below.</label>
     <input type="text" id="svcPromoCode" placeholder="e.g. SAVE10" style="text-transform:uppercase;">
     <label>Price</label><input type="number" id="svcPrice" value="${svc.price}" step="0.01">
     <div class="actions">
@@ -4773,7 +4770,7 @@ function sellServiceFlow(serviceId, restore) {
         title: 'Scan patient voucher',
         onScan: (text) => {
           const code = parseScanCode(text);
-          if (code.type !== 'voucher') { toast('That is not a voucher QR code.', 'error'); return true; }
+          if (code.type !== 'voucher') { toast('This QR code is not a voucher.', 'error'); return true; }
           setTimeout(() => reopen(code.code), 50);
           return false;
         }
@@ -4826,7 +4823,7 @@ async function sellPackageFlow(packageIdOrPkg, presetPatient) {
     <select id="pkgPaymentMethod"><option value="cash">Cash</option><option value="gcash">GCash</option><option value="paymaya">PayMaya</option><option value="bank_transfer">Bank Transfer</option></select>
     ${scheduleLines.length ? `
     <h3 style="margin-top:14px;">First visits</h3>
-    <p class="muted">Each service is booked on its own. After every session, that service's next visit is booked on its own interval until its sessions run out. Clear a date to skip booking it now.</p>
+    <p class="muted">Each service keeps its own interval. After every session the next visit for that service is booked until its sessions run out. Clear a date to leave it unbooked.</p>
     ${scheduleLines.map((l, i) => `
       <div class="row wrap" style="gap:8px;align-items:center;">
         <div style="flex:2;min-width:140px;"><strong>${l.serviceName}</strong><br><span class="muted">${l.sessions} session(s)${l.intervalDays != null ? ', every ' + l.intervalDays + ' days' : ', no interval set'}</span></div>
@@ -4910,7 +4907,7 @@ function redeemSessionFlow(pp, onDone) {
     <label>Which service is this session for?</label>
     <select id="rsService">${remainingLines.map(l => `<option value="${l.serviceId}">${l.serviceName} (${l.sessionsRemaining} left)</option>`).join('')}</select>
     ` : ''}
-    <label>Paid by (leave as "No charge" for a free/included follow-up)</label>
+    <label>Paid by ("No charge" for a free follow-up)</label>
     <select id="rsPaymentMethod">
       <option value="">No charge</option>
       <option value="cash">Cash</option><option value="gcash">GCash</option>
@@ -4977,10 +4974,10 @@ document.getElementById('newPatientBtn').addEventListener('click', () => {
     <h3>New Patient</h3>
     <label>Name</label><input type="text" id="npName">
     <label>Contact Info</label><input type="text" id="npContact" placeholder="Phone / FB">
-    <label>Email (optional, used for email marketing)</label><input type="email" id="npEmail">
-    <label>WhatsApp number (optional, used for WhatsApp marketing)</label><input type="tel" id="npPhone" placeholder="e.g. +63 917 123 4567">
-    <label>Facebook profile/Page URL (optional, used for Facebook Messenger marketing)</label><input type="text" id="npFacebookUrl" placeholder="e.g. facebook.com/their.profile">
-    <label><input type="checkbox" id="npFacebookConsent" style="width:auto;display:inline-block;"> Patient has agreed to be contacted via Facebook Messenger (and added the clinic's Page as a friend/follow)</label>
+    <label>Email (optional, for Gmail messages)</label><input type="email" id="npEmail">
+    <label>WhatsApp number (optional)</label><input type="tel" id="npPhone" placeholder="e.g. +63 917 123 4567">
+    <label>Facebook profile link (optional)</label><input type="text" id="npFacebookUrl" placeholder="e.g. facebook.com/their.profile">
+    <label><input type="checkbox" id="npFacebookConsent" style="width:auto;display:inline-block;"> Patient agreed to be messaged on Facebook and follows the clinic's Page</label>
     <label>Notes</label><textarea id="npNotes"></textarea>
     <div class="actions"><button class="btn secondary full" id="npCancel">Cancel</button><button class="btn full" id="npSave">Save</button></div>
   `, (modal) => {
@@ -5083,9 +5080,9 @@ function editPatientModal(patient, onSaved) {
     <label>Name</label><input type="text" id="epName" value="${patient.name.replace(/"/g, '&quot;')}">
     <label>Contact Info</label><input type="text" id="epContact" value="${patient.contactInfo || ''}">
     <label>Email</label><input type="email" id="epEmail" value="${patient.email || ''}">
-    <label>WhatsApp number (used for WhatsApp marketing)</label><input type="tel" id="epPhone" value="${patient.phone || ''}" placeholder="e.g. +63 917 123 4567">
-    <label>Facebook profile/Page URL (used for Facebook Messenger marketing)</label><input type="text" id="epFacebookUrl" value="${(patient.facebookUrl || '').replace(/"/g, '&quot;')}" placeholder="e.g. facebook.com/their.profile">
-    <label><input type="checkbox" id="epFacebookConsent" style="width:auto;display:inline-block;" ${patient.facebookConsent ? 'checked' : ''}> Patient has agreed to be contacted via Facebook Messenger (and added the clinic's Page as a friend/follow)</label>
+    <label>WhatsApp number</label><input type="tel" id="epPhone" value="${patient.phone || ''}" placeholder="e.g. +63 917 123 4567">
+    <label>Facebook profile link</label><input type="text" id="epFacebookUrl" value="${(patient.facebookUrl || '').replace(/"/g, '&quot;')}" placeholder="e.g. facebook.com/their.profile">
+    <label><input type="checkbox" id="epFacebookConsent" style="width:auto;display:inline-block;" ${patient.facebookConsent ? 'checked' : ''}> Patient agreed to be messaged on Facebook and follows the clinic's Page</label>
     <label>Notes</label><textarea id="epNotes">${patient.notes || ''}</textarea>
     <div class="actions"><button class="btn secondary full" id="epCancel">Cancel</button><button class="btn full" id="epSave">Save</button></div>
   `, (modal) => {
@@ -5117,7 +5114,7 @@ function deletePatientWithAuth(patient, onDone) {
   const render = (modal) => { modal.querySelector('.pin-display').textContent = entered.replace(/./g, '•') || '• • • •'; };
   openModal(`
     <h3>Delete ${patient.name}?</h3>
-    <p class="muted">This only works if they have no purchase, service, or package history. Otherwise their record has to stay intact for accurate logs and reports. This cannot be undone. Enter an admin or void-authorized staff PIN to confirm.</p>
+    <p class="muted">A patient with any purchase, service or package history cannot be deleted. Enter an admin PIN or a PIN allowed to void to confirm. This cannot be undone.</p>
     <div class="pin-display"></div>
     <div class="pin-pad">${[1,2,3,4,5,6,7,8,9].map(n => `<button data-n="${n}">${n}</button>`).join('')}<button data-n="clear">Clear</button><button data-n="0">0</button><button data-n="back">⌫</button></div>
     <div class="actions"><button class="btn secondary full" id="delPatientCancel">Cancel</button><button class="btn full danger" id="delPatientOk">Delete Patient</button></div>
@@ -5144,7 +5141,7 @@ function deletePatientWithAuth(patient, onDone) {
 // Admin > Patients version. Already being logged into Admin counts as authorization, so this is
 // just a confirm dialog (matches deleteAdminProduct's convention).
 async function deletePatientFlow(patient, onDone) {
-  const ok = await confirmDialog(`Delete ${patient.name} from the system entirely? This only works if they have no purchase, service, or package history. Otherwise their record has to stay intact for accurate logs. This cannot be undone.`, 'Delete');
+  const ok = await confirmDialog(`Delete ${patient.name}? A patient with any purchase, service or package history cannot be deleted. This cannot be undone.`, 'Delete');
   if (!ok) return;
   try { await deletePatient(patient.id); toast('Patient deleted.', 'ok'); if (onDone) onDone(); }
   catch (e) { toast(e.message, 'error'); }
@@ -5261,7 +5258,7 @@ async function logIncidentalUsageFlow(preselectProductId) {
   const products = await listProducts({ all: true });
   openModal(`
     <h3>Log Incidental Usage</h3>
-    <p class="muted">Use this for consumable loss or waste that a normal per-treatment deduction didn't cover: a torn glove, extra product pumped, and similar. It subtracts from stock right away.</p>
+    <p class="muted">Log consumables lost or wasted outside a treatment, such as a torn glove or an extra pump of product. The amount comes off stock right away.</p>
     <label>Product</label>
     <select id="iuProduct">${products.map(p => `<option value="${p.id}" ${preselectProductId && p.id === preselectProductId ? 'selected' : ''}>${p.name}${p.unitLabel ? ' (' + p.unitLabel + ')' : ''}, ${p.stockQty} in stock</option>`).join('')}</select>
     ${branchSelectHtml('iuBranch', 'Taken from')}
@@ -5393,7 +5390,7 @@ async function patientVouchersModal(patient) {
     });
     modal.querySelectorAll('[data-showv]').forEach(b => b.addEventListener('click', () => showVoucherQr(vouchers.find(v => v.id === Number(b.dataset.showv)), patient)));
     modal.querySelectorAll('[data-cancelv]').forEach(b => b.addEventListener('click', async () => {
-      const ok = await confirmDialog('Cancel this voucher? It stops working immediately.', 'Cancel Voucher');
+      const ok = await confirmDialog('Cancel this voucher? It stops working right away.', 'Cancel Voucher');
       if (!ok) { patientVouchersModal(patient); return; }
       await deactivateVoucher(Number(b.dataset.cancelv)); toast('Voucher cancelled.', 'ok'); patientVouchersModal(patient);
     }));
@@ -5535,7 +5532,7 @@ async function loadAttendanceToday() {
       <div>${attendanceStatusBadge(a.status, a.failedClockOut)}</div>
     </div>`).join('') || '<p class="empty-state">No one has clocked in today yet.</p>';
 
-  // Weekly summary: total hours against expected_hours_per_day x days actually attended, for the
+  // Weekly summary: total hours against expected_hours_per_day x days attended, for the
   // 7-day pay week (ending on the admin-set weekly_cutoff_day) that contains today.
   const weekly = await getWeeklyAttendanceSummary({});
   document.getElementById('attendanceWeeklyList').innerHTML = weekly.map(w => `
@@ -5607,7 +5604,7 @@ async function loadSalesLog() {
     document.getElementById('salesLogList').innerHTML = rows.map(s => `
       <div class="card row between wrap">
         <div><strong>${s.items.map(i => i.productName + ' x' + i.qty).join(', ')}</strong> ${s.voided ? '<span class="badge danger">Voided</span>' : ''}<br>
-        <span class="muted">Ref ${s.receiptNumber} · ${fmtDateTime(s.timestamp)} · Logged by ${s.staffName} · Patient: ${s.patientName || '—'} · ${s.paymentMethod}</span></div>
+        <span class="muted">Ref ${s.receiptNumber} · ${fmtDateTime(s.timestamp)} · Logged by ${s.staffName} · Patient: ${s.patientName || '-'} · ${s.paymentMethod}</span></div>
         <div class="row"><strong>${peso(s.total)}</strong>${!s.voided ? `<button class="btn small danger" data-void="${s.id}">Void</button>` : ''}</div>
       </div>`).join('') || '<p class="empty-state">No sales in this range.</p>';
     document.getElementById('salesLogList').querySelectorAll('[data-void]').forEach(btn => btn.addEventListener('click', () => voidFlow(rows.find(s => s.id === Number(btn.dataset.void)))));
@@ -5616,7 +5613,7 @@ async function loadSalesLog() {
     document.getElementById('serviceSalesLogList').innerHTML = rows.map(s => `
       <div class="card row between wrap">
         <div><strong>${s.serviceName}</strong> ${s.voided ? '<span class="badge danger">Voided</span>' : ''}<br>
-        <span class="muted">${fmtDateTime(s.timestamp)} · Logged by ${s.staffName} · Patient: ${s.patientName || '—'}</span></div>
+        <span class="muted">${fmtDateTime(s.timestamp)} · Logged by ${s.staffName} · Patient: ${s.patientName || '-'}</span></div>
         <div><strong>${peso(s.priceCharged)}</strong></div>
       </div>`).join('') || '<p class="empty-state">No services sold in this range.</p>';
   } else {
@@ -5628,7 +5625,7 @@ async function loadSalesLog() {
     document.getElementById('packageActivityLogList').innerHTML = combined.map(x => `
       <div class="card row between wrap">
         <div><strong>${x.label}</strong> ${x.voided ? '<span class="badge danger">Voided</span>' : ''}<br>
-        <span class="muted">${fmtDateTime(x.when)} · Handled by ${x.staffName || '—'} · Patient: ${x.patientName || '—'}</span></div>
+        <span class="muted">${fmtDateTime(x.when)} · Handled by ${x.staffName || '-'} · Patient: ${x.patientName || '-'}</span></div>
         <div><strong>${peso(x.amount)}</strong></div>
       </div>`).join('') || '<p class="empty-state">No package activity in this range.</p>';
   }
@@ -5636,9 +5633,9 @@ async function loadSalesLog() {
 document.getElementById('salesFilterBtn').addEventListener('click', loadSalesLog);
 
 async function voidFlow(sale) {
-  const reason = await promptDialog('Reason for voiding this purchase', 'e.g. customer changed mind, wrong item rung up…');
+  const reason = await promptDialog('Reason for voiding this purchase', 'e.g. patient changed their mind, wrong item logged');
   if (!reason) return;
-  const ok = await confirmDialog('Voiding this purchase is permanent (the original record is kept, marked voided). Continue?', 'Yes, void it');
+  const ok = await confirmDialog('Void this purchase? The record stays in the log marked as voided, and this cannot be undone.', 'Yes, void it');
   if (!ok) return;
   const returnItems = await chooseReturnItemsDialog(sale.items);
   if (returnItems == null) return; // cancelled from the return-items screen
@@ -5648,7 +5645,7 @@ function voidWithPin(saleId, reason, returnItems) {
   let entered = '';
   const render = (modal) => { modal.querySelector('.pin-display').textContent = entered.replace(/./g, '•') || '• • • •'; };
   openModal(`
-    <h3>Enter admin or void-authorized staff PIN</h3>
+    <h3>Enter an admin PIN or a PIN allowed to void</h3>
     <div class="pin-display"></div>
     <div class="pin-pad">${[1,2,3,4,5,6,7,8,9].map(n => `<button data-n="${n}">${n}</button>`).join('')}<button data-n="clear">Clear</button><button data-n="0">0</button><button data-n="back">⌫</button></div>
     <div class="actions"><button class="btn secondary full" id="voidPinCancel">Cancel</button><button class="btn full" id="voidPinOk">Void Purchase</button></div>
@@ -5723,12 +5720,12 @@ async function openAdminTab() {
 function renderAdminSetupForm(gate) {
   gate.innerHTML = `
     <h2>First-Time Setup</h2>
-    <p class="muted">This creates the admin (owner) password and your own staff PIN. See the <a href="#" id="setupFormGuideLink">Guide</a> for the full walkthrough.</p>
-    <label>Admin password (6+ characters)</label>
+    <p class="muted">Set the admin password and your own staff PIN. The <a href="#" id="setupFormGuideLink">Guide</a> has the full steps.</p>
+    <label>Admin password (at least 6 characters)</label>
     <input type="password" id="setupPassword">
-    <label>Your name (as owner/first staff)</label>
+    <label>Your name (owner)</label>
     <input type="text" id="setupOwnerName">
-    <label>Your staff PIN (4-8 digits)</label>
+    <label>Your staff PIN (4 to 8 digits)</label>
     <input type="text" id="setupOwnerPin" inputmode="numeric">
     <div class="actions"><button class="btn full" id="setupBtn">Finish Setup</button></div>
     <p id="adminAuthError" class="muted"></p>
@@ -5775,7 +5772,7 @@ function renderAdminLoginForm(gate) {
 function devUnlockFlow() {
   openModal(`
     <h3>Developer Unlock</h3>
-    <p class="muted">For developers only. Use it if the admin password has genuinely been forgotten.</p>
+    <p class="muted">For the developer, when the admin password is forgotten.</p>
     <label>Override code</label><input type="password" id="duCode">
     <label>New admin password</label><input type="password" id="duNewPassword">
     <div class="actions">
@@ -5895,7 +5892,7 @@ document.getElementById('recordsHotspot').addEventListener('click', async () => 
   const pw = await recordsPasswordPrompt();
   if (pw == null) return;
   if (!(await verifyRecordsPassword(pw))) {
-    toast((await hasRecordsPassword()) ? 'Incorrect password.' : 'No records password has been set yet. The admin sets it in Admin > Settings.', 'error');
+    toast((await hasRecordsPassword()) ? 'Incorrect password.' : 'No records password yet. The admin sets one in Admin > Settings.', 'error');
     return;
   }
   RECORDS_UNLOCKED = true;
@@ -5911,7 +5908,7 @@ document.getElementById('recordsChangePwBtn').addEventListener('click', () => {
   openModal(`
     <h3>Change Records Password</h3>
     <label>Current records password</label><input type="password" id="rcpCurrent" autocomplete="off">
-    <label>New records password (4+ characters)</label><input type="password" id="rcpNew" autocomplete="off">
+    <label>New records password (at least 4 characters)</label><input type="password" id="rcpNew" autocomplete="off">
     <label>Type it again</label><input type="password" id="rcpNew2" autocomplete="off">
     <div class="actions">
       <button class="btn secondary full" id="rcpCancel">Cancel</button>
@@ -6043,7 +6040,7 @@ async function renderAdminDailySummary() {
 
       <div class="card">
         <h3>Consumables Used Today</h3>
-        <p class="muted">Includes automatic per-treatment deductions (from today's services, using each service's current recipe) plus any incidental usage logged today.</p>
+        <p class="muted">Covers the amounts each of today's services used, by its current recipe, plus any extra usage logged today.</p>
         <table>${s.consumablesUsed.map(c => `<tr><td>${c.productName}</td><td>${c.qty}${c.unitLabel ? ' ' + c.unitLabel : ''}</td></tr>`).join('') || '<tr><td class="muted">None logged today</td></tr>'}</table>
       </div>
     `;
@@ -6081,15 +6078,15 @@ async function renderAdminProducts() {
       <tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Low @</th><th>Ambassador</th><th>VIP %</th>${RECORDS_UNLOCKED ? '<th>Commission</th>' : ''}<th></th></tr>
       ${rows.map(p => `
       <tr>
-        <td>${p.imageDataUrl ? `<img src="${p.imageDataUrl}" style="width:40px;height:40px;object-fit:cover;border-radius:6px;">` : '—'}</td>
+        <td>${p.imageDataUrl ? `<img src="${p.imageDataUrl}" style="width:40px;height:40px;object-fit:cover;border-radius:6px;">` : '-'}</td>
         <td>${p.name}<br><span class="muted">${p.preparation || ''}</span></td>
         <td>${p.category || ''}</td>
         <td>${peso(p.retailPrice)}</td>
         <td>${p.stockQty}${p.unitLabel ? ' ' + p.unitLabel : ''}${branchBreakdownHtml(p)}</td>
         <td>${p.lowStockThreshold}</td>
         <td>${p.ambassadorEligible ? 'Yes' : 'No'}</td>
-        <td>${p.vipDiscountPct != null ? p.vipDiscountPct + '%' : '—'}</td>
-        ${RECORDS_UNLOCKED ? `<td>${p.commissionValue != null ? (p.commissionType === 'fixed' ? peso(p.commissionValue) : p.commissionValue + '%') : '—'}</td>` : ''}
+        <td>${p.vipDiscountPct != null ? p.vipDiscountPct + '%' : '-'}</td>
+        ${RECORDS_UNLOCKED ? `<td>${p.commissionValue != null ? (p.commissionType === 'fixed' ? peso(p.commissionValue) : p.commissionValue + '%') : '-'}</td>` : ''}
         <td><button class="btn small outline" data-edit="${p.id}">Edit</button> <button class="btn small outline" data-qr="${p.id}">QR Label</button> <button class="btn small danger" data-del="${p.id}">Delete</button></td>
       </tr>`).join('') || `<tr><td class="muted" colspan="9">No ${isConsumables ? 'consumables' : 'products'} yet.</td></tr>`}
     `;
@@ -6125,14 +6122,14 @@ function openAdminProductModal(p, presetConsumable) {
     ${!p && BRANCHES.some(b => b.active) ? `<label>Starting stock goes to</label><select id="pfBranch">${branchOptionsHtml(DEVICE_BRANCH_ID)}</select>` : ''}
     <label>Low Stock Threshold</label><input type="number" step="0.001" id="pfThreshold" value="${p ? p.lowStockThreshold : 5}">
     <label><input type="checkbox" id="pfAmbassador" style="width:auto;display:inline-block;" ${!p || p.ambassadorEligible ? 'checked' : ''}> Eligible for Ambassador discount</label>
-    <label>Default VIP discount % (optional, leave blank for no VIP discount on this product). A patient's own VIP override on their history screen always wins over this.</label>
+    <label>Default VIP discount % (optional). A VIP discount set on the patient's own record overrides it.</label>
     <input type="number" step="0.1" min="0.1" id="pfVipPct" value="${p?.vipDiscountPct ?? ''}">
     ${commissionFieldHtml('pfComm', p?.commissionType, p?.commissionValue, 'Staff commission on this product (optional)')}
     <hr class="divider">
-    <label><input type="checkbox" id="pfConsumable" style="width:auto;display:inline-block;" ${(p ? p.isConsumable : presetConsumable) ? 'checked' : ''}> Internal consumable or supply. Hidden from the Products screen: gloves, syringes, and similar.</label>
-    <label>Unit label (optional: pairs, ml, vials, syringes, sets, cartridges)</label>
+    <label><input type="checkbox" id="pfConsumable" style="width:auto;display:inline-block;" ${(p ? p.isConsumable : presetConsumable) ? 'checked' : ''}> Clinic supply such as gloves or syringes, hidden from the Products screen</label>
+    <label>Unit (optional, e.g. pairs, ml, vials)</label>
     <input type="text" id="pfUnitLabel" value="${p ? (p.unitLabel || '') : ''}">
-    <label>Pack size (optional. Example: 100 for "1 box of gloves = 100 pairs." This only helps at restock time and never caps your stock.)</label>
+    <label>Pack size (optional, e.g. 100 when a box holds 100 pairs). Used when restocking by the box.</label>
     <input type="number" step="0.001" id="pfPackSize" value="${p?.packSize ?? ''}">
     <hr class="divider">
     <label>Photo</label><input type="file" id="pfImage" accept="image/*">
@@ -6172,7 +6169,7 @@ function openAdminProductModal(p, presetConsumable) {
 }
 
 async function deleteAdminProduct(id) {
-  const ok = await confirmDialog('Delete this product entirely from the catalog? Past records already show its name and are not affected. This cannot be undone.', 'Delete');
+  const ok = await confirmDialog('Delete this product from the catalog? Past records keep its name. This cannot be undone.', 'Delete');
   if (!ok) return;
   try { await deleteProduct(id); toast('Deleted.', 'ok'); renderAdminProducts(); loadProducts(); }
   catch (e) { toast(e.message, 'error'); }
@@ -6191,7 +6188,7 @@ async function renderAdminPromos() {
         <td><strong>${p.code}</strong></td>
         <td>${p.discountType === 'percent' ? p.discountValue + '%' : peso(p.discountValue)}</td>
         <td>${p.productIds.length} product(s), ${p.serviceIds.length} service(s)</td>
-        <td class="muted">${p.activeFrom ? fmtDate(p.activeFrom) : '—'} to ${p.activeTo ? fmtDate(p.activeTo) : '—'}</td>
+        <td class="muted">${p.activeFrom ? fmtDate(p.activeFrom) : '-'} to ${p.activeTo ? fmtDate(p.activeTo) : '-'}</td>
         <td><span class="badge ${p.active ? 'ok' : 'gray'}">${p.active ? 'Active' : 'Inactive'}</span></td>
         <td><button class="btn small outline" data-editpromo="${p.id}">Edit</button> ${p.active ? `<button class="btn small danger" data-deactivate="${p.id}">Deactivate</button>` : ''}</td>
       </tr>`).join('') || '<tr><td class="muted" colspan="6">No promo codes yet.</td></tr>'}
@@ -6215,7 +6212,7 @@ async function openPromoModal(promo) {
     <label>Discount value</label><input type="number" step="0.01" id="promoValue" value="${promo ? promo.discountValue : ''}">
     <label>Active from (optional)</label><input type="date" id="promoFrom" value="${promo?.activeFrom ? promo.activeFrom.slice(0,10) : ''}">
     <label>Active to (optional)</label><input type="date" id="promoTo" value="${promo?.activeTo ? promo.activeTo.slice(0,10) : ''}">
-    <p class="muted">A patient can use this code once per specific product and once per specific service. Using it on Sunscreen doesn't use it up for Hair Removal, but they can't use it on Sunscreen a second time.</p>
+    <p class="muted">Each patient can use this code once on each product and service it covers. Using it on Sunscreen still leaves it open for Hair Removal while Sunscreen cannot get it again.</p>
     <label>Applies to which product(s)</label>
     <div class="row" style="gap:8px;margin-bottom:4px;">
       <button type="button" class="btn small outline" id="promoProductSelectAll">Select all products</button>
@@ -6294,7 +6291,7 @@ async function renderAdminStaff() {
   const panel = document.getElementById('admin-staff');
   panel.innerHTML = `
     <div class="row between"><h2>Staff</h2><button class="btn" id="addStaffBtn">+ Add Staff</button></div>
-    <p class="muted">PINs are confidential. They're only visible here, one at a time, on purpose. It's each staff member's choice whether to share theirs.</p>
+    <p class="muted">PINs show here one at a time. Each staff member decides whether to share theirs.</p>
     <div class="table-wrap"><table>
       <tr><th>Name</th><th>Role</th>${RECORDS_UNLOCKED ? '<th>Daily Rate</th>' : ''}<th>Void Authority</th><th>Status</th><th></th></tr>
       ${rows.map(s => `
@@ -6315,7 +6312,7 @@ async function renderAdminStaff() {
   panel.querySelector('#addStaffBtn').addEventListener('click', () => openStaffModal(null));
   panel.querySelectorAll('[data-editstaff]').forEach(b => b.addEventListener('click', () => openStaffModal(rows.find(s => s.id === Number(b.dataset.editstaff)))));
   panel.querySelectorAll('[data-deactivate]').forEach(b => b.addEventListener('click', async () => {
-    const ok = await confirmDialog('Deactivate this staff member? Their history stays intact; they just can\'t log actions anymore.', 'Deactivate');
+    const ok = await confirmDialog('Deactivate this staff member? Their history stays and they can no longer log anything.', 'Deactivate');
     if (!ok) return;
     await deactivateStaff(Number(b.dataset.deactivate)); toast('Deactivated.', 'ok'); renderAdminStaff();
   }));
@@ -6327,7 +6324,7 @@ async function renderAdminStaff() {
 function revealPinFlow(staffId) {
   openModal(`
     <h3>Reveal Staff PIN</h3>
-    <p class="muted">Confidential. Re-enter the admin password to confirm.</p>
+    <p class="muted">Enter the admin password to confirm.</p>
     <label>Admin password</label><input type="password" id="revealPassword">
     <div class="actions">
       <button class="btn secondary full" id="revealCancel">Cancel</button>
@@ -6349,11 +6346,11 @@ function openStaffModal(s) {
   openModal(`
     <h3>${s ? 'Edit' : 'Add'} Staff</h3>
     <label>Name</label><input type="text" id="sfName" value="${s ? s.name.replace(/"/g, '&quot;') : ''}">
-    <label>${s ? 'New PIN (leave blank to keep current)' : 'PIN (4-8 digits)'}</label><input type="text" id="sfPin" inputmode="numeric">
+    <label>${s ? 'New PIN (leave blank to keep current)' : 'PIN (4 to 8 digits)'}</label><input type="text" id="sfPin" inputmode="numeric">
     <label>Role</label>
     <select id="sfRole"><option value="staff" ${s?.role === 'staff' ? 'selected' : ''}>Staff</option><option value="admin" ${s?.role === 'admin' ? 'selected' : ''}>Admin</option></select>
-    <div style="${RECORDS_UNLOCKED ? '' : 'display:none;'}"><label>Daily Rate (₱, the flat salary for a closed payroll day)</label><input type="number" step="0.01" id="sfDailyRate" value="${s ? s.dailyRate : 0}"></div>
-    <label><input type="checkbox" id="sfVoidAuth" style="width:auto;display:inline-block;" ${s?.canAuthorizeVoids ? 'checked' : ''}> Can authorize voids/refunds (e.g. a supervisor)</label>
+    <div style="${RECORDS_UNLOCKED ? '' : 'display:none;'}"><label>Daily rate (₱ paid for each closed payroll day)</label><input type="number" step="0.01" id="sfDailyRate" value="${s ? s.dailyRate : 0}"></div>
+    <label><input type="checkbox" id="sfVoidAuth" style="width:auto;display:inline-block;" ${s?.canAuthorizeVoids ? 'checked' : ''}> Can approve voids and returns (e.g. a supervisor)</label>
     <div class="actions">
       <button class="btn secondary full" id="sfCancel">Cancel</button>
       <button class="btn full" id="sfSave">Save</button>
@@ -6385,7 +6382,7 @@ async function renderAdminPatients() {
     <div class="row between"><h2>Patients</h2><input type="text" id="admPatientSearch" placeholder="Search…" style="max-width:260px;"></div>
     <div class="card">
       <h3 style="margin-top:0;">Manage Tags</h3>
-      <p class="muted">Every tag currently in use, with how many patients carry it. Removing one here takes it off every patient that has it. Tags aren't purchase history, so this needs no confirmation.</p>
+      <p class="muted">Every tag in use and how many patients have it. Removing a tag here takes it off every patient.</p>
       <div id="tagManageBox" class="row wrap" style="gap:6px;"></div>
     </div>
     <div id="admPatientList"></div>`;
@@ -6417,8 +6414,8 @@ async function renderAdminPatients() {
           <td class="muted">${p.email || ''}</td>
           <td class="muted">${p.phone || ''}</td>
           <td class="muted">${(p.tags || []).join(', ')}</td>
-          <td>${p.isAmbassador ? `<span class="badge ok">${p.ambassadorDiscountPct}% off</span>` : '—'}</td>
-          <td>${p.isVip ? `<span class="badge ok">VIP${p.vipGrantedManually ? ' (manual)' : ''}</span>` : '—'}</td>
+          <td>${p.isAmbassador ? `<span class="badge ok">${p.ambassadorDiscountPct}% off</span>` : '-'}</td>
+          <td>${p.isVip ? `<span class="badge ok">VIP${p.vipGrantedManually ? ' (manual)' : ''}</span>` : '-'}</td>
           <td>
             <button class="btn small outline" data-editpatient="${p.id}">Edit</button>
             <button class="btn small outline" data-ambassador="${p.id}">${p.isAmbassador ? 'Edit/Remove' : 'Make Ambassador'}</button>
@@ -6449,7 +6446,7 @@ async function renderAdminPatients() {
   async function customPackagesModal(patient) {
     openModal(`
       <h3>Custom Packages: ${patient.name}</h3>
-      <p class="muted">A package built for this patient only. It never shows up for anyone else, in Log a Package or anywhere else.</p>
+      <p class="muted">A package for this patient only. No other patient sees it.</p>
       <div id="custPkgList"></div>
       <div class="actions"><button class="btn full" id="custPkgNewBtn">+ New Custom Package</button></div>
       <div class="actions"><button class="btn secondary full" id="custPkgClose">Close</button></div>
@@ -6467,7 +6464,7 @@ async function renderAdminPatients() {
           </div>`).join('') || '<p class="muted">No custom packages for this patient yet.</p>';
         modal.querySelectorAll('[data-editcp]').forEach(b => b.addEventListener('click', () => customPackageBuilderModal(patient, rows.find(p => p.id === Number(b.dataset.editcp)), () => customPackagesModal(patient))));
         modal.querySelectorAll('[data-delcp]').forEach(b => b.addEventListener('click', async () => {
-          const ok = await confirmDialog('Delete this custom package entirely? Past purchases already show its name and are not affected. This cannot be undone.', 'Delete');
+          const ok = await confirmDialog('Delete this custom package? Past purchases keep its name. This cannot be undone.', 'Delete');
           if (!ok) return;
           try { await deletePackage(Number(b.dataset.delcp)); toast('Deleted.', 'ok'); customPackagesModal(patient); }
           catch (e) { toast(e.message, 'error'); }
@@ -6506,7 +6503,7 @@ async function renderAdminPatients() {
       ${pkg ? `
       <hr class="divider">
       <h3>Consumables used per session</h3>
-      <p class="muted">Each service line in this package gets its own recipe, separate from that service's own recipe and from every other line. Nothing is deducted from stock until a session of that specific line is actually redeemed.</p>
+      <p class="muted">Each service in this package has its own recipe, apart from the service's usual one. Stock comes off when a session of that service is redeemed.</p>
       <label>Service line</label>
       <select id="cpConsumableLineSelect">${pkg.serviceLines.map(l => `<option value="${l.serviceId}">${l.serviceName || services.find(s => s.id === l.serviceId)?.name || 'Unknown service'}</option>`).join('')}</select>
       <div id="cpConsumablesList"></div>
@@ -6516,7 +6513,7 @@ async function renderAdminPatients() {
         <button class="btn small" id="cpAddConsumableBtn">+ Add</button>
       </div>
       <div id="cpConsumablesTotal" class="muted" style="margin-top:8px;"></div>
-      ` : '<p class="muted">Save the package first, then reopen it here to set each service line\'s consumables recipe.</p>'}
+      ` : '<p class="muted">Save the package, then open it again to set each service\'s consumables.</p>'}
     `, async (modal) => {
       const renderLines = () => {
         modal.querySelector('#cpLinesList').innerHTML = lines.map((l, i) => {
@@ -6641,7 +6638,7 @@ async function renderAdminPatients() {
              <div style="background:var(--rose-dark);height:100%;width:${vip.pct}%;"></div>
            </div>`}
       <label><input type="checkbox" id="vipToggle" style="width:auto;display:inline-block;" ${vip.isVip ? 'checked' : ''}> Designate as VIP</label>
-      <p class="muted">Turning this off resets their progress counter to zero. They'll need to build back up to ${peso(vip.threshold)} in product purchases to earn it back automatically. The qualifying amount is set in Admin &gt; Settings.</p>
+      <p class="muted">Turning VIP off resets their count to zero, and they get VIP back automatically after ${peso(vip.threshold)} in product purchases. Admin &gt; Settings sets that amount.</p>
       <div class="actions">
         <button class="btn secondary full" id="vipCancel">Cancel</button>
         <button class="btn full" id="vipSave">Save</button>
@@ -6659,12 +6656,12 @@ async function renderAdminPatients() {
 
   // Per-patient VIP discount overrides: a specific % on a specific product/service for this one
   // patient, taking priority over that item's own default VIP discount (set from its own Edit
-  // screen). Only ever applies while this patient actually has VIP status.
+  // screen). Only ever applies while this patient has VIP status.
   async function vipOverridesModal(patient) {
     const [products, services] = await Promise.all([listProducts({ all: true }), listServices({ all: true })]);
     openModal(`
       <h3>VIP Discount Overrides: ${patient.name}</h3>
-      <p class="muted">Set a specific VIP discount % for this patient on individual products or services, overriding that item's own default VIP discount. Only takes effect while this patient has VIP status.</p>
+      <p class="muted">Set this patient's own VIP discount % on a product or service. It replaces the item's default and applies only while the patient is VIP.</p>
       <div id="vipOvList"></div>
       <hr class="divider">
       <div class="row wrap" style="gap:8px;">
@@ -6681,7 +6678,7 @@ async function renderAdminPatients() {
           <div class="cart-line">
             <div>${r.itemName} <span class="muted">(${r.itemType})</span></div>
             <div class="row" style="gap:8px;align-items:center;"><strong>${r.discountPct}%</strong> <button class="btn small danger" data-rmov="${r.id}">Remove</button></div>
-          </div>`).join('') || '<p class="muted">No overrides set. Each item uses its own default VIP discount, if any.</p>';
+          </div>`).join('') || '<p class="muted">No overrides. Each item uses its default VIP discount.</p>';
         modal.querySelectorAll('[data-rmov]').forEach(b => b.addEventListener('click', async () => { await removePatientVipOverride(Number(b.dataset.rmov)); renderList(); }));
       };
       const itemSel = modal.querySelector('#vipOvItem');
@@ -6711,7 +6708,7 @@ async function renderAdminPatients() {
   function exportPatientFlow(patient) {
     openModal(`
       <h3>Export ${patient.name}'s Report</h3>
-      <p class="muted">Confidential. Re-enter the admin password to confirm this export.</p>
+      <p class="muted">Enter the admin password to export.</p>
       <label>Admin password</label><input type="password" id="expPassword">
       <div class="actions">
         <button class="btn secondary full" id="expCancel">Cancel</button>
@@ -6763,7 +6760,7 @@ async function renderMarketing() {
   panel.innerHTML = `
     <h2 id="reminderSection">Appointment Reminders</h2>
     <div class="card">
-      <p class="muted">Pick a date to list everyone booked that day, pick a template, and send each patient their own message with their name, service, date and time filled in. You still tap Send yourself in WhatsApp, Messages or Gmail. Templates are written in Admin &gt; Message Templates.</p>
+      <p class="muted">Pick a date and a template to get a message for each patient booked that day, with their name, service, date and time filled in. Tap Send yourself in WhatsApp, Messages or Gmail. Templates are written in Admin &gt; Message Templates.</p>
       <div class="row wrap" style="gap:10px;">
         <div style="flex:1;min-width:150px;"><label>Appointments on</label><input type="date" id="remDate" value="${remDate}"></div>
         <div style="flex:2;min-width:180px;"><label>Template</label><select id="remTemplate"></select></div>
@@ -6772,8 +6769,8 @@ async function renderMarketing() {
     </div>
     <h2 style="margin-top:24px;">Email Marketing</h2>
     <div class="card">
-      <p class="muted">Opens Gmail with your patients' addresses pre-filled as <strong>Bcc</strong>, not To, which keeps one patient from seeing everyone else's email address. You write and send the actual message yourself. No account linking or automated sending involved.</p>
-      <p class="muted">The <strong>To</strong> field will look empty on purpose. Look for the addresses next to <strong>Bcc</strong> instead (click the small "Bcc" link beside To if Gmail doesn't expand it automatically). If Gmail opens with Bcc empty too, the address list was probably too long for one link. Try again with fewer patients selected (hand-pick about 50 at a time).</p>
+      <p class="muted">Opens Gmail with the patients' addresses in <strong>Bcc</strong> so no patient sees the others. Write and send the message in Gmail yourself.</p>
+      <p class="muted">The <strong>To</strong> field stays empty. Click "Bcc" beside To if the addresses do not show. If Bcc is empty as well, the list was too long for one link, so send to about 50 patients at a time.</p>
       <label><input type="radio" name="emailScope" value="all" checked style="width:auto;display:inline-block;"> All patients with an email on file</label>
       <label><input type="radio" name="emailScope" value="pick" style="width:auto;display:inline-block;"> Hand-pick specific patients</label>
       <div id="emailPickBox" style="display:none;">
@@ -6872,10 +6869,10 @@ async function renderMarketing() {
       // makes a bcc-only link look completely blank even though the addresses are attached.
       const url = `https://mail.google.com/mail/?view=cm&fs=1&to=&bcc=${encodeURIComponent(bcc)}`;
       if (url.length > 1800) {
-        toast(`${rows.length} addresses makes a long link. If Gmail opens with Bcc empty, resend in smaller batches (hand-pick about 50 at a time).`, 'error');
+        toast(`${rows.length} addresses make a long link. If Bcc opens empty, send to about 50 patients at a time.`, 'error');
       }
       window.open(url, '_blank');
-      toast(`Gmail opened with ${rows.length} address(es) in Bcc. Click the "Bcc" link next to To if you don't see them.`, 'ok');
+      toast(`Gmail opened with ${rows.length} address(es) in Bcc. Click "Bcc" beside To if they do not show.`, 'ok');
     } catch (e) { toast(e.message, 'error'); }
   });
 
@@ -6889,9 +6886,9 @@ async function renderMarketing() {
   panel.insertAdjacentHTML('beforeend', `
     <h2 style="margin-top:24px;">WhatsApp Marketing</h2>
     <div class="card">
-      <p class="muted">Opens a WhatsApp chat with one patient at a time, their message box pre-filled with whatever you write below. You still tap Send yourself in WhatsApp. There's no bulk/bcc option for WhatsApp the way there is for email, so this builds a list below with one "Open WhatsApp" button per patient rather than a single link for everyone.</p>
-      <p class="muted">No account linking needed here. Just make sure WhatsApp is already signed in on this device (the app on a phone/tablet, or <a href="https://web.whatsapp.com" target="_blank" rel="noopener">WhatsApp Web</a>/Desktop in this browser).</p>
-      <label>Message (optional, pre-fills each chat; you can still edit it before sending)</label>
+      <p class="muted">Opens a WhatsApp chat with one patient at a time, with the message below already typed in. Tap Send in WhatsApp for each one. WhatsApp has no Bcc, so each patient gets their own "Open WhatsApp" button.</p>
+      <p class="muted">WhatsApp must be signed in on this device, either the app or <a href="https://web.whatsapp.com" target="_blank" rel="noopener">WhatsApp Web</a>.</p>
+      <label>Message (optional, typed into each chat and editable before sending)</label>
       <textarea id="waMessage" placeholder="e.g. Hi! We have a promo running this week at SkiNouvelle…"></textarea>
       <label><input type="radio" name="waScope" value="all" checked style="width:auto;display:inline-block;"> All patients with a WhatsApp number on file</label>
       <label><input type="radio" name="waScope" value="pick" style="width:auto;display:inline-block;"> Hand-pick specific patients</label>
@@ -6935,7 +6932,7 @@ async function renderMarketing() {
       const msg = panel.querySelector('#waMessage').value;
       const url = `https://wa.me/${btn.dataset.wa}${msg ? '?text=' + encodeURIComponent(msg) : ''}`;
       window.open(url, '_blank');
-      btn.textContent = 'Opened ✓'; btn.disabled = true;
+      btn.textContent = 'Opened'; btn.disabled = true;
     }));
   });
 
@@ -6953,15 +6950,15 @@ async function renderMarketing() {
   panel.insertAdjacentHTML('beforeend', `
     <h2 style="margin-top:24px;">Facebook Messenger Marketing</h2>
     <div class="card">
-      <p class="muted">Opens a Facebook chat with one patient at a time. There's no way to pre-fill the message in a personal Facebook chat the way Gmail and WhatsApp allow, so type or paste your message into each chat yourself once it opens. Any staff member can do this, since it's repetitive rather than technical. Only patients who've given a Facebook link <strong>and</strong> agreed to be contacted this way (set both on Edit Patient) show up below.</p>
-      <p class="muted">Sent/unsent status is saved on this device and stays put even if you change your patient selection or tag filter. It only resets if you change the message text itself, since that counts as starting a new round of sending.</p>
-      <label>Message (for your own reference, copy it into each chat; nothing fills in automatically)</label>
+      <p class="muted">Opens a Facebook chat with one patient at a time. Facebook cannot fill in the message, so paste it into each chat. Only patients with a Facebook link who agreed to be messaged show below. Set both on Edit Patient.</p>
+      <p class="muted">The sent ticks are saved on this device and survive changes to the selection or tag filter. Changing the message clears them for a new round.</p>
+      <label>Message (copy it into each chat)</label>
       <textarea id="fbMessage" placeholder="e.g. Hi! We have a promo running this week at SkiNouvelle…"></textarea>
       <label><input type="radio" name="fbScope" value="all" checked style="width:auto;display:inline-block;"> All consenting patients with a Facebook link on file</label>
       <label><input type="radio" name="fbScope" value="pick" style="width:auto;display:inline-block;"> Hand-pick specific patients</label>
       <div id="fbPickBox" style="display:none;">
         <input type="text" id="fbPickSearch" placeholder="Search patients…">
-        <p class="muted" style="margin:6px 0 2px;">Filter by tag (tap to toggle; selecting more than one shows anyone with any of them):</p>
+        <p class="muted" style="margin:6px 0 2px;">Filter by tag. Tap to turn one on or off, and several tags show patients with any of them.</p>
         <div id="fbPickTagFilter" class="row wrap" style="gap:6px;margin-bottom:6px;"></div>
         <div id="fbPickList" style="max-height:180px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;padding:6px;"></div>
       </div>
@@ -7014,13 +7011,13 @@ async function renderMarketing() {
     listBox.innerHTML = `<p class="muted">${rows.length} patient(s). Tap each to open their chat, then paste in your message:</p>` + rows.map(p => `
       <div class="card row between wrap">
         <div><strong>${p.name}</strong></div>
-        <button class="btn small outline" data-fb="${p.id}" ${campaign.sentIds.includes(p.id) ? 'disabled' : ''}>${campaign.sentIds.includes(p.id) ? 'Opened ✓' : 'Open Facebook Chat'}</button>
+        <button class="btn small outline" data-fb="${p.id}" ${campaign.sentIds.includes(p.id) ? 'disabled' : ''}>${campaign.sentIds.includes(p.id) ? 'Opened' : 'Open Facebook Chat'}</button>
       </div>`).join('');
     listBox.querySelectorAll('[data-fb]').forEach(btn => btn.addEventListener('click', async () => {
       const patient = rows.find(p => p.id === Number(btn.dataset.fb));
       window.open(normalizeExternalUrl(patient.facebookUrl), '_blank');
       await markFacebookSent(patient.id);
-      btn.textContent = 'Opened ✓'; btn.disabled = true;
+      btn.textContent = 'Opened'; btn.disabled = true;
     }));
   });
 }
@@ -7059,7 +7056,7 @@ async function renderCalendar() {
     panel.querySelector('#overdueApptCard').innerHTML = rows.length ? `
       <div class="card">
         <h3 style="margin-top:0;">⚠ Missed Appointments</h3>
-        <p class="muted">Still scheduled, but their date has already passed. Not a problem if the patient just shows up late. Recording their visit as usual (Log a Service or Redeem a Session) marks it done and books the next one automatically. Otherwise delete it below once it's no longer relevant.</p>
+        <p class="muted">These dates have passed while the appointments are still open. Logging the visit with Log a Service or Redeem a Session marks it done and books the next one. Delete any that will not happen.</p>
         ${rows.map(r => `<div class="cart-line"><div>${r.patientName}${r.serviceName ? ' · ' + r.serviceName : ''}</div><div class="muted">${fmtDate(r.date)}</div></div>`).join('')}
       </div>` : '';
   };
@@ -7068,7 +7065,7 @@ async function renderCalendar() {
     panel.querySelector('#reminderApptCard').innerHTML = rows.length ? `
       <div class="card">
         <h3 style="margin-top:0;">Upcoming Reminders</h3>
-        <p class="muted">Appointments coming up within the reminder window (Admin &gt; Settings sets the default; each booking can also set its own).</p>
+        <p class="muted">Appointments inside the reminder window. Admin &gt; Settings sets the default and each booking can set its own.</p>
         ${rows.map(r => `<div class="cart-line"><div>${r.patientName}${r.serviceName ? ' · ' + r.serviceName : ''}</div><div class="muted">${fmtDate(r.date)}${r.time ? ' ' + r.time : ''}</div></div>`).join('')}
       </div>` : '';
   };
@@ -7186,7 +7183,7 @@ function bookAppointmentModal({ prefillDate, appointment, presetPatient, onSaved
     <label>Date</label><input type="date" id="apptDate" value="${appointment ? appointment.date : (prefillDate || new Date().toISOString().slice(0, 10))}">
     <label>Time (optional)</label><input type="time" id="apptTime" value="${appointment?.time || ''}">
     <label>Notes (optional)</label><textarea id="apptNotes">${appointment?.notes || ''}</textarea>
-    <label>Remind me this many days before (optional, leave blank to use the default in Admin &gt; Settings)</label>
+    <label>Remind this many days before (optional, blank uses the Admin &gt; Settings default)</label>
     <input type="number" min="0" id="apptReminderDays" value="${appointment?.reminderDays ?? ''}">
     <div class="actions">
       <button class="btn secondary full" id="apptCancel">Cancel</button>
@@ -7252,13 +7249,13 @@ async function renderAdminServices() {
     <div class="table-wrap"><table>
       <tr><th>Name</th><th>Category</th><th>Price</th><th>VIP %</th>${RECORDS_UNLOCKED ? '<th>Commission</th>' : ''}<th></th></tr>
       ${services.map(s => `<tr><td>${s.name}<br><span class="muted">${s.description || ''}</span></td><td>${s.category || ''}</td><td>${peso(s.price)}</td>
-        <td>${s.vipDiscountPct != null ? s.vipDiscountPct + '%' : '—'}</td>
-        ${RECORDS_UNLOCKED ? `<td>${s.commissionValue != null ? (s.commissionType === 'fixed' ? peso(s.commissionValue) : s.commissionValue + '%') : '—'}</td>` : ''}
+        <td>${s.vipDiscountPct != null ? s.vipDiscountPct + '%' : '-'}</td>
+        ${RECORDS_UNLOCKED ? `<td>${s.commissionValue != null ? (s.commissionType === 'fixed' ? peso(s.commissionValue) : s.commissionValue + '%') : '-'}</td>` : ''}
         <td><button class="btn small outline" data-editsvc="${s.id}">Edit</button> <button class="btn small danger" data-delsvc="${s.id}">Delete</button></td></tr>`).join('') || '<tr><td class="muted" colspan="6">None yet.</td></tr>'}
     </table></div>
     <hr class="divider">
     <div class="row between"><h2>Session Packages</h2><button class="btn" id="addPackageBtn">+ Add Package</button></div>
-    <p class="muted">These packages are open to every patient. To build a package for one specific patient, open that patient's record and use "New Custom Package" there.</p>
+    <p class="muted">Every patient can buy these packages. For a package for one patient, open their record and use "New Custom Package".</p>
     <div class="table-wrap"><table>
       <tr><th>Name</th><th>Sessions</th><th>Price</th><th></th></tr>
       ${packages.map(p => `<tr><td>${p.name}<br><span class="muted">${p.description || ''}</span></td><td>${p.sessionsIncluded}</td><td>${peso(p.price)}</td>
@@ -7268,7 +7265,7 @@ async function renderAdminServices() {
   panel.querySelector('#addServiceBtn').addEventListener('click', () => openAdminServiceModal(null));
   panel.querySelectorAll('[data-editsvc]').forEach(b => b.addEventListener('click', () => openAdminServiceModal(services.find(s => s.id === Number(b.dataset.editsvc)))));
   panel.querySelectorAll('[data-delsvc]').forEach(b => b.addEventListener('click', async () => {
-    const ok = await confirmDialog('Delete this service entirely? Past records already show its name and are not affected. This cannot be undone.', 'Delete');
+    const ok = await confirmDialog('Delete this service? Past records keep its name. This cannot be undone.', 'Delete');
     if (!ok) return;
     try { await deleteService(Number(b.dataset.delsvc)); toast('Deleted.', 'ok'); renderAdminServices(); loadServicesAndPackages(); }
     catch (e) { toast(e.message, 'error'); }
@@ -7276,7 +7273,7 @@ async function renderAdminServices() {
   panel.querySelector('#addPackageBtn').addEventListener('click', () => openAdminPackageModal(null));
   panel.querySelectorAll('[data-editpkg]').forEach(b => b.addEventListener('click', () => openAdminPackageModal(packages.find(p => p.id === Number(b.dataset.editpkg)))));
   panel.querySelectorAll('[data-delpkg]').forEach(b => b.addEventListener('click', async () => {
-    const ok = await confirmDialog('Delete this package entirely? Past records already show its name and are not affected. This cannot be undone.', 'Delete');
+    const ok = await confirmDialog('Delete this package? Past records keep its name. This cannot be undone.', 'Delete');
     if (!ok) return;
     try { await deletePackage(Number(b.dataset.delpkg)); toast('Deleted.', 'ok'); renderAdminServices(); loadServicesAndPackages(); }
     catch (e) { toast(e.message, 'error'); }
@@ -7290,10 +7287,10 @@ async function openAdminServiceModal(s) {
     <label>Category</label><input type="text" id="svCategory" value="${s ? (s.category || '') : ''}" placeholder="e.g. Facial, Laser, Peeling">
     <label>Description</label><textarea id="svDesc">${s ? (s.description || '') : ''}</textarea>
     <label>Price</label><input type="number" step="0.01" id="svPrice" value="${s ? s.price : ''}">
-    <label>Default VIP discount % (optional, leave blank for no VIP discount on this service). A patient's own VIP override on their history screen always wins over this.</label>
+    <label>Default VIP discount % (optional). A VIP discount set on the patient's own record overrides it.</label>
     <input type="number" step="0.1" min="0.1" id="svVipPct" value="${s?.vipDiscountPct ?? ''}">
     ${commissionFieldHtml('svComm', s?.commissionType, s?.commissionValue, 'Staff commission on this service (optional)')}
-    <label>Follow-up in N days (optional). Books the patient's next visit for this service automatically, this many days after they finish it, whether from a direct sale or a package session. Leave blank for no auto-booking.</label>
+    <label>Next visit after this many days (optional). Each visit, direct or from a package, books the next one this many days later. Leave blank to book nothing.</label>
     <input type="number" step="1" min="1" id="svFollowUpDays" value="${s?.followUpDays ?? ''}">
     <div class="actions">
       <button class="btn secondary full" id="svCancel">Cancel</button>
@@ -7302,7 +7299,7 @@ async function openAdminServiceModal(s) {
     ${s ? `
     <hr class="divider">
     <h3>Consumables used per treatment</h3>
-    <p class="muted">List every product or material this service uses, and stock deducts automatically each time it is logged. Example: 1 facial uses 1 pair of gloves plus 10ml of cleanser.</p>
+    <p class="muted">List what this service uses and stock comes off each time it is logged, e.g. 1 pair of gloves and 10 ml of cleanser per facial.</p>
     <div id="svcConsumablesList"></div>
     <div class="row wrap" style="margin-top:8px;">
       <select id="svcAddConsumableProduct" style="flex:2;min-width:160px;"></select>
@@ -7312,14 +7309,14 @@ async function openAdminServiceModal(s) {
     <div style="${RECORDS_UNLOCKED ? '' : 'display:none;'}">
     <hr class="divider">
     <h3>Investors (machine services)</h3>
-    <p class="muted">If this service uses a clinic-owned machine with an outside investor, attach them here and set their cut. Percent or fixed peso, set separately for a direct sale, a package down payment, and a package follow-up session. A fixed amount is never reduced by a discount on the sale.</p>
+    <p class="muted">Attach the outside investor of a clinic machine here and set their cut. The cut is a percent or a fixed peso amount, set separately for a direct sale, a package down payment and a package session. Discounts never reduce a fixed amount.</p>
     <div id="svcInvestorsList"></div>
     <div class="row wrap" style="margin-top:8px;">
       <select id="svcAddInvestor" style="flex:1;min-width:160px;"></select>
       <button class="btn small" id="svcAddInvestorBtn">+ Attach Investor</button>
     </div>
     </div>
-    ` : '<p class="muted">Save the service first, then reopen it here to attach consumables and investors.</p>'}
+    ` : '<p class="muted">Save the service, then open it again to add consumables and investors.</p>'}
   `, async (modal) => {
     modal.querySelector('#svCancel').addEventListener('click', closeModal);
     modal.querySelector('#svSave').addEventListener('click', async () => {
@@ -7451,7 +7448,7 @@ async function openAdminPackageModal(p) {
     ${p ? `
     <hr class="divider">
     <h3>Consumables used per session</h3>
-    <p class="muted">This package's own recipe, separate from the service's own recipe (a bundled session can use a different amount than a standalone sale). Nothing is deducted from stock until a session is actually redeemed, one session's worth at a time.</p>
+    <p class="muted">This package's recipe, kept apart from the service's recipe since a package session can use a different amount. Stock comes off one session's worth at a time when a session is redeemed.</p>
     <div id="pkConsumablesList"></div>
     <div class="row wrap" style="margin-top:8px;">
       <select id="pkAddConsumableProduct" style="flex:2;min-width:160px;"></select>
@@ -7459,7 +7456,7 @@ async function openAdminPackageModal(p) {
       <button class="btn small" id="pkAddConsumableBtn">+ Add</button>
     </div>
     <div id="pkConsumablesTotal" class="muted" style="margin-top:8px;"></div>
-    ` : '<p class="muted">Save the package first, then reopen it here to set its consumables recipe.</p>'}
+    ` : '<p class="muted">Save the package, then open it again to set its consumables.</p>'}
   `, async (modal) => {
     modal.querySelector('#pkCancel').addEventListener('click', closeModal);
     modal.querySelector('#pkSave').addEventListener('click', async () => {
@@ -7528,7 +7525,7 @@ async function renderAdminInvestors() {
   const panel = document.getElementById('admin-investors');
   panel.innerHTML = `
     <div class="row between"><h2>Investors</h2><button class="btn" id="addInvestorBtn">+ Add Investor</button></div>
-    <p class="muted">Outside investors who own or co-fund a machine service. Attach an investor to a specific service (and set their percent/fixed payout rules) from that service's edit screen in Admin &gt; Services &amp; Packages.</p>
+    <p class="muted">Outside investors who own or co-fund a machine. Attach an investor and set their payout on the service's edit screen in Admin &gt; Services &amp; Packages.</p>
     <div class="table-wrap"><table>
       <tr><th>Name</th><th>Status</th><th></th></tr>
       ${rows.map(i => `
@@ -7700,7 +7697,7 @@ async function adminVoidPackageFlow(patientPackageId, reload) {
   } catch (e) { toast(e.message, 'error'); }
 }
 async function adminVoidRedemptionFlow(redemption, reload) {
-  const reason = await promptDialog('Reason for voiding this redemption', 'The session will be restored to the patient\'s package.');
+  const reason = await promptDialog('Reason for voiding this redemption', 'The session goes back to the patient\'s package.');
   if (!reason) return;
   const ok = await confirmDialog('Void this redemption? The session is restored and this is logged permanently.', 'Void Redemption');
   if (!ok) return;
@@ -7717,7 +7714,7 @@ async function renderAdminPayroll() {
   const panel = document.getElementById('admin-payroll');
   panel.innerHTML = `
     <h2>Payroll</h2>
-    <p class="muted">Closing a day snapshots each staff member's daily rate plus their commission for that date, permanently, so it can't be disputed later even if a rate changes afterward. A closed date can't be closed again.</p>
+    <p class="muted">Closing a day saves each staff member's daily rate and commission for that date. Later rate changes do not alter it, and a closed date cannot be closed again.</p>
     <div class="card row wrap">
       <div style="flex:1;min-width:160px;"><label>Date</label><input type="date" id="payrollDate" value="${todayISO()}"></div>
       <div style="align-self:flex-end;"><button class="btn" id="payrollPreviewBtn">Preview</button></div>
@@ -7768,7 +7765,7 @@ async function renderAdminPayroll() {
 function closePayrollFlow(date, onDone) {
   openModal(`
     <h3>Close Payroll Day: ${fmtDate(date)}</h3>
-    <p class="muted">This is final for this date. Enter the admin password to confirm.</p>
+    <p class="muted">Closing is final for this date. Enter the admin password to confirm.</p>
     <label>Admin password</label><input type="password" id="closePayrollPassword">
     <div class="actions">
       <button class="btn secondary full" id="closePayrollCancel">Cancel</button>
@@ -7823,7 +7820,7 @@ async function renderAdminAttendance() {
   const panel = document.getElementById('admin-attendance');
   panel.innerHTML = `
     <h2>Attendance</h2>
-    <p class="muted">Clock-in/out signatures are only visible here, for review. The day-to-day Attendance tab never shows them.</p>
+    <p class="muted">Clock-in and clock-out signatures show only here. The Attendance tab hides them.</p>
     <div class="card row wrap">
       <div style="flex:1;min-width:140px;"><label>From</label><input type="date" id="attFrom" value="${todayISO()}"></div>
       <div style="flex:1;min-width:140px;"><label>To</label><input type="date" id="attTo" value="${todayISO()}"></div>
@@ -7839,7 +7836,7 @@ async function renderAdminAttendance() {
         <tr><th>Date</th><th>Staff</th><th>Clock In</th><th>Clock Out</th><th>Hours</th><th>Status</th><th></th></tr>
         ${rows.map(a => `<tr>
           <td>${fmtDate(a.date)}</td><td>${a.staffName}</td>
-          <td>${fmtDateTime(a.clockInAt)}</td><td>${a.clockOutAt ? fmtDateTime(a.clockOutAt) : '<span class="muted">—</span>'}</td>
+          <td>${fmtDateTime(a.clockInAt)}</td><td>${a.clockOutAt ? fmtDateTime(a.clockOutAt) : '<span class="muted">-</span>'}</td>
           <td>${fmtMinutes(a.minutesWorked)}</td>
           <td>${attendanceStatusBadge(a.status, a.failedClockOut)}</td>
           <td><button class="btn small outline" data-viewsig="${a.id}">View Signatures</button></td>
@@ -7882,7 +7879,7 @@ async function renderAdminReports() {
     const { results, range } = await reportCommissions({ from: from + 'T00:00:00', to: to + 'T23:59:59' });
     panel.querySelector('#repCommissions').innerHTML = `
       <h3>Staff Commissions (${fmtDate(range.from)} to ${fmtDate(range.to)})</h3>
-      <p class="muted">Commission earned from product sales, services, package down payments, and session redemptions combined. Each amount was locked in at the moment of that transaction, so it stays correct even if a staff member's rate changes later. See Payroll to close the day and include this alongside daily salary.</p>
+      <p class="muted">Commission from products, services, package down payments and package sessions. Each amount uses the rate at the time of the entry. Payroll adds it to the daily rate when the day is closed.</p>
       <div class="table-wrap"><table>
         <tr><th>Staff</th><th>Rate</th><th>Transactions</th><th>Commission Owed</th></tr>
         ${results.map(r => `<tr><td>${r.staffName}</td><td>${r.commissionRate}%</td><td>${r.transactionCount}</td><td><strong>${peso(r.commissionOwed)}</strong></td></tr>`).join('')}
@@ -7908,7 +7905,7 @@ async function renderAdminBranches() {
   const active = BRANCHES.filter(b => b.active);
   panel.innerHTML = `
     <h2>Branches</h2>
-    <p class="muted">Each branch keeps its own stock count, and Inventory shows every branch plus the overall total. The first branch you add takes over all current stock. Each product's QR label carries its branch, so a scanned item comes out of the branch it came from.</p>
+    <p class="muted">Each branch keeps its own stock and Inventory shows every branch plus the overall total. The first branch you add takes all current stock. A product's QR label carries its branch, and a scanned item comes out of that branch.</p>
     <div class="card row wrap" style="gap:8px;">
       <input type="text" id="brNewName" placeholder="Branch name, e.g. Main, BGC, Alabang" style="flex:2;min-width:180px;">
       <button class="btn" id="brAddBtn">+ Add Branch</button>
@@ -7916,7 +7913,7 @@ async function renderAdminBranches() {
     ${BRANCHES.length ? `
     <div class="card">
       <h3 style="margin-top:0;">This tablet</h3>
-      <p class="muted">Tapped products, services and restocks on this tablet use this branch. Set it once on each tablet.</p>
+      <p class="muted">Products, services and restocks logged on this tablet use this branch. Set it once on each tablet.</p>
       <select id="brDeviceSelect">${active.map(b => `<option value="${b.id}" ${b.id === DEVICE_BRANCH_ID ? 'selected' : ''}>${b.name}</option>`).join('')}</select>
     </div>
     <div class="table-wrap"><table>
@@ -8035,17 +8032,17 @@ async function renderAdminSettings() {
     <div class="card">
       <h3>Discounts</h3>
       <label>Default Ambassador Discount (%)</label><input type="number" step="0.1" id="stAmbassador" value="${settings.default_ambassador_discount}">
-      <label>VIP Qualifying Amount (₱, total PRODUCT purchases needed to auto-grant VIP status)</label>
+      <label>VIP qualifying amount (₱ of product purchases that makes a patient VIP)</label>
       <input type="number" step="1" id="stVipThreshold" value="${settings.vip_qualifying_amount}">
-      <label>Default Appointment Reminder (days before, unless a booking sets its own)</label>
+      <label>Appointment reminder (days before, when a booking sets none)</label>
       <input type="number" step="1" min="0" id="stReminderDays" value="${settings.appointment_reminder_days}">
     </div>
     <div class="card">
       <h3>Attendance</h3>
-      <p class="muted">One shared target for every staff member. Daily hours and the weekly summary (Attendance tab) are both measured against this, to the minute.</p>
-      <label>Expected Hours Per Day</label>
+      <p class="muted">One target for every staff member. Daily hours and the weekly summary on the Attendance tab are measured against it to the minute.</p>
+      <label>Expected hours per day</label>
       <input type="number" step="0.25" min="0.25" id="stExpectedHours" value="${settings.expected_hours_per_day}">
-      <label>Weekly Cut-off Day (the pay week ends on this day)</label>
+      <label>Weekly cut-off day (the pay week ends on it)</label>
       <select id="stWeeklyCutoff">
         ${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((d, i) => `<option value="${i}" ${Number(settings.weekly_cutoff_day) === i ? 'selected' : ''}>${d}</option>`).join('')}
       </select>
@@ -8055,10 +8052,10 @@ async function renderAdminSettings() {
     ${(await hasRecordsPassword()) ? '' : `
     <div class="card" id="recPwCard">
       <h3>Records Password</h3>
-      <p class="muted">Purchases, amounts, voids, audits, payroll and commissions are hidden from every screen, including this admin panel, until this password is entered. Keep it separate from the admin password and share it only with whoever should see those numbers.</p>
-      <p class="muted">Once it's set, this box disappears. Change it later from inside Records.</p>
+      <p class="muted">Purchases, amounts, voids, audits, payroll and commissions stay hidden on every screen, the admin panel included, until this password is entered. Make it different from the admin password and give it only to those who should see the numbers.</p>
+      <p class="muted">This box goes away once the password is set. Change it from inside Records.</p>
       <label>Admin Password</label><input type="password" id="recPwAdmin" autocomplete="off">
-      <label>New Records Password (4+ characters)</label><input type="password" id="recPwNew" autocomplete="off">
+      <label>New records password (at least 4 characters)</label><input type="password" id="recPwNew" autocomplete="off">
       <label>Type it again</label><input type="password" id="recPwNew2" autocomplete="off">
       <button class="btn" id="recPwSaveBtn">Set Records Password</button>
     </div>`}
@@ -8107,18 +8104,18 @@ async function renderAdminData() {
     <h2>Data / Backup</h2>
     <div class="card">
       <h3>Export All Data</h3>
-      <p class="muted">Creates one JSON file with everything on this device: products, staff, patients, sales, settings, photos. Everything here lives only in this browser's local storage, so this is your only copy. Use it as a periodic backup, and to move data to a new device (see the Guide's Backup section).</p>
+      <p class="muted">Saves one JSON file with everything on this device, including photos. The data lives only in this browser, so the file is the only other copy. Export often, and use it to move to a new device.</p>
       <button class="btn" id="exportAllBtn">Export All Data (JSON)</button>
     </div>
     <div class="card">
       <h3>Import Data</h3>
-      <p class="muted"><strong>Warning:</strong> importing replaces everything currently on this device. Export a fresh backup first if there's any doubt.</p>
+      <p class="muted"><strong>Warning:</strong> importing replaces everything on this device. Export a backup first.</p>
       <input type="file" id="importFileInput" accept="application/json">
       <button class="btn danger" id="importAllBtn">Import (overwrite this device's data)</button>
     </div>
     <div class="card">
       <h3>Restore to Defaults</h3>
-      <p class="muted">Wrapping up a trial period, or handing this device to a new clinic? This clears every patient, purchase, service, package purchase, redemption, attendance record, and payroll closure. It <strong>keeps</strong> the admin password, the staff list, and your whole catalog (products, services, regular packages, promo codes, investors, and every consumables recipe), since that's real setup work, not practice data. Custom packages are removed too, since they only ever make sense tied to a patient. Export a backup first if there's any doubt — this cannot be undone except by restoring an earlier backup.</p>
+      <p class="muted">Clears every patient, purchase, service, package purchase, session, attendance record, payroll closure and custom package. It <strong>keeps</strong> the admin password, the staff list and the catalog: products, services, regular packages, promo codes, investors and consumable recipes. Export a backup first since only a backup can undo this.</p>
       <label><input type="checkbox" id="restoreResetStock" style="width:auto;display:inline-block;"> Also reset every product's stock quantity to 0</label>
       <button class="btn danger" id="restoreDefaultsBtn">Restore to Defaults…</button>
     </div>
@@ -8145,7 +8142,7 @@ async function renderAdminData() {
 function restoreDefaultsConfirmFlow(resetStock) {
   openModal(`
     <h3>Restore to Defaults</h3>
-    <p class="muted"><strong>This clears every patient, purchase, service, package purchase, redemption, attendance record, and payroll closure on this device.</strong> The admin password, staff list, and catalog are kept.${resetStock ? ' Every product\'s stock quantity will also be reset to 0.' : ''} This cannot be undone. Re-enter the admin password and type RESET to confirm.</p>
+    <p class="muted"><strong>This clears every patient, purchase, service, package purchase, session, attendance record and payroll closure on this device.</strong> The admin password, staff list and catalog stay.${resetStock ? ' Every product\'s stock also goes to 0.' : ''} This cannot be undone. Enter the admin password and type RESET to confirm.</p>
     <label>Admin password</label><input type="password" id="restorePassword">
     <label>Type RESET to confirm</label><input type="text" id="restoreConfirm">
     <div class="actions">
@@ -8170,7 +8167,7 @@ function restoreDefaultsConfirmFlow(resetStock) {
 function importConfirmFlow(data) {
   openModal(`
     <h3>Import: overwrite this device's data</h3>
-    <p class="muted"><strong>This replaces every product, staff record, patient, and purchase currently on this device.</strong> This cannot be undone. Re-enter the admin password and type RESTORE to confirm.</p>
+    <p class="muted"><strong>This replaces every product, staff member, patient and purchase on this device and cannot be undone.</strong> Enter the admin password and type RESTORE to confirm.</p>
     <label>Admin password</label><input type="password" id="importPassword">
     <label>Type RESTORE to confirm</label><input type="text" id="importConfirm">
     <div class="actions">
@@ -8219,8 +8216,8 @@ function showFatalStorageError(err) {
   const banner = document.createElement('div');
   banner.id = 'fatalStorageBanner';
   banner.style.cssText = 'position:fixed; top:0; left:0; right:0; z-index:9999; background:#7a1f1f; color:#fff; padding:14px 16px; font-size:0.85rem; line-height:1.4;';
-  banner.innerHTML = `<strong>This device couldn't open its local storage, so the app can't load your data.</strong><br>
-    Try reloading. If this browser is in a private/incognito window, switch to a normal window, since some browsers block persistent storage there. If it keeps happening, this device's storage may need attention.<br>
+  banner.innerHTML = `<strong>The app could not open this browser's storage and cannot load the data.</strong><br>
+    Reload the page. A private or incognito window can block storage, so use a normal window. If it keeps failing, check that the device has free space.<br>
     <span style="opacity:0.85;">Technical detail: ${(err && err.message) ? err.message : String(err)}</span>`;
   document.body.prepend(banner);
 }
@@ -8312,7 +8309,7 @@ let TOUR_ACTIVE = false;
 let TOUR_INDEX = 0;
 let TOUR_CURRENT_TARGET = null;
 let TOUR_RESIZE_HANDLER = null;
-let TOUR_ACTIVE_STEPS = TOUR_STEPS; // the steps actually being walked, either all of them, or one topic's
+let TOUR_ACTIVE_STEPS = TOUR_STEPS; // the steps being walked, either all of them, or one topic's
 
 function tourSwitchTab(name) {
   const btn = document.querySelector(`.tab-btn[data-tab="${name}"]`);
@@ -8394,7 +8391,7 @@ async function showTourStep(index) {
 
 // Some steps (e.g. the Admin gate) point at different elements depending on app state
 // (logged out vs. logged in), try each selector in order and use the first one that's
-// actually visible, so the tour highlights whichever is real right now.
+// visible, so the tour highlights whichever is real right now.
 function resolveTourTarget(step) {
   if (!step.target) return null;
   const selectors = Array.isArray(step.target) ? step.target : [step.target];
