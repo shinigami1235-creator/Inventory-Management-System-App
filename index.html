@@ -459,7 +459,7 @@ body > main { flex: 1 0 auto; width: 100%; }
   <!-- RECORDS (not in the tab bar; opened from the hidden spot on the Patients tab with the
        records password the admin sets) -->
   <section class="tab-panel" id="panel-records">
-    <div class="row between wrap"><h2 style="margin:0;">Records</h2><button class="btn small outline" id="recordsLockBtn">Lock Records</button></div>
+    <div class="row between wrap"><h2 style="margin:0;">Records</h2><span class="row" style="gap:6px;"><button class="btn small outline" id="recordsChangePwBtn">Change Password</button><button class="btn small outline" id="recordsLockBtn">Lock Records</button></span></div>
     <p class="muted">Purchases, amounts, audits, payroll and commissions. This locks again when you press Lock Records or reload the page.</p>
     <div class="pill-nav" id="recordsSubNav">
       <button class="active" data-rsub="dashboard">Dashboard</button>
@@ -1227,13 +1227,16 @@ const SETTINGS_DEFAULTS = {
   weekly_cutoff_day: '6'
 };
 
-// Developer-only override for a forgotten admin password on THIS device, the local-edition
-// equivalent of schema.sql's dev_override_constant(). Change this before handing a build to a
-// different clinic/device than the one it was built for; anyone with this string and access to
-// the app can reset the admin password on this device. Deliberately not surfaced anywhere in the
-// in-app Guide/tour (see devUnlockFlow() in app.js), only the small "unlock" link on the admin
-// login screen reaches it.
-const DEV_OVERRIDE_CODE = 'SKINOUVELLE-DEV-2026';
+// The universal (developer) password, for an owner who forgets theirs. It resets the admin
+// password (the small "unlock" link on the admin login) and opens Records in place of the records
+// password. Only its PBKDF2 hash is kept here, the same format hashPassword() in security.js makes,
+// so the code itself can't be read from the page source. To change it, hash the new code with
+// hashPassword() and paste the result here. Deliberately left out of the Guide and the tour.
+const DEV_OVERRIDE_HASH = 'qaZCzW2sOIQfdqedptFfdQ==.m4HrC4Hutb9nDpeFAviqvRPdyIDZebin3sZQYtdNOro=';
+async function verifyDevOverride(code) {
+  if (!code) return false;
+  return verifyPassword(String(code), DEV_OVERRIDE_HASH);
+}
 
 const PAYMENT_METHODS = ['cash', 'gcash', 'paymaya', 'bank_transfer'];
 
@@ -1338,10 +1341,10 @@ async function changeAdminPassword(current, next) {
 }
 
 // Developer-only override for a forgotten admin password, bypasses the normal "must know the
-// current password" check via the DEV_OVERRIDE_CODE constant above. Deliberately not surfaced
+// current password" check via the universal password (DEV_OVERRIDE_HASH above). Deliberately not surfaced
 // anywhere in the in-app Guide/tour.
 async function recoverAdminPassword(overrideCode, newPassword) {
-  if (!overrideCode || overrideCode !== DEV_OVERRIDE_CODE) throw new Error('Incorrect override code.');
+  if (!(await verifyDevOverride(overrideCode))) throw new Error('Incorrect override code.');
   if (!newPassword || newPassword.length < 6) throw new Error('New password must be at least 6 characters.');
   await metaSet('adminPasswordHash', await hashPassword(newPassword));
 }
@@ -3575,15 +3578,28 @@ async function listStockTransfers() {
 // Sales, audits, payroll and commissions sit behind their own password, separate from the admin
 // login, so they stay out of sight even while the admin panel is open. The admin sets it.
 async function hasRecordsPassword() { return !!(await metaGet('recordsPasswordHash')); }
+// First-time setup only, from Admin > Settings. Once a records password exists it can only be
+// changed from inside Records with the current one (changeRecordsPassword below), so an admin
+// login alone can never replace it and get in.
 async function setRecordsPassword(adminPassword, newPassword) {
   if (!(await verifyAdminPassword(adminPassword))) throw new Error('Incorrect admin password.');
+  if (await hasRecordsPassword()) throw new Error('A records password is already set. Change it from inside Records.');
   if (!newPassword || String(newPassword).length < 4) throw new Error('The records password needs at least 4 characters.');
   await metaSet('recordsPasswordHash', await hashPassword(String(newPassword)));
 }
+// The universal password also works here, so an owner who forgets the records password can still
+// get in and set a new one.
+async function changeRecordsPassword(currentPassword, newPassword) {
+  if (!(await verifyRecordsPassword(currentPassword))) throw new Error('The current records password is incorrect.');
+  if (!newPassword || String(newPassword).length < 4) throw new Error('The records password needs at least 4 characters.');
+  await metaSet('recordsPasswordHash', await hashPassword(String(newPassword)));
+}
+// True for the records password, or for the universal password.
 async function verifyRecordsPassword(password) {
+  if (!password) return false;
   const stored = await metaGet('recordsPasswordHash');
-  if (!stored || !password) return false;
-  return verifyPassword(String(password), stored);
+  if (stored && await verifyPassword(String(password), stored)) return true;
+  return verifyDevOverride(password);
 }
 
 // ======================= REMINDER MESSAGE TEMPLATES =======================
@@ -5876,10 +5892,12 @@ function recordsPasswordPrompt() {
 document.getElementById('recordsHotspot').addEventListener('click', async () => {
   if (!document.getElementById('panel-patients').classList.contains('active')) return;
   if (RECORDS_UNLOCKED) { openRecordsPanel(); return; }
-  if (!(await hasRecordsPassword())) { toast('No records password has been set yet. The admin sets it in Admin > Settings.', 'error'); return; }
   const pw = await recordsPasswordPrompt();
   if (pw == null) return;
-  if (!(await verifyRecordsPassword(pw))) { toast('Incorrect password.', 'error'); return; }
+  if (!(await verifyRecordsPassword(pw))) {
+    toast((await hasRecordsPassword()) ? 'Incorrect password.' : 'No records password has been set yet. The admin sets it in Admin > Settings.', 'error');
+    return;
+  }
   RECORDS_UNLOCKED = true;
   updateRecordsBanner();
   openRecordsPanel();
@@ -5889,6 +5907,26 @@ document.getElementById('recordsSubNav').addEventListener('click', (e) => {
   if (btn) renderRecordsSub(btn.dataset.rsub);
 });
 document.getElementById('recordsLockBtn').addEventListener('click', lockRecords);
+document.getElementById('recordsChangePwBtn').addEventListener('click', () => {
+  openModal(`
+    <h3>Change Records Password</h3>
+    <label>Current records password</label><input type="password" id="rcpCurrent" autocomplete="off">
+    <label>New records password (4+ characters)</label><input type="password" id="rcpNew" autocomplete="off">
+    <label>Type it again</label><input type="password" id="rcpNew2" autocomplete="off">
+    <div class="actions">
+      <button class="btn secondary full" id="rcpCancel">Cancel</button>
+      <button class="btn full" id="rcpSave">Change Password</button>
+    </div>
+  `, (modal) => {
+    modal.querySelector('#rcpCancel').addEventListener('click', closeModal);
+    modal.querySelector('#rcpSave').addEventListener('click', async () => {
+      const a = modal.querySelector('#rcpNew').value, b = modal.querySelector('#rcpNew2').value;
+      if (a !== b) { toast('The two new passwords do not match.', 'error'); return; }
+      try { await changeRecordsPassword(modal.querySelector('#rcpCurrent').value, a); closeModal(); toast('Records password changed.', 'ok'); }
+      catch (e) { toast(e.message, 'error'); }
+    });
+  });
+});
 document.getElementById('recordsBannerLockBtn').addEventListener('click', lockRecords);
 document.getElementById('recordsOpenBtn').addEventListener('click', openRecordsPanel);
 
@@ -8014,15 +8052,16 @@ async function renderAdminSettings() {
     </div>
     <button class="btn" id="stSaveBtn">Save Settings</button>
     <hr class="divider">
-    <div class="card">
+    ${(await hasRecordsPassword()) ? '' : `
+    <div class="card" id="recPwCard">
       <h3>Records Password</h3>
       <p class="muted">Purchases, amounts, voids, audits, payroll and commissions are hidden from every screen, including this admin panel, until this password is entered. Keep it separate from the admin password and share it only with whoever should see those numbers.</p>
-      <p class="muted" id="recPwState"></p>
+      <p class="muted">Once it's set, this box disappears. Change it later from inside Records.</p>
       <label>Admin Password</label><input type="password" id="recPwAdmin" autocomplete="off">
       <label>New Records Password (4+ characters)</label><input type="password" id="recPwNew" autocomplete="off">
       <label>Type it again</label><input type="password" id="recPwNew2" autocomplete="off">
       <button class="btn" id="recPwSaveBtn">Set Records Password</button>
-    </div>
+    </div>`}
     <div class="card">
       <h3>Change Admin Password</h3>
       <label>Current Password</label><input type="password" id="pwCurrent" autocomplete="off">
@@ -8043,15 +8082,13 @@ async function renderAdminSettings() {
       toast('Settings saved.', 'ok');
     } catch (e) { toast(e.message, 'error'); }
   });
-  panel.querySelector('#recPwState').textContent = (await hasRecordsPassword()) ? 'A records password is set. Setting a new one replaces it.' : 'No records password set yet, so the records stay closed to everyone.';
-  panel.querySelector('#recPwSaveBtn').addEventListener('click', async () => {
+  if (panel.querySelector('#recPwSaveBtn')) panel.querySelector('#recPwSaveBtn').addEventListener('click', async () => {
     const a = panel.querySelector('#recPwNew').value, b = panel.querySelector('#recPwNew2').value;
     if (a !== b) { toast('The two records passwords do not match.', 'error'); return; }
     try {
       await setRecordsPassword(panel.querySelector('#recPwAdmin').value, a);
-      ['#recPwAdmin', '#recPwNew', '#recPwNew2'].forEach(id => { panel.querySelector(id).value = ''; });
-      toast('Records password set.', 'ok');
-      panel.querySelector('#recPwState').textContent = 'A records password is set. Setting a new one replaces it.';
+      toast('Records password set. Change it later from inside Records.', 'ok');
+      panel.querySelector('#recPwCard').remove();
     } catch (e) { toast(e.message, 'error'); }
   });
   panel.querySelector('#pwSaveBtn').addEventListener('click', async () => {
