@@ -91,7 +91,7 @@ a { color: var(--rose-dark); }
 }
 .tab-btn.active { color: var(--rose-dark); border-bottom-color: var(--rose); }
 
-main { max-width: 1100px; margin: 0 auto; padding: 16px; padding-bottom: 80px; }
+main { max-width: 1100px; margin: 0 auto; padding: 16px; padding-bottom: 32px; }
 
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
@@ -269,11 +269,24 @@ form .actions { display: flex; gap: 10px; margin-top: 16px; }
    so it works no matter how the single app file was opened. */
 #guidePanel { position: fixed; inset: 0; z-index: 500; background: var(--bg); overflow-y: auto; padding-bottom: 40px; }
 
-/* Records: the hidden spot on the Patients tab, and the "unlocked" reminder bar. The spot is a
-   plain transparent square in the bottom-right corner of the Patients tab. */
-.records-hotspot { position: absolute; right: 0; bottom: 0; width: 56px; height: 56px; opacity: 0; border: 0; background: transparent; padding: 0; cursor: default; z-index: 2; }
+/* "Records unlocked" reminder bar. */
 .records-banner { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; background: #2a1a17; color: #fff; border-radius: var(--radius); padding: 8px 12px; margin-bottom: 12px; font-size: 0.85rem; font-weight: 600; }
 .records-banner .btn.outline { color: #fff; border-color: rgba(255,255,255,0.6); background: transparent; }
+
+/* Footer: a thin ornamental rule over a row of seven tiles (flower, leaf, diamond...) at the bottom
+   of every page, pushed down to the bottom of the screen on short pages. */
+body { display: flex; flex-direction: column; min-height: 100vh; }
+body > main { flex: 1 0 auto; width: 100%; }
+.app-footer { max-width: 1100px; width: 100%; margin: 0 auto; padding: 8px 16px 20px; color: var(--rose-dark); }
+.footer-rule { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.footer-rule span { flex: 1; height: 0; border-top: 1px solid var(--rose); }
+.footer-rule i { width: 8px; height: 8px; transform: rotate(45deg); background: var(--rose); flex: none; }
+.footer-band { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.footer-tile { display: flex; align-items: center; justify-content: center; height: 46px; background: linear-gradient(180deg, #fff 0%, var(--rose-light) 100%); border: 1px solid var(--border); border-radius: 8px; color: var(--rose); user-select: none; -webkit-user-select: none; }
+.footer-tile:nth-child(odd) { color: var(--rose-dark); }
+.footer-tile svg { width: 26px; height: 26px; }
+.footer-caption { text-align: center; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin-top: 10px; }
+@media (max-width: 480px) { .footer-band { gap: 4px; } .footer-tile { height: 38px; } .footer-tile svg { width: 20px; height: 20px; } }
 
 /* QR scanner */
 .scanner-box { position: relative; width: 100%; max-width: 420px; margin: 0 auto 8px; aspect-ratio: 1 / 1; background: #111; border-radius: 10px; overflow: hidden; }
@@ -396,8 +409,7 @@ form .actions { display: flex; gap: 10px; margin-top: 16px; }
   </section>
 
   <!-- PATIENTS -->
-  <section class="tab-panel" id="panel-patients" style="position:relative;min-height:70vh;padding-bottom:64px;">
-    <button type="button" id="recordsHotspot" class="records-hotspot" tabindex="-1" aria-hidden="true"></button>
+  <section class="tab-panel" id="panel-patients">
     <div class="card">
       <div class="row">
         <input type="text" id="patientSearch" placeholder="Search patients by name…">
@@ -524,6 +536,37 @@ form .actions { display: flex; gap: 10px; margin-top: 16px; }
     </div>
   </section>
 </main>
+
+<!-- Decorative footer on every page. The last flower on the right doubles as the way into Records,
+     but only while the Patients tab is open (see the RECORDS section of app.js). -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="fm-flower" viewBox="0 0 32 32">
+    <g fill="currentColor"><circle cx="16" cy="8.5" r="5"/><circle cx="23.1" cy="13.7" r="5"/><circle cx="20.4" cy="22" r="5"/><circle cx="11.6" cy="22" r="5"/><circle cx="8.9" cy="13.7" r="5"/></g>
+    <circle cx="16" cy="16" r="3.6" fill="#fff"/><circle cx="16" cy="16" r="1.6" fill="currentColor"/>
+  </symbol>
+  <symbol id="fm-leaf" viewBox="0 0 32 32">
+    <path d="M16 29V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <path d="M16 19c-6 0-9-4-9-9 5 0 9 3 9 9z" fill="currentColor"/>
+    <path d="M16 15c6 0 9-4 9-9-5 0-9 3-9 9z" fill="currentColor"/>
+  </symbol>
+  <symbol id="fm-diamond" viewBox="0 0 32 32">
+    <rect x="8.5" y="8.5" width="15" height="15" rx="2" transform="rotate(45 16 16)" fill="none" stroke="currentColor" stroke-width="2"/>
+    <circle cx="16" cy="16" r="2.6" fill="currentColor"/>
+  </symbol>
+</svg>
+<footer class="app-footer">
+  <div class="footer-rule"><span></span><i></i><span></span></div>
+  <div class="footer-band">
+    <div class="footer-tile"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#fm-flower"/></svg></div>
+    <div class="footer-tile"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#fm-leaf"/></svg></div>
+    <div class="footer-tile"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#fm-diamond"/></svg></div>
+    <div class="footer-tile"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#fm-flower"/></svg></div>
+    <div class="footer-tile"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#fm-diamond"/></svg></div>
+    <div class="footer-tile"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#fm-leaf"/></svg></div>
+    <div class="footer-tile" id="recordsHotspot"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#fm-flower"/></svg></div>
+  </div>
+  <div class="footer-caption">SkiNouvelle Aesthetic and Wellness Center</div>
+</footer>
 
 <div class="checkout-bar" id="checkoutBar" style="display:none;">
   <div><span id="cartCount">0</span> item(s), <span class="total" id="cartTotal">₱0.00</span></div>
@@ -5773,7 +5816,7 @@ function renderAdminSub(sub) {
 
 // ======================= RECORDS (hidden) =======================
 // Purchases, amounts, voids, audits, payroll and commissions. Not in the tab bar and not in Admin:
-// the only way in is the invisible spot in the bottom-right corner of the Patients tab, then the
+// the only way in is the last flower on the right of the footer, tapped on the Patients tab, then the
 // records password the admin set. Nothing in the Guide or the tour points at the spot.
 let RECORDS_ACTIVE_SUB = 'dashboard';
 function renderRecordsSub(sub) {
@@ -5828,7 +5871,10 @@ function recordsPasswordPrompt() {
     });
   });
 }
+// The last flower on the right of the footer, and only while the Patients tab is open. On every
+// other page it's just decoration.
 document.getElementById('recordsHotspot').addEventListener('click', async () => {
+  if (!document.getElementById('panel-patients').classList.contains('active')) return;
   if (RECORDS_UNLOCKED) { openRecordsPanel(); return; }
   if (!(await hasRecordsPassword())) { toast('No records password has been set yet. The admin sets it in Admin > Settings.', 'error'); return; }
   const pw = await recordsPasswordPrompt();
