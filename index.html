@@ -669,8 +669,8 @@ body > main { flex: 1 0 auto; width: 100%; }
           <li><strong>Redeem a Session</strong> is for a patient using a session they already paid for. Find them, tap Redeem, and pick which service it is for when the package has more than one. Redeeming books that service's next visit on its own interval until its sessions run out.</li>
           <li><strong>Days between visits:</strong> a regular package sets one in Admin &gt; Services &amp; Packages. A custom package sets one per service, for example diode every 14 days and skin booster every 21 days. Left blank, the service's own Next visit setting is used.</li>
           <li><strong>Custom packages</strong> are built for one patient in Admin &gt; Patients &gt; Custom Package. They show only for that patient, under "Custom package for one patient" in Log a Package.</li>
-          <li><strong>Vouchers:</strong> in Admin &gt; Patients, tap <strong>Vouchers</strong> on a patient. Choose percent off, a peso amount off, or a free service, and tick the services it covers (none ticked covers every service). Print the QR code or download it to send to the patient.</li>
-          <li>To use a voucher, tap <strong>Scan</strong> next to Patient voucher on Log a Service, or type its code. It works only for the patient it was made for, once per service. Voiding that service frees the voucher for that service again.</li>
+          <li><strong>Vouchers:</strong> in Admin &gt; Patients, tap <strong>Vouchers</strong> on a patient. Choose percent off, a peso amount off or a free service. Set it to <strong>One use in total</strong> or <strong>Once per service</strong> and tick the services it covers. Print the QR code or download it to send to the patient. A patient can hold several vouchers at once.</li>
+          <li>To use a voucher, tap <strong>Scan</strong> next to Patient voucher on Log a Service, or type its code. It works only for the patient it was made for. A one-use voucher is used up after one service, and a once-per-service voucher is used up when every ticked service has had it. Used-up vouchers move to the history list under the patient's vouchers. Voiding the service frees that use again.</li>
         </ol>
       </div>
     </details>
@@ -3674,28 +3674,42 @@ async function listAppointmentReminderRecipients(date) {
 
 // ======================= VOUCHERS (patient QR) =======================
 // A voucher belongs to one patient. It is either a percent off, a peso amount off, or a free
-// service, on the services it lists (none listed = every service), and each service can use it
-// once. Its QR code carries only the voucher code; the patient and the rules live here.
+// service, on the services it lists (none listed = every service). Its usage is 'single' (one use
+// in total, then it is used up) or 'per_service' (once on each listed service, used up once every
+// listed service has had it). Its QR code carries only the voucher code; the patient and the rules
+// live here. Voiding the service that used it frees that use again.
 const VOUCHER_KINDS = ['percent', 'fixed', 'free'];
+const VOUCHER_USAGES = ['single', 'per_service'];
+function voucherUsage(v) { return v.usage === 'single' ? 'single' : 'per_service'; }
+// 'active', 'used' or 'cancelled', from the voucher and the service ids it has been used on.
+function voucherStatus(v, usedServiceIds) {
+  if (!v.active) return 'cancelled';
+  if (voucherUsage(v) === 'single') return usedServiceIds.length ? 'used' : 'active';
+  if (v.serviceIds.length && v.serviceIds.every(id => usedServiceIds.includes(id))) return 'used';
+  return 'active';
+}
 function newVoucherCode() {
   const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   const bytes = new Uint8Array(8);
   crypto.getRandomValues(bytes);
   return 'V-' + Array.from(bytes, b => alphabet[b % alphabet.length]).join('');
 }
-async function createVoucher({ patientId, kind, value, serviceIds, note } = {}) {
+async function createVoucher({ patientId, kind, value, serviceIds, note, usage = 'per_service' } = {}) {
   const patient = await idbGet('patients', Number(patientId));
   if (!patient) throw new Error('Pick the patient this voucher belongs to.');
   if (!VOUCHER_KINDS.includes(kind)) throw new Error('Pick what the voucher gives: percent off, peso amount off, or a free service.');
   const v = kind === 'free' ? null : Number(value);
   if (kind !== 'free' && (!v || v <= 0)) throw new Error('Enter how much the voucher takes off.');
   if (kind === 'percent' && v > 100) throw new Error('A percent voucher can take off at most 100%.');
+  if (!VOUCHER_USAGES.includes(usage)) throw new Error('Pick one use in total or one use per service.');
+  const ids = Array.isArray(serviceIds) ? serviceIds.map(Number) : [];
+  if (usage === 'per_service' && !ids.length) throw new Error('Tick the services a once-per-service voucher covers.');
   const existing = await idbGetAll('vouchers');
   let code;
   do { code = newVoucherCode(); } while (existing.some(x => x.code === code));
   return idbPut('vouchers', {
-    code, patientId: patient.id, kind, value: v,
-    serviceIds: Array.isArray(serviceIds) ? serviceIds.map(Number) : [],
+    code, patientId: patient.id, kind, value: v, usage,
+    serviceIds: ids,
     note: note || null, active: true, createdAt: new Date().toISOString()
   });
 }
@@ -3703,12 +3717,17 @@ async function listVouchers({ patientId } = {}) {
   let rows = await idbGetAll('vouchers');
   if (patientId) rows = rows.filter(v => v.patientId === Number(patientId));
   const [patients, services, uses] = await Promise.all([idbGetAll('patients'), idbGetAll('services'), idbGetAll('voucherRedemptions')]);
-  return rows.map(v => ({
-    ...v,
-    patientName: patients.find(p => p.id === v.patientId)?.name || 'Unknown patient',
-    serviceNames: v.serviceIds.map(id => services.find(s => s.id === id)?.name || 'Unknown service'),
-    usedServiceIds: uses.filter(u => u.voucherId === v.id).map(u => u.serviceId)
-  })).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return rows.map(v => {
+    const usedServiceIds = uses.filter(u => u.voucherId === v.id).map(u => u.serviceId);
+    return {
+      ...v,
+      usage: voucherUsage(v),
+      status: voucherStatus(v, usedServiceIds),
+      patientName: patients.find(p => p.id === v.patientId)?.name || 'Unknown patient',
+      serviceNames: v.serviceIds.map(id => services.find(s => s.id === id)?.name || 'Unknown service'),
+      usedServiceIds
+    };
+  }).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 }
 async function getVoucherByCode(code) {
   const c = String(code || '').trim().toUpperCase();
@@ -3736,8 +3755,9 @@ async function validateVoucherForService(code, patientId, serviceId) {
   if (!v.active) throw new Error('This voucher has been cancelled.');
   if (v.patientId !== Number(patientId)) throw new Error('This voucher belongs to a different patient.');
   if (v.serviceIds.length && !v.serviceIds.includes(Number(serviceId))) throw new Error('This voucher does not cover this service.');
-  const used = (await idbGetAll('voucherRedemptions')).some(u => u.voucherId === v.id && u.serviceId === Number(serviceId));
-  if (used) throw new Error('This voucher was already used on this service.');
+  const uses = (await idbGetAll('voucherRedemptions')).filter(u => u.voucherId === v.id);
+  if (voucherUsage(v) === 'single' && uses.length) throw new Error('This voucher has been used up.');
+  if (uses.some(u => u.serviceId === Number(serviceId))) throw new Error('This voucher was already used on this service.');
   return v;
 }
 
@@ -5338,34 +5358,42 @@ function pullOutFlow(p) {
 
 // ======================= PATIENT VOUCHERS =======================
 // A voucher QR belongs to one patient: percent off, a peso amount off, or a free service, on the
-// services picked (none picked = any service), once per service. Staff scan it (or type the code)
-// on the Log a Service screen.
+// services picked. It is good for one use in total, or once on each picked service. A used-up or
+// cancelled voucher moves to the history list. Staff scan it (or type the code) on Log a Service.
 function voucherCardHtml(v) {
   return `<div class="qr-label" style="width:200px;"><img src="${qrDataUrl(voucherQrPayload(v.code), { scale: 6 })}" alt="Voucher QR">
-    <div class="qr-name">${v.patientName}</div><div class="qr-sub">${voucherLabel(v)} · ${v.serviceIds.length ? v.serviceNames.join(', ') : 'any service'}</div><div class="qr-sub">${v.code} · once per service</div></div>`;
+    <div class="qr-name">${v.patientName}</div><div class="qr-sub">${voucherLabel(v)} · ${v.serviceIds.length ? v.serviceNames.join(', ') : 'any service'}</div><div class="qr-sub">${v.code} · ${v.usage === 'single' ? 'one use' : 'once per service'}</div></div>`;
 }
 async function patientVouchersModal(patient) {
   const [vouchers, services] = await Promise.all([listVouchers({ patientId: patient.id }), listServices({ all: true })]);
+  const svcName = (id) => (services.find(s => s.id === id) || {}).name || 'a deleted service';
+  const card = (v) => `
+      <div class="card">
+        <div class="row between wrap"><strong>${voucherLabel(v)}</strong><span class="badge ${v.status === 'active' ? 'ok' : 'gray'}">${v.status === 'active' ? 'Active' : v.status === 'used' ? 'Used up' : 'Cancelled'}</span></div>
+        <p class="muted" style="margin:4px 0;">${v.code} · ${v.usage === 'single' ? 'One use' : 'Once per service'} · ${v.serviceIds.length ? v.serviceNames.join(', ') : 'Any service'}${v.note ? ' · ' + v.note : ''}</p>
+        <p class="muted" style="margin:0 0 6px;">Used on: ${v.usedServiceIds.length ? v.usedServiceIds.map(svcName).join(', ') : 'nothing yet'}${v.status === 'active' && v.usage === 'per_service' && v.serviceIds.length ? ' · Left: ' + v.serviceIds.filter(id => !v.usedServiceIds.includes(id)).map(svcName).join(', ') : ''}</p>
+        ${v.status === 'active' ? `<div class="row wrap" style="gap:6px;">
+          <button class="btn small outline" data-showv="${v.id}">Show / Print QR</button>
+          <button class="btn small danger" data-cancelv="${v.id}">Cancel Voucher</button>
+        </div>` : ''}
+      </div>`;
+  const live = vouchers.filter(v => v.status === 'active');
+  const past = vouchers.filter(v => v.status !== 'active');
   openModal(`
     <h3>Vouchers: ${patient.name}</h3>
-    ${vouchers.map(v => `
-      <div class="card">
-        <div class="row between wrap"><strong>${voucherLabel(v)}</strong><span class="badge ${v.active ? 'ok' : 'gray'}">${v.active ? 'Active' : 'Cancelled'}</span></div>
-        <p class="muted" style="margin:4px 0;">${v.code} · ${v.serviceIds.length ? v.serviceNames.join(', ') : 'Any service'}${v.note ? ' · ' + v.note : ''}</p>
-        <p class="muted" style="margin:0 0 6px;">Used on: ${v.usedServiceIds.length ? v.usedServiceIds.map(id => (services.find(s => s.id === id) || {}).name || 'a deleted service').join(', ') : 'nothing yet'}</p>
-        <div class="row wrap" style="gap:6px;">
-          <button class="btn small outline" data-showv="${v.id}">Show / Print QR</button>
-          ${v.active ? `<button class="btn small danger" data-cancelv="${v.id}">Cancel Voucher</button>` : ''}
-        </div>
-      </div>`).join('') || '<p class="muted">No vouchers yet.</p>'}
+    ${live.map(card).join('') || '<p class="muted">No active vouchers.</p>'}
+    ${past.length ? `<details style="margin-top:6px;"><summary class="muted" style="cursor:pointer;">Used up and cancelled (${past.length})</summary>${past.map(card).join('')}</details>` : ''}
     <hr class="divider">
     <h3>New voucher</h3>
     <label>Gives</label>
     <select id="vKind"><option value="percent">Percent off</option><option value="fixed">Peso amount off</option><option value="free">Free service</option></select>
     <div id="vValueBox"><label>Amount</label><input type="number" id="vValue" min="0.01" step="0.01" placeholder="e.g. 20"></div>
-    <label>Services it covers (none ticked = any service)</label>
+    <label>Use</label>
+    <select id="vUsage"><option value="per_service">Once per service</option><option value="single">One use in total</option></select>
+    <p class="muted" id="vUsageHint"></p>
+    <label id="vSvcLabel">Services it covers</label>
     <div style="max-height:160px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;padding:6px;">
-      ${services.map(s => `<label style="display:flex;align-items:center;gap:8px;font-weight:400;"><input type="checkbox" style="width:auto;" data-vsvc="${s.id}"> ${s.name}</label>`).join('') || '<p class="muted">No services yet.</p>'}
+      ${services.map(s => `<label style="display:flex;align-items:center;gap:8px;font-weight:400;margin:0;padding:6px 2px;"><input type="checkbox" style="width:auto;min-height:0;margin:0;" data-vsvc="${s.id}"> ${s.name}</label>`).join('') || '<p class="muted">No services yet.</p>'}
     </div>
     <label>Note (optional)</label><input type="text" id="vNote" placeholder="e.g. Birthday treat">
     <div class="actions">
@@ -5375,11 +5403,18 @@ async function patientVouchersModal(patient) {
   `, (modal) => {
     const kind = modal.querySelector('#vKind');
     kind.addEventListener('change', () => { modal.querySelector('#vValueBox').style.display = kind.value === 'free' ? 'none' : 'block'; });
+    const usage = modal.querySelector('#vUsage');
+    const setSvcLabel = () => {
+      const single = usage.value === 'single';
+      modal.querySelector('#vSvcLabel').textContent = single ? 'Services it covers (none ticked = any service)' : 'Services it covers';
+      modal.querySelector('#vUsageHint').textContent = single ? 'Used up after one service.' : 'Works once on each ticked service and is used up when all of them have had it.';
+    };
+    usage.addEventListener('change', setSvcLabel); setSvcLabel();
     modal.querySelector('#vClose').addEventListener('click', closeModal);
     modal.querySelector('#vCreate').addEventListener('click', async () => {
       try {
         const id = await createVoucher({
-          patientId: patient.id, kind: kind.value, value: modal.querySelector('#vValue').value,
+          patientId: patient.id, kind: kind.value, usage: usage.value, value: modal.querySelector('#vValue').value,
           serviceIds: [...modal.querySelectorAll('[data-vsvc]:checked')].map(cb => Number(cb.dataset.vsvc)),
           note: modal.querySelector('#vNote').value
         });
@@ -6486,13 +6521,16 @@ async function renderAdminPatients() {
       <label>Description (optional)</label><textarea id="cpDesc">${pkg ? (pkg.description || '') : ''}</textarea>
       <label>Services in this package</label>
       <div id="cpLinesList"></div>
-      <div class="row wrap" style="gap:8px;margin-top:6px;">
-        <select id="cpAddService" style="flex:2;min-width:160px;">${services.map(s => `<option value="${s.id}">${s.name}</option>`).join('')}</select>
-        <input type="number" id="cpAddSessions" placeholder="Sessions" min="1" step="1" style="flex:1;min-width:90px;">
-        <input type="number" id="cpAddInterval" placeholder="Every N days" min="1" step="1" style="flex:1;min-width:110px;">
-        <button class="btn small" id="cpAddLineBtn">+ Add</button>
+      <div style="margin-top:6px;">
+        <label>Service</label>
+        <select id="cpAddService">${services.map(s => `<option value="${s.id}">${s.name}</option>`).join('')}</select>
+        <div class="row wrap" style="gap:8px;align-items:flex-end;">
+          <div style="flex:1;min-width:120px;"><label>Sessions</label><input type="number" id="cpAddSessions" min="1" step="1"></div>
+          <div style="flex:1;min-width:150px;"><label>Days between visits</label><input type="number" id="cpAddInterval" min="1" step="1"></div>
+          <button class="btn small" id="cpAddLineBtn" style="min-height:44px;">+ Add</button>
+        </div>
       </div>
-      <p class="muted">Every N days books each service's visits on the calendar on its own schedule, e.g. diode every 14 days and skin booster every 21. Blank uses the service's own follow-up days.</p>
+      <p class="muted">Each service is booked on its own schedule, e.g. diode every 14 days and skin booster every 21. Leave the days blank to use the service's own Next visit setting.</p>
       ${commissionFieldHtml('cpCommDown', pkg?.commissionTypeDownPayment, pkg?.commissionRateDownPayment, 'Staff commission on the down payment (optional)')}
       ${commissionFieldHtml('cpCommSession', pkg?.commissionTypePerSession, pkg?.commissionRatePerSession, 'Staff commission on each session redeemed (optional)')}
       <label style="${RECORDS_UNLOCKED ? '' : 'display:none;'}"><input type="checkbox" id="cpApplyPayouts" style="width:auto;display:inline-block;" ${!pkg || pkg.applyPayouts !== false ? 'checked' : ''}> Pay staff commission and investor payouts on this package</label>
@@ -6507,10 +6545,12 @@ async function renderAdminPatients() {
       <label>Service line</label>
       <select id="cpConsumableLineSelect">${pkg.serviceLines.map(l => `<option value="${l.serviceId}">${l.serviceName || services.find(s => s.id === l.serviceId)?.name || 'Unknown service'}</option>`).join('')}</select>
       <div id="cpConsumablesList"></div>
-      <div class="row wrap" style="margin-top:8px;">
-        <select id="cpAddConsumableProduct" style="flex:2;min-width:160px;"></select>
-        <input type="number" id="cpAddConsumableQty" placeholder="Qty per session" step="0.001" min="0.001" style="flex:1;min-width:100px;">
-        <button class="btn small" id="cpAddConsumableBtn">+ Add</button>
+      <div style="margin-top:8px;">
+        <label>Product</label><select id="cpAddConsumableProduct"></select>
+        <div class="row wrap" style="gap:8px;align-items:flex-end;">
+          <div style="flex:1;min-width:150px;"><label>Qty per session</label><input type="number" id="cpAddConsumableQty" step="0.001" min="0.001"></div>
+          <button class="btn small" id="cpAddConsumableBtn" style="min-height:44px;">+ Add</button>
+        </div>
       </div>
       <div id="cpConsumablesTotal" class="muted" style="margin-top:8px;"></div>
       ` : '<p class="muted">Save the package, then open it again to set each service\'s consumables.</p>'}
@@ -6665,10 +6705,12 @@ async function renderAdminPatients() {
       <div id="vipOvList"></div>
       <hr class="divider">
       <div class="row wrap" style="gap:8px;">
-        <select id="vipOvType" style="flex:1;min-width:100px;"><option value="product">Product</option><option value="service">Service</option></select>
-        <select id="vipOvItem" style="flex:2;min-width:160px;"></select>
-        <input type="number" id="vipOvPct" placeholder="Discount %" step="0.1" min="0.1" style="flex:1;min-width:90px;">
-        <button class="btn small" id="vipOvAddBtn">+ Set</button>
+        <select id="vipOvType" style="flex:1;min-width:110px;"><option value="product">Product</option><option value="service">Service</option></select>
+        <select id="vipOvItem" style="flex:2;min-width:180px;"></select>
+      </div>
+      <div class="row wrap" style="gap:8px;align-items:flex-end;">
+        <div style="flex:1;min-width:130px;"><label>Discount %</label><input type="number" id="vipOvPct" step="0.1" min="0.1"></div>
+        <button class="btn small" id="vipOvAddBtn" style="min-height:44px;">+ Set</button>
       </div>
       <div class="actions"><button class="btn full" id="vipOvClose">Close</button></div>
     `, (modal) => {
@@ -7301,10 +7343,12 @@ async function openAdminServiceModal(s) {
     <h3>Consumables used per treatment</h3>
     <p class="muted">List what this service uses and stock comes off each time it is logged, e.g. 1 pair of gloves and 10 ml of cleanser per facial.</p>
     <div id="svcConsumablesList"></div>
-    <div class="row wrap" style="margin-top:8px;">
-      <select id="svcAddConsumableProduct" style="flex:2;min-width:160px;"></select>
-      <input type="number" id="svcAddConsumableQty" placeholder="Qty per use" step="0.001" min="0.001" style="flex:1;min-width:100px;">
-      <button class="btn small" id="svcAddConsumableBtn">+ Add</button>
+    <div style="margin-top:8px;">
+      <label>Product</label><select id="svcAddConsumableProduct"></select>
+      <div class="row wrap" style="gap:8px;align-items:flex-end;">
+        <div style="flex:1;min-width:150px;"><label>Qty per use</label><input type="number" id="svcAddConsumableQty" step="0.001" min="0.001"></div>
+        <button class="btn small" id="svcAddConsumableBtn" style="min-height:44px;">+ Add</button>
+      </div>
     </div>
     <div style="${RECORDS_UNLOCKED ? '' : 'display:none;'}">
     <hr class="divider">
@@ -7450,10 +7494,12 @@ async function openAdminPackageModal(p) {
     <h3>Consumables used per session</h3>
     <p class="muted">This package's recipe, kept apart from the service's recipe since a package session can use a different amount. Stock comes off one session's worth at a time when a session is redeemed.</p>
     <div id="pkConsumablesList"></div>
-    <div class="row wrap" style="margin-top:8px;">
-      <select id="pkAddConsumableProduct" style="flex:2;min-width:160px;"></select>
-      <input type="number" id="pkAddConsumableQty" placeholder="Qty per session" step="0.001" min="0.001" style="flex:1;min-width:100px;">
-      <button class="btn small" id="pkAddConsumableBtn">+ Add</button>
+    <div style="margin-top:8px;">
+      <label>Product</label><select id="pkAddConsumableProduct"></select>
+      <div class="row wrap" style="gap:8px;align-items:flex-end;">
+        <div style="flex:1;min-width:150px;"><label>Qty per session</label><input type="number" id="pkAddConsumableQty" step="0.001" min="0.001"></div>
+        <button class="btn small" id="pkAddConsumableBtn" style="min-height:44px;">+ Add</button>
+      </div>
     </div>
     <div id="pkConsumablesTotal" class="muted" style="margin-top:8px;"></div>
     ` : '<p class="muted">Save the package, then open it again to set its consumables.</p>'}
@@ -8293,7 +8339,7 @@ const TOUR_STEPS = [
   { title: 'Branches', body: 'Name each branch. Every branch keeps its own stock and Inventory shows the overall total too. The first branch you add takes over all current stock. Set which branch <strong>this tablet</strong> works from here, once per tablet.', target: '#admin-branches', before: () => { tourSwitchTab('admin'); tourClickAdminSub('branches'); }, section: 'inventory' },
   { title: 'Promo Codes', body: 'Create a code and tick which products and services it discounts. <strong>Select all</strong> applies it to everything. A patient can use a code once per product and once per service.', target: '#admin-promos', before: () => { tourSwitchTab('admin'); tourClickAdminSub('promos'); }, section: 'promos' },
   { title: 'Staff', body: 'Add your team, each with their own confidential PIN, and give void authority to a trusted supervisor. PINs are only ever revealed here, one at a time.', target: '#admin-staff', before: () => { tourSwitchTab('admin'); tourClickAdminSub('staff'); }, section: 'staff' },
-  { title: 'Patients (Admin)', body: 'Set Ambassador and VIP status, per-patient VIP discounts, custom packages and <strong>Vouchers</strong>. A voucher belongs to one patient and gives a percent off, a peso amount off, or a free service, on the services you tick. It works once per service. Print or send its QR code, and staff scan it on Log a Service.', target: '#admin-patients', before: () => { tourSwitchTab('admin'); tourClickAdminSub('patients'); }, section: 'patients' },
+  { title: 'Patients (Admin)', body: 'Set Ambassador and VIP status, per-patient VIP discounts, custom packages and <strong>Vouchers</strong>. A voucher belongs to one patient and gives a percent off, a peso amount off, or a free service, on the services you tick. It is good for one use in total or once on each ticked service. Print or send its QR code, and staff scan it on Log a Service.', target: '#admin-patients', before: () => { tourSwitchTab('admin'); tourClickAdminSub('patients'); }, section: 'patients' },
   { title: 'Message Templates', body: 'Write appointment reminders once, with blanks like {first_name}, {service}, {date} and {time}. The Marketing tab fills them in for every patient booked on a date.', target: '#admin-templates', before: () => { tourSwitchTab('admin'); tourClickAdminSub('templates'); }, section: 'marketing' },
   { title: 'Marketing', body: '<strong>Appointment Reminders</strong> lists everyone booked on a date with their message already filled in. Send each one by WhatsApp, text message, Gmail or Facebook. Below that, Email, WhatsApp and Facebook Messenger reach patients in bulk. You send every message yourself.', target: '#marketingPanel', before: () => tourSwitchTab('marketing'), section: 'marketing' },
   { title: 'Calendar &amp; scheduling', body: 'Tap a day to see who is booked. <strong>+ Book Appointment</strong> books a visit by hand and <strong>Send Reminders</strong> opens that day\'s reminder list in Marketing. Packages book each service on its own interval, for example diode every 14 days and skin booster every 21, so both show on the calendar.', target: '#calendarPanel', before: () => tourSwitchTab('calendar'), section: 'calendar' },
