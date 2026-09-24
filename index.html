@@ -386,6 +386,9 @@ body > main { flex: 1 0 auto; width: 100%; }
       <button data-svc="packages">Log a Package</button>
       <button data-svc="redeem">Redeem a Session</button>
     </div>
+    <div class="row" style="justify-content:flex-end;margin-bottom:10px;">
+      <button class="btn" id="scanVoucherBtn">Scan Voucher</button>
+    </div>
     <div id="svcServices"><div class="grid cols-3" id="serviceGrid"></div></div>
     <div id="svcPackages" style="display:none;">
       <div class="grid cols-3" id="packageGrid"></div>
@@ -670,7 +673,7 @@ body > main { flex: 1 0 auto; width: 100%; }
           <li><strong>Days between visits:</strong> a regular package sets one in Admin &gt; Services &amp; Packages. A custom package sets one per service, for example diode every 14 days and skin booster every 21 days. Left blank, the service's own Next visit setting is used.</li>
           <li><strong>Custom packages</strong> are built for one patient in Admin &gt; Patients &gt; Custom Package. They show only for that patient, under "Custom package for one patient" in Log a Package.</li>
           <li><strong>Vouchers:</strong> in Admin &gt; Patients, tap <strong>Vouchers</strong> on a patient. Choose percent off, a peso amount off or a free service. Set it to <strong>One use in total</strong> or <strong>Once per service</strong> and tick the services it covers. Print the QR code or download it to send to the patient. A patient can hold several vouchers at once.</li>
-          <li>To use a voucher, tap <strong>Scan</strong> next to Patient voucher on Log a Service, or type its code. It works only for the patient it was made for. A one-use voucher is used up after one service, and a once-per-service voucher is used up when every ticked service has had it. Used-up vouchers move to the history list under the patient's vouchers. Voiding the service frees that use again.</li>
+          <li>To use a voucher, tap <strong>Scan Voucher</strong> at the top of the Services &amp; Packages tab. The app fills in the patient and the voucher and opens the service it covers, or asks which one when it covers several. Inside Log a Service, the <strong>Scan</strong> button next to Patient voucher does the same, and the code can also be typed. Scanning a voucher from the Products tab takes you to the same place. It works only for the patient it was made for. A one-use voucher is used up after one service, and a once-per-service voucher is used up when every ticked service has had it. Used-up vouchers move to the history list under the patient's vouchers. Voiding the service frees that use again.</li>
         </ol>
       </div>
     </details>
@@ -3749,6 +3752,21 @@ function voucherDiscountPct(v, basePrice) {
   if (v.kind === 'percent') return Math.min(100, v.value);
   return basePrice > 0 ? Math.min(100, (v.value / basePrice) * 100) : 0;
 }
+// For a scanned voucher: its patient and the active services it can still be used on.
+async function lookupVoucher(code) {
+  const found = await getVoucherByCode(code);
+  if (!found) throw new Error('Voucher not found. Check the code or scan it again.');
+  const v = (await listVouchers({ patientId: found.patientId })).find(x => x.id === found.id);
+  if (v.status === 'cancelled') throw new Error('This voucher has been cancelled.');
+  if (v.status === 'used') throw new Error('This voucher has been used up.');
+  const patient = await idbGet('patients', v.patientId);
+  if (!patient) throw new Error('The patient on this voucher is no longer on file.');
+  const activeIds = (await listServices()).map(s => s.id);
+  const covered = v.serviceIds.length ? v.serviceIds : activeIds;
+  const serviceIds = covered.filter(id => activeIds.includes(id) && !(v.usage === 'per_service' && v.usedServiceIds.includes(id)));
+  if (!serviceIds.length) throw new Error('None of the services on this voucher are offered any more.');
+  return { voucher: v, patient, serviceIds };
+}
 async function validateVoucherForService(code, patientId, serviceId) {
   const v = await getVoucherByCode(code);
   if (!v) throw new Error('Voucher not found. Check the code or scan it again.');
@@ -4586,11 +4604,15 @@ function addToCart(productId, branchId = null, product = null) {
 document.getElementById('scanProductBtn').addEventListener('click', () => openQrScanner({
   title: 'Scan products',
   hint: 'Hold each item\'s QR label up to the camera. Every scan adds one to the list. Tap Done when finished, then Review & Deduct.',
-  onScan: (text) => { handleProductScan(text); return true; }
+  onScan: (text) => {
+    const code = parseScanCode(text);
+    if (code.type === 'voucher') { setTimeout(() => openVoucherFromCode(code.code), 50); return false; }
+    handleProductScan(text); return true;
+  }
 }));
 async function handleProductScan(text) {
   const code = parseScanCode(text);
-  if (code.type === 'voucher') { toast('This code is a patient voucher. Scan it on Log a Service.', 'error'); return; }
+  if (code.type === 'voucher') { openVoucherFromCode(code.code); return; }
   if (code.type !== 'product') { toast('That QR code is not one of this clinic\'s labels.', 'error'); return; }
   let p = PRODUCTS.find(x => x.id === code.productId);
   if (!p) { try { p = await getProduct(code.productId); } catch (e) { p = null; } }
@@ -4709,6 +4731,36 @@ async function loadServicesAndPackages() {
       <div class="price" style="font-weight:700;color:var(--rose-dark)">${peso(p.price)}</div>
     </div>`).join('') || '<p class="empty-state">No packages yet. Add some in Admin &gt; Packages.</p>';
 }
+// Scan Voucher: reads a patient's voucher and opens Log a Service with the patient and voucher
+// filled in. A voucher covering several services asks which one first.
+async function openVoucherFromCode(voucherCode) {
+  let found;
+  try { found = await lookupVoucher(voucherCode); } catch (e) { toast(e.message, 'error'); return; }
+  if (!SERVICES.length) SERVICES = await listServices();
+  document.querySelector('[data-tab="services"]').click();
+  document.querySelector('#panel-services .pill-nav button[data-svc="services"]').click();
+  const restore = { patient: found.patient, voucherCode: found.voucher.code };
+  if (found.serviceIds.length === 1) { sellServiceFlow(found.serviceIds[0], restore); return; }
+  const options = SERVICES.filter(s => found.serviceIds.includes(s.id));
+  openModal(`
+    <h3>Voucher for ${found.patient.name}</h3>
+    <p class="muted">${voucherLabel(found.voucher)} · ${found.voucher.usage === 'single' ? 'one use' : 'once per service'}. Pick the service.</p>
+    ${options.map(s => `<div class="cart-line" style="cursor:pointer" data-vpick="${s.id}"><div>${s.name}</div><div>${peso(s.price)}</div></div>`).join('')}
+    <div class="actions"><button class="btn secondary full" id="vpCancel">Cancel</button></div>
+  `, (modal) => {
+    modal.querySelector('#vpCancel').addEventListener('click', closeModal);
+    modal.querySelectorAll('[data-vpick]').forEach(row => row.addEventListener('click', () => sellServiceFlow(Number(row.dataset.vpick), restore)));
+  });
+}
+document.getElementById('scanVoucherBtn').addEventListener('click', () => openQrScanner({
+  title: 'Scan patient voucher',
+  onScan: (text) => {
+    const code = parseScanCode(text);
+    if (code.type !== 'voucher') { toast('This QR code is not a voucher.', 'error'); return true; }
+    setTimeout(() => openVoucherFromCode(code.code), 50);
+    return false;
+  }
+}));
 document.getElementById('serviceGrid').addEventListener('click', (e) => { const c = e.target.closest('[data-sell-service]'); if (c) sellServiceFlow(Number(c.dataset.sellService)); });
 document.getElementById('packageGrid').addEventListener('click', (e) => { const c = e.target.closest('[data-sell-package]'); if (c) sellPackageFlow(Number(c.dataset.sellPackage)); });
 
@@ -4783,8 +4835,10 @@ function sellServiceFlow(serviceId, restore) {
         patient: window.__inlineSelectedPatient, pay: modal.querySelector('#svcPaymentMethod').value,
         promo: modal.querySelector('#svcPromoCode').value, price: modal.querySelector('#svcPrice').value
       };
-      const reopen = (voucherCode) => {
-        sellServiceFlow(serviceId, { ...saved, voucherCode });
+      const reopen = async (voucherCode) => {
+        let patient = saved.patient;
+        if (!patient) { try { patient = (await lookupVoucher(voucherCode)).patient; } catch (e) { toast(e.message, 'error'); } }
+        sellServiceFlow(serviceId, { ...saved, patient, voucherCode });
       };
       openQrScanner({
         title: 'Scan patient voucher',

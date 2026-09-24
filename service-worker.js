@@ -5,7 +5,7 @@
 // the newest push, and with none it opens the last copy it saved. Icons and the manifest are
 // served from the saved copy. The clinic's data lives in the browser's storage, which this file
 // never touches, so an update never changes or clears it.
-const CACHE_VERSION = '20260924141342';
+const CACHE_VERSION = '20260924142132';
 const CACHE = 'ims-' + CACHE_VERSION;
 const PRECACHE = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png', './icons/apple-touch-icon.png'];
 
